@@ -8,25 +8,25 @@
 
   /* ── Canvas / Background ── */
   --color-canvas: #FAFAF7;
-  --color-surface: #F4F4F0;
+  --color-surface: #F4F0F8;
 
   /* ── Ink / Text ── */
   --color-ink: #1A1A18;
   --color-ink-muted: #5A5A55;
   --color-ink-faint: #9A9A93;
-  --color-cream: #F7F5EF;
+  --color-cream: #F5F0FA;
 
-  /* ── Sage (primary brand) ── */
-  --color-sage-50: #F2F6F3;
-  --color-sage-100: #E0EBE3;
-  --color-sage-200: #C2D5C8;
-  --color-sage-300: #9BBBA6;
-  --color-sage-400: #7A9E87;
-  --color-sage-500: #5C8269;
-  --color-sage-600: #48684F;
-  --color-sage-700: #365039;
-  --color-sage-800: #1B4332;
-  --color-sage-900: #0D2219;
+  /* ── Mauve / Lavender (primary brand — replaces sage green) ── */
+  --color-sage-50:  #F8F5FD;
+  --color-sage-100: #EDE5F8;
+  --color-sage-200: #D5C8F0;
+  --color-sage-300: #B5A0E0;
+  --color-sage-400: #9478C9;
+  --color-sage-500: #7555B0;
+  --color-sage-600: #5C3E93;
+  --color-sage-700: #432D6E;
+  --color-sage-800: #2B1D4A;
+  --color-sage-900: #170E28;
 
   /* ── Amber Gold (CTA) ── */
   --color-terra-400: #D4903F;
@@ -36,12 +36,12 @@
 
   /* ── Border ── */
   --color-border: rgba(0, 0, 0, 0.08);
-  --color-border-focus: rgba(122, 158, 135, 0.6);
+  --color-border-focus: rgba(148, 120, 201, 0.6);
 
   /* ── Shadows (Vercel shadow-as-border technique) ── */
-  --shadow-card: rgba(0,0,0,0.08) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 8px;
+  --shadow-card:       rgba(0,0,0,0.08) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 8px;
   --shadow-card-hover: rgba(0,0,0,0.12) 0 0 0 1px, rgba(0,0,0,0.08) 0 8px 24px;
-  --shadow-elevated: rgba(27,67,50,0.12) 0 0 0 1px, rgba(27,67,50,0.08) 0 16px 48px;
+  --shadow-elevated:   rgba(43,29,74,0.14) 0 0 0 1px, rgba(43,29,74,0.08) 0 16px 48px;
 
   /* ── Fluid type scale ── */
   --text-display: clamp(2.75rem, 7vw, 6rem);
@@ -63,14 +63,13 @@
 }
 
 /* ── Self-hosted Font Faces ── */
+/* NOTE: size-adjust / ascent-override removed — they clip Turkish diacritics (Ş İ Ğ Ç Ö Ü) */
 @font-face {
   font-family: 'Cormorant Garamond';
   src: url('/fonts/cormorant-garamond-latin-ext-300-normal.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -79,8 +78,6 @@
   font-weight: 300;
   font-style: italic;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -89,8 +86,6 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -99,8 +94,6 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -109,8 +102,6 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -119,8 +110,6 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -129,8 +118,6 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
@@ -139,8 +126,6 @@
   font-weight: 700;
   font-style: italic;
   font-display: swap;
-  size-adjust: 105%;
-  ascent-override: 90%;
 }
 
 @font-face {
