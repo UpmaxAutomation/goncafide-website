@@ -68,16 +68,26 @@ const background = [
           </div>
         </div>
 
-        <!-- Portrait placeholder -->
+        <!-- Portrait -->
         <div class="flex justify-center lg:justify-end">
           <div class="relative">
             <div
-              class="w-64 h-80 sm:w-80 sm:h-96 rounded-[2rem] overflow-hidden bg-gradient-to-br from-[var(--color-sage-200)] to-[var(--color-sage-100)] flex items-center justify-center"
+              class="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-[var(--color-sage-100)] to-[var(--color-sage-50)] -z-10"
+              aria-hidden="true"
+            ></div>
+            <div
+              class="w-64 h-80 sm:w-80 sm:h-96 rounded-[2rem] overflow-hidden"
               style="box-shadow: var(--shadow-elevated);"
             >
-              <div class="text-center">
-                <p class="font-display text-8xl font-light text-[var(--color-sage-500)] opacity-50">GF</p>
-              </div>
+              <img
+                src="/images/gonca-fide.jpg"
+                alt="Gonca Fide — CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni"
+                width="556"
+                height="707"
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-cover object-top"
+              />
             </div>
           </div>
         </div>
