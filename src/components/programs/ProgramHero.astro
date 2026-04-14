@@ -1,0 +1,98 @@
+---
+import Badge from '../ui/Badge.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  level: string;
+  format: string;
+  totalHours?: number;
+  sessionCount?: number;
+  sessionDuration?: string;
+  enrollmentOpen: boolean;
+  slug: string;
+}
+
+const { title, subtitle, level, format, totalHours, sessionCount, sessionDuration, enrollmentOpen, slug } = Astro.props;
+---
+
+<section class="bg-[var(--color-surface)] pt-10 pb-12 lg:pt-16 lg:pb-20 border-b border-[var(--color-border)]">
+  <div class="container-site">
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-[var(--color-ink-muted)]">
+        <li><a href="/" class="hover:text-[var(--color-ink)] transition-colors">Ana Sayfa</a></li>
+        <li aria-hidden="true">›</li>
+        <li><a href="/programlar" class="hover:text-[var(--color-ink)] transition-colors">Programlar</a></li>
+        <li aria-hidden="true">›</li>
+        <li class="text-[var(--color-ink)] font-medium">{title}</li>
+      </ol>
+    </nav>
+
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+      <!-- Left: title block -->
+      <div class="flex-1">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <Badge variant="sage">{level}</Badge>
+          <Badge variant="neutral">{format}</Badge>
+          {!enrollmentOpen && <Badge variant="terra">Kayıt Kapalı</Badge>}
+        </div>
+
+        <h1 class="font-display text-4xl lg:text-5xl xl:text-6xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
+          {title}
+        </h1>
+
+        {subtitle && (
+          <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed max-w-xl">
+            {subtitle}
+          </p>
+        )}
+      </div>
+
+      <!-- Right: stats + CTA card -->
+      <div class="w-full lg:w-80 flex-shrink-0">
+        <div
+          class="rounded-2xl bg-white p-6"
+          style="box-shadow: var(--shadow-card);"
+        >
+          <!-- Stats -->
+          <dl class="grid grid-cols-2 gap-4 mb-6">
+            {totalHours && (
+              <div>
+                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Toplam Süre</dt>
+                <dd class="font-display text-2xl font-light text-[var(--color-ink)]">{totalHours} <span class="text-base">saat</span></dd>
+              </div>
+            )}
+            {sessionCount && (
+              <div>
+                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Buluşma</dt>
+                <dd class="font-display text-2xl font-light text-[var(--color-ink)]">{sessionCount}+</dd>
+              </div>
+            )}
+            {sessionDuration && (
+              <div class="col-span-2">
+                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Seans Süresi</dt>
+                <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{sessionDuration}</dd>
+              </div>
+            )}
+            <div>
+              <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Format</dt>
+              <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{format}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Seviye</dt>
+              <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{level}</dd>
+            </div>
+          </dl>
+
+          <a
+            href={`/iletisim?program=${slug}`}
+            class="flex items-center justify-center w-full py-4 px-5 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] transition-colors min-h-[52px]"
+          >
+            Kayıt İçin İletişime Geç
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

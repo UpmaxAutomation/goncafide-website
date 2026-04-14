@@ -1,0 +1,149 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  { href: '/nvc-nedir', label: 'NVC Nedir?' },
+  { href: '/hakkimda', label: 'Hakkımda' },
+  { href: '/hizmetler', label: 'Hizmetler' },
+  { href: '/programlar', label: 'Programlar' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/iletisim', label: 'İletişim' },
+];
+---
+
+<footer class="bg-[var(--color-sage-800)] text-[var(--color-cream)]">
+  <!-- Newsletter section -->
+  <div class="border-b border-white/10">
+    <div class="container-site py-10 lg:py-14">
+      <div class="max-w-xl mx-auto text-center lg:text-left lg:mx-0 lg:max-w-none lg:flex lg:items-center lg:justify-between lg:gap-12">
+        <div class="mb-6 lg:mb-0">
+          <p class="eyebrow text-[var(--color-sage-200)] mb-2">Duyurulardan Haberdar Ol</p>
+          <h3 class="font-display text-2xl lg:text-3xl font-light text-white">
+            Yeni programlardan ilk sen haber al.
+          </h3>
+        </div>
+        <form
+          name="newsletter"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="flex-shrink-0 w-full lg:w-auto"
+          aria-label="Bülten kaydı formu"
+        >
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p class="hidden" aria-hidden="true">
+            <label>Bunu doldurmayın: <input name="bot-field" /></label>
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <label for="newsletter-email" class="sr-only">E-posta adresiniz</label>
+            <input
+              id="newsletter-email"
+              type="email"
+              name="email"
+              required
+              placeholder="E-posta adresiniz"
+              autocomplete="email"
+              class="flex-1 min-w-0 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-[var(--color-cream)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-sage-300)] sm:w-72 text-base"
+            />
+            <button
+              type="submit"
+              class="px-5 py-3 rounded-xl bg-[var(--color-terra-500)] hover:bg-[var(--color-terra-400)] text-white font-semibold text-sm tracking-wide transition-colors min-h-[48px] whitespace-nowrap"
+            >
+              Kaydol
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main footer -->
+  <div class="container-site py-10 lg:py-14">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <!-- Brand column -->
+      <div>
+        <a href="/" class="font-display text-2xl font-light text-white hover:text-[var(--color-sage-200)] transition-colors">
+          Gonca Fide
+        </a>
+        <p class="mt-3 text-sm text-[var(--color-cream)]/70 leading-relaxed max-w-xs">
+          CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. NVC kursları, empati koçluğu ve anlaşmazlık dönüştürme.
+        </p>
+        <div class="mt-5 flex items-center gap-4">
+          <a
+            href="https://instagram.com/goncolog"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[var(--color-cream)]/60 hover:text-white text-sm transition-colors flex items-center gap-1.5 min-h-[44px]"
+            aria-label="Instagram @goncolog"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            @goncolog
+          </a>
+          <a
+            href="mailto:info@goncafide.com"
+            class="text-[var(--color-cream)]/60 hover:text-white text-sm transition-colors min-h-[44px] flex items-center"
+          >
+            info@goncafide.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav links -->
+      <div>
+        <p class="eyebrow text-[var(--color-sage-300)] mb-4">Sayfalar</p>
+        <ul class="space-y-2.5" role="list">
+          {footerLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Programs quick links -->
+      <div>
+        <p class="eyebrow text-[var(--color-sage-300)] mb-4">Programlar</p>
+        <ul class="space-y-2.5" role="list">
+          <li>
+            <a href="/programlar/anda-kal-canda-kal" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
+              Anda Kal Canda Kal
+            </a>
+          </li>
+          <li>
+            <a href="/programlar/anahtar-ayrimlar" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
+              Anahtar Ayrımlar
+            </a>
+          </li>
+          <li>
+            <a href="/programlar/anlasmazlik-donusturme" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
+              Anlaşmazlık Dönüştürme
+            </a>
+          </li>
+          <li>
+            <a href="/programlar/empatik-kocluk" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
+              Empatik Koçluk
+            </a>
+          </li>
+          <li>
+            <a href="/programlar/mentorluk-programi" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
+              Mentörlük
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-cream)]/40">
+      <p>© {currentYear} Gonca Fide. Tüm hakları saklıdır.</p>
+      <p>Şiddetsiz İletişim · Empati · Dönüşüm</p>
+    </div>
+  </div>
+</footer>

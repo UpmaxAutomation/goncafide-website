@@ -1,0 +1,56 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import NVCPillars from '../components/home/NVCPillars.astro';
+import ServicesTeaser from '../components/home/ServicesTeaser.astro';
+import ProgramsTeaser from '../components/home/ProgramsTeaser.astro';
+import TestimonialsSection from '../components/home/TestimonialsSection.astro';
+import HomeCTA from '../components/home/HomeCTA.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.goncafide.com/#website",
+      "name": "Gonca Fide",
+      "url": "https://www.goncafide.com",
+      "inLanguage": "tr",
+      "description": "Gonca Fide — CNVC Sertifikalı Şiddetsiz İletişim (NVC) Eğitmeni"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.goncafide.com/#gonca",
+      "name": "Gonca Fide",
+      "jobTitle": "CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni",
+      "description": "ODTÜ Sosyoloji mezunu, 1000+ saat NVC eğitimi almış CNVC Sertifikalı Eğitmen",
+      "url": "https://www.goncafide.com",
+      "email": "info@goncafide.com",
+      "knowsAbout": ["Şiddetsiz İletişim", "Empati Koçluğu", "Anlaşmazlık Dönüştürme", "Arabuluculuk", "NVC"],
+      "sameAs": ["https://www.instagram.com/goncolog"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "TR"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "ODTÜ (Orta Doğu Teknik Üniversitesi)"
+      }
+    }
+  ]
+};
+---
+
+<PageLayout
+  title="Gonca Fide — Şiddetsiz İletişim Eğitmeni"
+  description="Gonca Fide, CNVC Sertifikalı Şiddetsiz İletişim (NVC) Eğitmeni. Online NVC kursları, empati koçluğu ve anlaşmazlık dönüştürme seansları. 1000+ saat deneyim."
+>
+  <JsonLd slot="jsonld" schema={websiteSchema} />
+  <HeroSection />
+  <NVCPillars />
+  <ServicesTeaser />
+  <ProgramsTeaser />
+  <TestimonialsSection />
+  <HomeCTA />
+</PageLayout>

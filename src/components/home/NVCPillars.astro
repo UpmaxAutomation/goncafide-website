@@ -1,0 +1,101 @@
+---
+const pillars = [
+  {
+    number: '01',
+    label: 'Gözlem',
+    description: 'Değerlendirme yapmadan gözlemlediğimizi somut biçimde ifade ederiz.',
+    color: 'var(--color-sage-400)',
+  },
+  {
+    number: '02',
+    label: 'Duygu',
+    description: 'Gözlemimizle ilişkili olarak ne hissettiğimizi fark ederiz.',
+    color: 'var(--color-sage-500)',
+  },
+  {
+    number: '03',
+    label: 'İhtiyaç',
+    description: 'Duygularımıza zemin olan ihtiyaçları, değerleri, arzuları ortaya koyarız.',
+    color: 'var(--color-sage-600)',
+  },
+  {
+    number: '04',
+    label: 'Rica',
+    description: 'Hayatımızı zenginleştirecek eylemleri net biçimde dile getiririz.',
+    color: 'var(--color-sage-700)',
+  },
+];
+---
+
+<section class="section-padding bg-[var(--color-surface)]">
+  <div class="container-site">
+    <!-- Section header -->
+    <div class="mb-10 lg:mb-16 max-w-2xl">
+      <p class="eyebrow mb-3">Şiddetsiz İletişim</p>
+      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4">
+        Dört adımda daha derin bir bağ
+      </h2>
+      <p class="text-[var(--color-ink-muted)] text-base lg:text-lg leading-relaxed">
+        Marshall Rosenberg tarafından geliştirilen NVC modeli, empatiyi merkeze alır
+        ve iletişimi dönüştürür.
+      </p>
+    </div>
+
+    <!-- Mobile: vertical timeline / Desktop: horizontal stepper -->
+    <div class="relative">
+      <!-- Desktop connecting line -->
+      <div
+        class="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-[var(--color-sage-200)] via-[var(--color-sage-400)] to-[var(--color-sage-700)]"
+        aria-hidden="true"
+      ></div>
+
+      <div class="flex flex-col lg:flex-row gap-0 lg:gap-8">
+        {pillars.map((pillar, i) => (
+          <div class="relative flex lg:flex-col gap-5 lg:gap-0 flex-1">
+            <!-- Mobile connecting line -->
+            {i < pillars.length - 1 && (
+              <div
+                class="lg:hidden absolute left-6 top-14 bottom-0 w-px bg-gradient-to-b from-[var(--color-sage-300)] to-[var(--color-sage-100)]"
+                aria-hidden="true"
+              ></div>
+            )}
+
+            <!-- Number bubble -->
+            <div
+              class="relative z-10 flex-shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center lg:mb-6 font-display font-light text-white text-lg"
+              style={`background-color: ${pillar.color};`}
+            >
+              {pillar.number}
+            </div>
+
+            <!-- Content -->
+            <div class="pb-8 lg:pb-0">
+              <h3 class="font-display text-2xl lg:text-3xl font-light text-[var(--color-ink)] mb-2 lg:mb-3 -tracking-[0.02em]">
+                {pillar.label}
+              </h3>
+              <p class="text-[var(--color-ink-muted)] text-sm lg:text-base leading-relaxed max-w-xs">
+                {pillar.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 lg:mt-14">
+      <a
+        href="/nvc-nedir"
+        class="inline-flex items-center gap-2 text-[var(--color-sage-700)] font-medium text-sm hover:text-[var(--color-sage-800)] transition-colors group"
+      >
+        Şiddetsiz İletişim hakkında daha fazla öğren
+        <svg
+          width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+          class="transition-transform group-hover:translate-x-1"
+        >
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

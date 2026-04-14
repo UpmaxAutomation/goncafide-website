@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import ProgramCard from '../../components/programs/ProgramCard.astro';
+
+const allPrograms = await getCollection('programlar', ({ data }) => !data.draft);
+const programs = allPrograms.sort((a, b) => a.data.order - b.data.order);
+
+const groupPrograms = programs.filter(p => p.data.format === 'Online Grup');
+const individualPrograms = programs.filter(p => p.data.format === 'Bireysel (1:1)');
+---
+
+<PageLayout
+  title="Programlar"
+  description="Gonca Fide'nin Şiddetsiz İletişim programları: başlangıçtan ileri seviyeye grup kursları ve bireysel seanslar. Online NVC eğitimleri."
+>
+  <!-- Header -->
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">Programlar</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
+        NVC yolculuğunuzu<br />seçin
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-xl">
+        Her seviye ve ihtiyaç için bir program var. Başlangıçtan ileri seviyeye, gruptan bireysel seansa.
+      </p>
+    </div>
+  </section>
+
+  <!-- Group programs -->
+  {groupPrograms.length > 0 && (
+    <section class="section-padding bg-[var(--color-canvas)]">
+      <div class="container-site">
+        <div class="mb-8">
+          <p class="eyebrow mb-3">Online Grup Programları</p>
+          <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+            Toplulukla öğrenmek
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {groupPrograms.map((program) => (
+            <ProgramCard
+              title={program.data.title}
+              description={program.data.description}
+              level={program.data.level}
+              format={program.data.format}
+              totalHours={program.data.totalHours}
+              sessionDuration={program.data.sessionDuration}
+              slug={program.id}
+              enrollmentOpen={program.data.enrollmentOpen}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Individual programs -->
+  {individualPrograms.length > 0 && (
+    <section class="section-padding bg-[var(--color-surface)]">
+      <div class="container-site">
+        <div class="mb-8">
+          <p class="eyebrow mb-3">Bireysel Programlar</p>
+          <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+            Sizinle bire bir
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 lg:max-w-2xl">
+          {individualPrograms.map((program) => (
+            <ProgramCard
+              title={program.data.title}
+              description={program.data.description}
+              level={program.data.level}
+              format={program.data.format}
+              totalHours={program.data.totalHours}
+              sessionDuration={program.data.sessionDuration}
+              slug={program.id}
+              enrollmentOpen={program.data.enrollmentOpen}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="bg-[var(--color-sage-800)] py-16">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl font-light text-white mb-4 -tracking-[0.03em]">
+        Hangi program size uygun?
+      </h2>
+      <p class="text-[var(--color-cream)]/70 mb-8 max-w-md mx-auto">
+        Bir programı seçmekte zorlanıyorsanız, birlikte konuşabiliriz.
+      </p>
+      <a
+        href="/iletisim"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[52px]"
+      >
+        İletişime Geç
+      </a>
+    </div>
+  </section>
+</PageLayout>

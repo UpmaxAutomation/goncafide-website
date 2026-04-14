@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/seo/SEOHead.astro';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description, ogImage, ogType, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Font preloads — critical weights only -->
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/cormorant-garamond-latin-ext-300-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/cormorant-garamond-latin-ext-400-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/plus-jakarta-sans-latin-ext-400-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/plus-jakarta-sans-latin-ext-600-normal.woff2" crossorigin />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <SEOHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      noindex={noindex}
+    />
+
+    <!-- JSON-LD slot -->
+    <slot name="jsonld" />
+
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

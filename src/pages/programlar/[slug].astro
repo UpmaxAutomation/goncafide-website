@@ -1,0 +1,112 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import ProgramHero from '../../components/programs/ProgramHero.astro';
+import Prose from '../../components/ui/Prose.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+
+export async function getStaticPaths() {
+  const programs = await getCollection('programlar', ({ data }) => !data.draft);
+  return programs.map((program) => ({
+    params: { slug: program.id },
+    props: { program },
+  }));
+}
+
+const { program } = Astro.props;
+const { Content } = await render(program);
+
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": program.data.title,
+  "description": program.data.description,
+  "url": `https://www.goncafide.com/programlar/${program.id}`,
+  "inLanguage": "tr",
+  "provider": {
+    "@type": "Person",
+    "@id": "https://www.goncafide.com/#gonca"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": program.data.totalHours ? `PT${program.data.totalHours}H` : undefined,
+    "offers": {
+      "@type": "Offer",
+      "url": `https://www.goncafide.com/iletisim?program=${program.id}`,
+      "availability": program.data.enrollmentOpen
+        ? "https://schema.org/InStock"
+        : "https://schema.org/Discontinued"
+    }
+  }
+};
+---
+
+<PageLayout
+  title={program.data.title}
+  description={`${program.data.description} — ${program.data.level} seviye, ${program.data.format} format.`}
+>
+  <JsonLd slot="jsonld" schema={courseSchema} />
+
+  <ProgramHero
+    title={program.data.title}
+    subtitle={program.data.subtitle}
+    level={program.data.level}
+    format={program.data.format}
+    totalHours={program.data.totalHours}
+    sessionCount={program.data.sessionCount}
+    sessionDuration={program.data.sessionDuration}
+    enrollmentOpen={program.data.enrollmentOpen}
+    slug={program.id}
+  />
+
+  <!-- Content + sidebar -->
+  <div class="container-site py-12 lg:py-16">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+      <!-- Main content -->
+      <div class="flex-1 min-w-0">
+        <Prose>
+          <Content />
+        </Prose>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="w-full lg:w-72 flex-shrink-0">
+        <div class="sticky top-24 space-y-5">
+          <!-- CTA -->
+          <div class="rounded-2xl bg-[var(--color-sage-800)] p-6 text-white">
+            <p class="eyebrow text-[var(--color-sage-300)] mb-3">Kayıt</p>
+            <h3 class="font-display text-xl font-light mb-3 text-white leading-snug">
+              {program.data.title}
+            </h3>
+            <div class="space-y-2 mb-5 text-sm text-[var(--color-cream)]/70">
+              <p>Seviye: <span class="text-white font-medium">{program.data.level}</span></p>
+              <p>Format: <span class="text-white font-medium">{program.data.format}</span></p>
+              {program.data.totalHours && (
+                <p>Süre: <span class="text-white font-medium">{program.data.totalHours} saat</span></p>
+              )}
+            </div>
+            <a
+              href={`/iletisim?program=${program.id}`}
+              class="flex items-center justify-center py-3.5 px-5 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[48px]"
+            >
+              Kayıt İçin İletişime Geç
+            </a>
+          </div>
+
+          <!-- All programs link -->
+          <a
+            href="/programlar"
+            class="flex items-center gap-2 text-[var(--color-ink-muted)] text-sm hover:text-[var(--color-ink)] transition-colors p-4 rounded-xl bg-[var(--color-surface)]"
+            style="box-shadow: var(--shadow-card);"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Tüm programlar
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</PageLayout>

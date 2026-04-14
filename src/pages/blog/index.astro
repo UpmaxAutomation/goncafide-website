@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) =>
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+const featured = posts.filter(p => p.data.featured);
+const rest = posts.filter(p => !p.data.featured);
+---
+
+<PageLayout
+  title="Blog"
+  description="Şiddetsiz İletişim, empati, ilişkiler ve iç dünya üzerine yazılar. Gonca Fide'nin NVC blog yazıları."
+>
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">Blog</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05]">
+        Yazılar
+      </h1>
+    </div>
+  </section>
+
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      {posts.length === 0 ? (
+        <p class="text-[var(--color-ink-muted)] text-center py-16">Yakında yazılar gelecek…</p>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              slug={post.id}
+              author={post.data.author}
+              tags={post.data.tags}
+              featured={post.data.featured}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</PageLayout>

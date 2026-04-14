@@ -1,0 +1,86 @@
+---
+import Badge from '../ui/Badge.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  level: string;
+  format: string;
+  totalHours?: number;
+  sessionDuration?: string;
+  slug: string;
+  enrollmentOpen?: boolean;
+}
+
+const {
+  title,
+  description,
+  level,
+  format,
+  totalHours,
+  sessionDuration,
+  slug,
+  enrollmentOpen = true,
+} = Astro.props;
+---
+
+<article
+  class="group flex flex-col rounded-2xl bg-white overflow-hidden"
+  style="box-shadow: var(--shadow-card);"
+>
+  <!-- Top accent bar -->
+  <div class="h-1 bg-gradient-to-r from-[var(--color-sage-400)] to-[var(--color-sage-600)]"></div>
+
+  <div class="flex flex-col flex-1 p-6 lg:p-7">
+    <!-- Meta badges -->
+    <div class="flex items-center gap-2 flex-wrap mb-4">
+      <Badge variant="sage">{level}</Badge>
+      <Badge variant="neutral">{format}</Badge>
+      {!enrollmentOpen && <Badge variant="terra">Kayıt Kapalı</Badge>}
+    </div>
+
+    <!-- Title -->
+    <h3 class="font-display text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-3 leading-snug group-hover:text-[var(--color-sage-800)] transition-colors">
+      {title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed flex-1 mb-5">
+      {description.slice(0, 160)}…
+    </p>
+
+    <!-- Stats -->
+    <div class="flex items-center gap-4 mb-6 text-xs text-[var(--color-ink-muted)]">
+      {totalHours && (
+        <span class="flex items-center gap-1">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          {totalHours} saat
+        </span>
+      )}
+      {sessionDuration && (
+        <span class="flex items-center gap-1">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M5 1v3M11 1v3M2 7h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          {sessionDuration}
+        </span>
+      )}
+    </div>
+
+    <!-- CTA -->
+    <a
+      href={`/programlar/${slug}`}
+      class="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-[var(--color-sage-50)] text-[var(--color-sage-800)] font-medium text-sm hover:bg-[var(--color-sage-100)] transition-colors min-h-[48px] group/btn"
+    >
+      Detayları incele
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+        class="transition-transform group-hover/btn:translate-x-1">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</article>

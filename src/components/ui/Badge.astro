@@ -1,0 +1,18 @@
+---
+interface Props {
+  variant?: 'sage' | 'terra' | 'neutral' | 'dark';
+}
+
+const { variant = 'sage' } = Astro.props;
+
+const variantClasses = {
+  sage: 'bg-[var(--color-sage-50)] text-[var(--color-sage-700)] border border-[var(--color-sage-200)]',
+  terra: 'bg-orange-50 text-[var(--color-terra-600)] border border-orange-200',
+  neutral: 'bg-[var(--color-surface)] text-[var(--color-ink-muted)] border border-[var(--color-border)]',
+  dark: 'bg-[var(--color-sage-800)] text-[var(--color-sage-100)]',
+};
+---
+
+<span class={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-body font-medium ${variantClasses[variant]}`}>
+  <slot />
+</span>

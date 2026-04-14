@@ -1,0 +1,64 @@
+---
+const navLinks = [
+  { href: '/nvc-nedir', label: 'NVC Nedir?' },
+  { href: '/hakkimda', label: 'Hakkımda' },
+  { href: '/hizmetler', label: 'Hizmetler' },
+  { href: '/programlar', label: 'Programlar' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 w-full bg-[var(--color-canvas)]/95 backdrop-blur-sm border-b border-[var(--color-border)]">
+  <div class="container-site">
+    <nav class="flex items-center justify-between h-16 lg:h-[72px]" aria-label="Ana navigasyon">
+      <!-- Logo / Wordmark -->
+      <a href="/" class="flex-shrink-0 font-display text-xl lg:text-2xl font-light tracking-tight text-[var(--color-ink)] hover:text-[var(--color-sage-700)] transition-colors">
+        Gonca Fide
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="hidden lg:flex items-center gap-1" role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'px-3 py-2 rounded-lg text-sm font-body transition-colors',
+                pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+                  ? 'text-[var(--color-sage-800)] font-medium bg-[var(--color-sage-50)]'
+                  : 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface)]'
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Desktop CTA -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a
+          href="/iletisim"
+          class="px-5 py-2.5 rounded-xl bg-[var(--color-terra-500)] text-white font-body font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] transition-colors min-h-[44px] flex items-center"
+        >
+          İletişime Geç
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-open"
+        aria-label="Menüyü aç"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="lg:hidden flex items-center justify-center w-12 h-12 -mr-2 rounded-lg text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface)] transition-colors"
+      >
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>

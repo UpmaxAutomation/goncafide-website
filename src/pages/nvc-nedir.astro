@@ -1,0 +1,295 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "url": "https://www.goncafide.com/nvc-nedir",
+      "name": "Şiddetsiz İletişim (NVC) Nedir? — Sık Sorulan Sorular",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Şiddetsiz İletişim (NVC) nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Şiddetsiz İletişim (NVC), Klinik Psikolog Prof. Dr. Marshall Rosenberg tarafından geliştirilen bir iletişim modelidir. Gözlem, Duygu, İhtiyaç ve Rica olmak üzere dört adımdan oluşur ve insanların birbirleriyle empati ve dürüstlük temelli bağlantı kurmasını sağlar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "NVC eğitimi Türkiye'de nerede alınabilir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Türkiye'de CNVC sertifikalı eğitmenlerden NVC eğitimi alabilirsiniz. Gonca Fide, online gruplar ve bireysel seanslarla NVC eğitimi sunmaktadır. siddetsiziletisim.com ve CNVC.org adreslerinde Türkçe kaynaklara ulaşabilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "NVC'yi öğrenmek ne kadar sürer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NVC'nin temellerini birkaç saatlik bir giriş eğitiminde öğrenebilirsiniz. Ancak derinlemesine pratik yapmak ve NVC'yi günlük hayata entegre etmek için aylık gruplar ve bireysel seanslar önerilir. Anahtar Ayrımlar gibi ileri programlar 5 ay sürebilir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "NVC kimler için uygundur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NVC; ilişkilerini güçlendirmek isteyen herkes, ebeveynler, eğitimciler, yöneticiler, terapistler, arabulucular ve kendi duygusal farkındalığını geliştirmek isteyen bireyler için uygundur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Şiddetsiz İletişim sadece sözlü iletişimle mi ilgilidir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. NVC hem sözlü hem de yazılı iletişimi kapsar; aynı zamanda kendi iç sesinizle ilişkinizi de dönüştürür. Öz-empati, NVC pratiğinin merkezindedir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "CNVC sertifikalı eğitmen nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CNVC (Center for Nonviolent Communication), Marshall Rosenberg'in kurduğu dünya çapındaki NVC organizasyonudur. CNVC Sertifikalı Eğitmenler, kapsamlı bir eğitim ve değerlendirme sürecinden geçmiş, NVC'yi öğretme yeterliliğini kanıtlamış kişilerdir."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Şiddetsiz İletişim Nedir?",
+      "url": "https://www.goncafide.com/nvc-nedir",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.goncafide.com/#gonca"
+      },
+      "inLanguage": "tr"
+    }
+  ]
+};
+
+const steps = [
+  {
+    number: '01',
+    title: 'Gözlem',
+    subtitle: 'Neyi gördüm?',
+    description: 'Değerlendirme, yorum veya yargı katmadan neyin yaşandığını somut biçimde tanımlarız. "Toplantıda hiç konuşmadın" yerine "Toplantıda beş kez söz aldığında sözünü kestim."',
+    example: '"Toplantıda üç kez söz aldığında dinlemedim."',
+    color: 'var(--color-sage-400)',
+  },
+  {
+    number: '02',
+    title: 'Duygu',
+    subtitle: 'Ne hissediyorum?',
+    description: 'Bu gözlemle bağlantılı olarak ne hissettiğimizi fark ederiz. Düşünceler ve yorumlar değil, gerçek duygular: üzgün, korkmuş, mutlu, yorgun...',
+    example: '"...üzgün hissediyorum."',
+    color: 'var(--color-sage-500)',
+  },
+  {
+    number: '03',
+    title: 'İhtiyaç',
+    subtitle: 'Hangi ihtiyacım var?',
+    description: 'Duygularımız, karşılanmış ya da karşılanmamış ihtiyaçlarımızın habercisidir. İhtiyaçlar evrenseldir: bağlantı, saygı, özerklik, güvenlik, katkı...',
+    example: '"...çünkü görülmeye, duyulmaya ihtiyacım var."',
+    color: 'var(--color-sage-600)',
+  },
+  {
+    number: '04',
+    title: 'Rica',
+    subtitle: 'Ne istiyorum?',
+    description: 'Hayatımızı zenginleştirecek somut, olumlu, şimdiki zamana yönelik bir eylem talep ederiz. Rica, talep değildir; karşılıklı gönüllülüğe dayanır.',
+    example: '"Şu an seninle bu konuyu konuşmak ister misin?"',
+    color: 'var(--color-sage-700)',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Şiddetsiz İletişim (NVC) nedir?',
+    a: 'Şiddetsiz İletişim (NVC), Klinik Psikolog Prof. Dr. Marshall Rosenberg tarafından geliştirilen bir iletişim modelidir. Gözlem, Duygu, İhtiyaç ve Rica olmak üzere dört adımdan oluşur ve insanların birbirleriyle empati ve dürüstlük temelli bağlantı kurmasını sağlar.'
+  },
+  {
+    q: 'NVC eğitimi Türkiye\'de nerede alınabilir?',
+    a: 'Türkiye\'de CNVC sertifikalı eğitmenlerden NVC eğitimi alabilirsiniz. Gonca Fide, online gruplar ve bireysel seanslarla NVC eğitimi sunmaktadır.'
+  },
+  {
+    q: 'NVC\'yi öğrenmek ne kadar sürer?',
+    a: 'NVC\'nin temellerini birkaç saatlik bir giriş eğitiminde öğrenebilirsiniz. Ancak derinlemesine pratik yapmak ve günlük hayata entegre etmek için aylık gruplar ve bireysel seanslar önerilir.'
+  },
+  {
+    q: 'NVC kimler için uygundur?',
+    a: 'İlişkilerini güçlendirmek isteyen herkes, ebeveynler, eğitimciler, yöneticiler, terapistler, arabulucular ve kendi duygusal farkındalığını geliştirmek isteyen bireyler için uygundur.'
+  },
+  {
+    q: 'Şiddetsiz İletişim sadece sözlü iletişimle mi ilgilidir?',
+    a: 'Hayır. NVC hem sözlü hem yazılı iletişimi kapsar; aynı zamanda kendi iç sesinizle (öz-empati) ilişkinizi de dönüştürür.'
+  },
+  {
+    q: 'CNVC sertifikalı eğitmen nedir?',
+    a: 'CNVC, Marshall Rosenberg\'in kurduğu dünya çapındaki NVC organizasyonudur. CNVC Sertifikalı Eğitmenler, kapsamlı bir eğitim ve değerlendirme sürecinden geçmiş kişilerdir.'
+  },
+];
+---
+
+<PageLayout
+  title="Şiddetsiz İletişim Nedir?"
+  description="Şiddetsiz İletişim (NVC), Marshall Rosenberg tarafından geliştirilen empati temelli bir iletişim modeli. 4 adımı, kullanım alanları ve Türkiye'deki NVC eğitimleri hakkında kapsamlı rehber."
+>
+  <JsonLd slot="jsonld" schema={faqSchema} />
+
+  <!-- Hero -->
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site max-w-3xl">
+      <p class="eyebrow mb-4">Şiddetsiz İletişim</p>
+      <h1 class="font-display text-4xl lg:text-5xl xl:text-6xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-6">
+        Şiddetsiz İletişim Nedir?
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg lg:text-xl leading-relaxed">
+        Şiddetsiz İletişim (İngilizce: <em>Nonviolent Communication</em>, kısaca NVC), Klinik Psikolog
+        Prof. Dr. <strong>Marshall Rosenberg</strong> tarafından geliştirilen bir iletişim ve yaşam felsefesidir.
+        Empatiyi, dürüstlüğü ve ihtiyaç farkındalığını merkeze alır; insanlar arasındaki bağlantıyı
+        güçlendirirken çatışmaları dönüştürmeyi hedefler.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4 Steps -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="max-w-2xl mb-12">
+        <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4">
+          4 Adım: Gözlem, Duygu, İhtiyaç, Rica
+        </h2>
+        <p class="text-[var(--color-ink-muted)] text-base lg:text-lg leading-relaxed">
+          NVC modeli, iletişimi dört temel adıma ayırır. Her adım, hem kendi iç dünyamızı anlamak
+          hem de başkalarına empatiyle yaklaşmak için bir çerçeve sunar.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {steps.map((step) => (
+          <div
+            class="p-7 rounded-2xl bg-white"
+            style="box-shadow: var(--shadow-card);"
+          >
+            <div class="flex items-center gap-3 mb-5">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center text-white font-display font-light text-sm flex-shrink-0"
+                style={`background-color: ${step.color};`}
+              >
+                {step.number}
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-light text-[var(--color-ink)] -tracking-[0.02em]">
+                  {step.title}
+                </h3>
+                <p class="text-xs text-[var(--color-ink-muted)] font-body">{step.subtitle}</p>
+              </div>
+            </div>
+            <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed mb-4">
+              {step.description}
+            </p>
+            <div class="bg-[var(--color-sage-50)] rounded-xl p-3.5 border-l-2 border-[var(--color-sage-400)]">
+              <p class="text-sm font-display italic text-[var(--color-sage-800)]">
+                Örnek: {step.example}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section class="section-padding bg-[var(--color-surface)]">
+    <div class="container-site max-w-3xl">
+      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-6">
+        Şiddetsiz İletişim Ne İşe Yarar?
+      </h2>
+      <div class="prose prose-lg">
+        <p>
+          NVC, yüzeyde bir "iletişim tekniği" gibi görünse de özünde çok daha derin bir yaşam felsefesidir.
+          Martin Luther King Jr. ve Mahatma Gandhi'nin şiddetsizlik anlayışından ilham alan Rosenberg,
+          NVC'yi dünya genelinde 50'den fazla ülkede yaydı.
+        </p>
+        <h3>NVC şu alanlarda dönüşüm yaratır:</h3>
+        <ul>
+          <li><strong>Kişisel ilişkiler:</strong> Çiftler, aile üyeleri ve arkadaşlar arasında daha derin bağlantı</li>
+          <li><strong>Ebeveynlik:</strong> Çocuklarla otorite yerine empati temelinde iletişim</li>
+          <li><strong>İş hayatı:</strong> Ekip çatışmalarını dönüştürme, liderlik, müzakere</li>
+          <li><strong>Eğitim:</strong> Öğrenci-öğretmen ilişkisini güçlendirme</li>
+          <li><strong>Arabuluculuk:</strong> NVC temelli müzakere ve uzlaşı süreçleri</li>
+          <li><strong>İç ses:</strong> Kendinizle daha nazik, daha dürüst bir ilişki kurma</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who is it for -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site max-w-3xl">
+      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-6">
+        Kimler Şiddetsiz İletişim Öğrenebilir?
+      </h2>
+      <p class="text-[var(--color-ink-muted)] text-base lg:text-lg leading-relaxed mb-8">
+        NVC herkes için. Önceki bilgi veya deneyim gerekmez.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {['Ebeveynler', 'Eğitimciler', 'Yöneticiler & Liderler', 'Terapistler & Koçlar', 'Arabulucular', 'Herkes'].map((who) => (
+          <div
+            class="flex items-center justify-center text-center p-4 rounded-xl bg-[var(--color-surface)] text-sm font-body text-[var(--color-ink)] min-h-[60px]"
+            style="box-shadow: var(--shadow-card);"
+          >
+            {who}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-padding bg-[var(--color-surface)]">
+    <div class="container-site max-w-3xl">
+      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-10">
+        Sık Sorulan Sorular
+      </h2>
+
+      <dl class="space-y-0 divide-y divide-[var(--color-border)]">
+        {faqs.map((faq) => (
+          <div class="py-6 first:pt-0">
+            <dt class="font-display text-xl font-light text-[var(--color-ink)] mb-3 -tracking-[0.01em]">
+              {faq.q}
+            </dt>
+            <dd class="text-[var(--color-ink-muted)] text-base leading-relaxed">
+              {faq.a}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[var(--color-sage-800)] py-16">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl lg:text-4xl font-light text-white mb-4 -tracking-[0.03em]">
+        Giriş eğitimine kaydolun
+      </h2>
+      <p class="text-[var(--color-cream)]/70 mb-8 max-w-md mx-auto">
+        NVC'yi teoride değil pratikte öğrenin. Anda Kal Canda Kal başlangıç programı tam size göre.
+      </p>
+      <a
+        href="/programlar/anda-kal-canda-kal"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[52px]"
+      >
+        Programa Kaydol
+      </a>
+    </div>
+  </section>
+</PageLayout>

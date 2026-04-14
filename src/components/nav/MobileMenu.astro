@@ -1,0 +1,121 @@
+---
+const navLinks = [
+  { href: '/', label: 'Ana Sayfa' },
+  { href: '/nvc-nedir', label: 'NVC Nedir?' },
+  { href: '/hakkimda', label: 'Hakkımda' },
+  { href: '/hizmetler', label: 'Hizmetler' },
+  { href: '/programlar', label: 'Programlar' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/iletisim', label: 'İletişim' },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-label="Navigasyon menüsü"
+  aria-modal="true"
+  aria-hidden="true"
+  class="fixed inset-0 z-50 flex flex-col bg-[var(--color-canvas)] opacity-0 pointer-events-none transition-all duration-300 ease-in-out"
+>
+  <!-- Header -->
+  <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--color-border)]">
+    <a href="/" class="font-display text-xl font-light tracking-tight text-[var(--color-ink)]">
+      Gonca Fide
+    </a>
+    <button
+      id="mobile-menu-close"
+      aria-label="Menüyü kapat"
+      class="flex items-center justify-center w-12 h-12 rounded-lg text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface)] transition-colors"
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="flex-1 flex flex-col justify-center px-8 py-6 gap-1">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class:list={[
+          'flex items-center py-4 px-2 font-display text-3xl font-light tracking-tight transition-colors border-b border-[var(--color-border)]',
+          pathname === link.href
+            ? 'text-[var(--color-sage-800)]'
+            : 'text-[var(--color-ink)] hover:text-[var(--color-sage-600)]'
+        ]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <!-- Footer CTA -->
+  <div class="px-8 py-8">
+    <a
+      href="/iletisim"
+      class="flex items-center justify-center w-full py-4 px-6 rounded-xl bg-[var(--color-terra-500)] text-white font-body font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] transition-colors min-h-[48px]"
+    >
+      İletişime Geç
+    </a>
+    <div class="mt-4 flex items-center gap-4 justify-center">
+      <a
+        href="https://instagram.com/goncolog"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] text-sm transition-colors"
+        aria-label="Instagram @goncolog"
+      >
+        @goncolog
+      </a>
+      <span class="text-[var(--color-ink-faint)]">·</span>
+      <a
+        href="mailto:info@goncafide.com"
+        class="text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] text-sm transition-colors"
+      >
+        info@goncafide.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const menu = document.getElementById('mobile-menu');
+  const openBtn = document.getElementById('mobile-menu-open');
+  const closeBtn = document.getElementById('mobile-menu-close');
+
+  function openMenu() {
+    if (!menu) return;
+    menu.setAttribute('aria-hidden', 'false');
+    menu.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  function closeMenu() {
+    if (!menu) return;
+    menu.setAttribute('aria-hidden', 'true');
+    menu.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = '';
+    openBtn?.focus();
+  }
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.getAttribute('aria-hidden') === 'false') {
+      closeMenu();
+    }
+  });
+
+  // Close on nav link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

@@ -1,0 +1,40 @@
+---
+import { formatDate } from '../../lib/formatDate';
+
+interface Props {
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  readingTime?: string;
+  tags?: string[];
+}
+
+const { pubDate, updatedDate, author = 'Gonca Fide', readingTime, tags = [] } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center gap-3 text-sm text-[var(--color-ink-muted)]">
+  <span class="font-medium text-[var(--color-ink)]">{author}</span>
+  <span aria-hidden="true">·</span>
+  <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+  {updatedDate && (
+    <>
+      <span aria-hidden="true">·</span>
+      <span>Güncellendi: <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>
+    </>
+  )}
+  {readingTime && (
+    <>
+      <span aria-hidden="true">·</span>
+      <span>{readingTime}</span>
+    </>
+  )}
+</div>
+{tags.length > 0 && (
+  <div class="flex flex-wrap gap-1.5 mt-3">
+    {tags.map((tag) => (
+      <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-sage-50)] text-[var(--color-sage-700)] border border-[var(--color-sage-200)]">
+        {tag}
+      </span>
+    ))}
+  </div>
+)}

@@ -1,0 +1,56 @@
+---
+const testimonials = [
+  {
+    quote: 'Gonca\'nın eğitimi sadece iletişim becerilerimi değil, kendimle ilişkimi de köklü biçimde dönüştürdü. NVC araçlarını öğrenmek hayatıma gerçek bir hediye oldu.',
+    author: 'Zeynep K.',
+    role: 'Anda Kal Canda Kal mezunu',
+  },
+  {
+    quote: 'Empati koçluğu seanslarında Gonca\'nın rehberliğiyle kendi ihtiyaçlarımı ilk kez bu kadar net görebildim. Karar almak artık bu kadar zor değil.',
+    author: 'Mert D.',
+    role: 'Empatik Koçluk katılımcısı',
+  },
+  {
+    quote: 'Anahtar Ayrımlar programı, NVC\'yi gerçek anlamda derinleştirmek isteyenler için. Her seans yeni bir "ah-ha" anı. Gonca\'nın alan tutma biçimi eşsiz.',
+    author: 'Ayşe T.',
+    role: 'Anahtar Ayrımlar mezunu',
+  },
+];
+---
+
+<section class="section-padding bg-[var(--color-canvas)]">
+  <div class="container-site">
+    <div class="mb-10 lg:mb-14 text-center max-w-xl mx-auto">
+      <p class="eyebrow mb-3">Katılımcı Deneyimleri</p>
+      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+        Dönüşüm hikayeleri
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <figure
+          class="flex flex-col p-6 lg:p-8 rounded-2xl bg-white"
+          style="box-shadow: var(--shadow-card);"
+        >
+          <!-- Quote mark -->
+          <div
+            class="w-8 h-8 mb-5 font-display text-5xl leading-none text-[var(--color-sage-300)] select-none"
+            aria-hidden="true"
+          >
+            "
+          </div>
+
+          <blockquote class="flex-1 font-display text-lg lg:text-xl font-light italic leading-relaxed text-[var(--color-ink)] -tracking-[0.01em]">
+            {t.quote}
+          </blockquote>
+
+          <figcaption class="mt-6 pt-5 border-t border-[var(--color-border)]">
+            <p class="font-body font-semibold text-sm text-[var(--color-ink)]">{t.author}</p>
+            <p class="text-xs text-[var(--color-ink-muted)] mt-0.5">{t.role}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

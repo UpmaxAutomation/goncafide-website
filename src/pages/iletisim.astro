@@ -1,0 +1,96 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/forms/ContactForm.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "İletişim — Gonca Fide",
+  "url": "https://www.goncafide.com/iletisim",
+  "description": "Gonca Fide ile iletişime geçin. NVC programları, empati koçluğu ve bireysel seanslar hakkında bilgi alın.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "info@goncafide.com",
+    "contactType": "customer service",
+    "availableLanguage": "Turkish"
+  }
+};
+---
+
+<PageLayout
+  title="İletişim"
+  description="Gonca Fide ile iletişime geçin. NVC programları, empati koçluğu ve bireysel seanslar hakkında bilgi alabilirsiniz."
+>
+  <JsonLd slot="jsonld" schema={contactSchema} />
+
+  <!-- Header -->
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">İletişim</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
+        İletişime Geçin
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-lg">
+        Program kaydı, bireysel seans veya herhangi bir soru için mesaj gönderin.
+        En kısa sürede geri döneceğim.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form + contact info -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <ContactForm />
+        </div>
+
+        <!-- Contact info sidebar -->
+        <aside class="space-y-6">
+          <div
+            class="rounded-2xl bg-white p-6"
+            style="box-shadow: var(--shadow-card);"
+          >
+            <p class="eyebrow text-[var(--color-sage-500)] mb-5">Diğer Kanallar</p>
+            <div class="space-y-5">
+              <div>
+                <p class="text-xs font-medium text-[var(--color-ink-muted)] uppercase tracking-wider mb-1">E-posta</p>
+                <a
+                  href="mailto:info@goncafide.com"
+                  class="text-[var(--color-ink)] font-medium text-sm hover:text-[var(--color-sage-700)] transition-colors"
+                >
+                  info@goncafide.com
+                </a>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-ink-muted)] uppercase tracking-wider mb-1">Instagram</p>
+                <a
+                  href="https://instagram.com/goncolog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[var(--color-ink)] font-medium text-sm hover:text-[var(--color-sage-700)] transition-colors"
+                >
+                  @goncolog
+                </a>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-ink-muted)] uppercase tracking-wider mb-1">Konum</p>
+                <p class="text-[var(--color-ink)] text-sm">Türkiye (Online)</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="rounded-2xl bg-[var(--color-sage-50)] p-6 border border-[var(--color-sage-200)]"
+          >
+            <p class="text-sm text-[var(--color-sage-800)] leading-relaxed">
+              Mesajlara genellikle <strong>1-2 iş günü</strong> içinde yanıt veriyorum.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</PageLayout>

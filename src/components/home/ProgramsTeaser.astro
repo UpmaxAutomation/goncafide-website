@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Badge from '../ui/Badge.astro';
+
+const allPrograms = await getCollection('programlar', ({ data }) => !data.draft);
+const featuredPrograms = allPrograms
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const levelVariant = (level: string) => {
+  if (level === 'Başlangıç') return 'sage';
+  if (level === 'Orta' || level === 'Orta-İleri') return 'neutral';
+  if (level === 'Tüm Seviyeler') return 'sage';
+  return 'terra';
+};
+---
+
+<section class="section-padding bg-[var(--color-sage-800)]">
+  <div class="container-site">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 lg:mb-14">
+      <div>
+        <p class="eyebrow text-[var(--color-sage-300)] mb-3">Programlar</p>
+        <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-white">
+          Sizi bekleyen<br />dönüşüm yolculukları
+        </h2>
+      </div>
+      <a
+        href="/programlar"
+        class="inline-flex items-center gap-2 text-[var(--color-sage-200)] hover:text-white text-sm font-medium transition-colors group flex-shrink-0"
+      >
+        Tüm programlar
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+          class="transition-transform group-hover:translate-x-1">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+      {featuredPrograms.map((program) => (
+        <a
+          href={`/programlar/${program.id}`}
+          class="group flex flex-col p-6 lg:p-7 rounded-2xl bg-[var(--color-sage-700)]/40 hover:bg-[var(--color-sage-700)]/70 border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex items-center gap-2 mb-4 flex-wrap">
+            <Badge variant="dark">{program.data.level}</Badge>
+            <Badge variant="dark">{program.data.format}</Badge>
+            {program.data.totalHours && (
+              <span class="text-xs text-[var(--color-sage-300)]">{program.data.totalHours} saat</span>
+            )}
+          </div>
+
+          <h3 class="font-display text-xl lg:text-2xl font-light text-white mb-3 leading-snug -tracking-[0.02em] group-hover:text-[var(--color-sage-100)] transition-colors">
+            {program.data.title}
+          </h3>
+
+          <p class="text-[var(--color-cream)]/60 text-sm leading-relaxed flex-1">
+            {program.data.description.slice(0, 120)}…
+          </p>
+
+          <div class="mt-5 flex items-center gap-1.5 text-[var(--color-sage-300)] group-hover:text-[var(--color-sage-200)] text-sm font-medium transition-colors">
+            Detayları gör
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+              class="transition-transform group-hover:translate-x-1">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

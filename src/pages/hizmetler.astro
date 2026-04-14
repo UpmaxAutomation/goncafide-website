@@ -1,0 +1,222 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+const services = [
+  {
+    slug: 'giris',
+    title: 'Şiddetsiz İletişim\'e Giriş',
+    description: 'NVC\'nin temel kavramlarını, dört adımını ve günlük hayatta nasıl uygulanacağını keşfedersiniz. Empati ve gözlem ayrımı, duygu-ihtiyaç farkındalığı.',
+    format: 'Online Grup',
+    audience: 'Başlangıç',
+    icon: '◯',
+  },
+  {
+    slug: 'beceriler',
+    title: 'Şiddetsiz İletişim Becerileri',
+    description: 'Duygu ve ihtiyaç farkındalığını derinleştirerek NVC becerilerini pratikte geliştirirsiniz. Giriş programını tamamlayanlar için ideal.',
+    format: 'Online Grup',
+    audience: 'Orta',
+    icon: '◎',
+  },
+  {
+    slug: 'anahtar-ayrimlar-hizmet',
+    title: 'Anahtar Ayrımlar\'la NVC',
+    description: 'Liv Larsson ve Miki Kashtan\'ın 54 temel ayrımıyla NVC anlayışınızı ileri seviyeye taşırsınız. Derinlemesine kavramsal ve pratik çalışma.',
+    format: 'Online Grup',
+    audience: 'Orta-İleri',
+    icon: '⊕',
+  },
+  {
+    slug: 'arabuluculuk',
+    title: 'NVC Temelli Arabuluculuk',
+    description: 'Çatışmaların her iki tarafını da empatiyle tutmayı, ihtiyaçları ortaya çıkarmayı ve dönüşüm yaratacak çözümler bulmayı öğrenirsiniz.',
+    format: 'Online Grup',
+    audience: 'İleri',
+    icon: '⊗',
+  },
+  {
+    slug: 'kiyaslar',
+    title: 'Kıyas: Haset, Kıskançlık...',
+    description: 'Karşılaştırma, kıskançlık ve hasedi NVC mercekiyle inceleriz. Bu duyguların altındaki ihtiyaçları keşfetmek dönüştürücü bir deneyim.',
+    format: 'Online Grup',
+    audience: 'Orta-İleri',
+    icon: '◈',
+  },
+  {
+    slug: 'mizah',
+    title: 'Mizah: Neye Neden Gülüyorum?',
+    description: 'Humor ve NVC kesişimi. Neyi komik bulduğumuzu, mizahın hangi ihtiyaçlarımıza hizmet ettiğini ve sınırlarını NVC çerçevesinden ele alırız.',
+    format: 'Online Grup',
+    audience: 'Tüm Seviyeler',
+    icon: '◇',
+  },
+  {
+    slug: 'empati-koclugu',
+    title: '1:1 Empati Koçluğu',
+    description: 'Bireysel seanslarda empatik varlık pratiği yaparsınız. Kendi iç sesinizi daha net duymak, yaşadığınız bir durumu NVC ile işlemek için ideal.',
+    format: 'Bireysel (1:1)',
+    audience: 'Tüm Seviyeler',
+    icon: '●',
+  },
+  {
+    slug: 'mentorluk',
+    title: '1:1 Mentörlük',
+    description: 'NVC pratisyenleri için özelleştirilmiş birebir mentörlük süreci. NVC\'yi derinleştirmek veya eğitmen olmak isteyen katılımcılara yönelik.',
+    format: 'Bireysel (1:1)',
+    audience: 'İleri',
+    icon: '◉',
+  },
+  {
+    slug: 'anlasmazlik-seanslar',
+    title: '1:1 Anlaşmazlık Dönüştürme',
+    description: 'Belirli bir çatışma veya ilişkisel zorluk üzerine odaklanan bireysel seanslar. Arabuluculuk ve müzakere desteği.',
+    format: 'Bireysel (1:1)',
+    audience: 'Tüm Seviyeler',
+    icon: '◌',
+  },
+];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Gonca Fide NVC Hizmetleri",
+  "url": "https://www.goncafide.com/hizmetler",
+  "itemListElement": services.map((s, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Service",
+      "name": s.title,
+      "description": s.description,
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.goncafide.com/#gonca"
+      },
+      "serviceType": "Şiddetsiz İletişim Eğitimi",
+      "areaServed": { "@type": "Country", "name": "Turkey" },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://www.goncafide.com/iletisim"
+      }
+    }
+  }))
+};
+---
+
+<PageLayout
+  title="Hizmetler"
+  description="Şiddetsiz İletişim eğitimleri, empati koçluğu, anlaşmazlık dönüştürme ve mentörlük. Gonca Fide ile online grup ve bireysel seanslar."
+>
+  <JsonLd slot="jsonld" schema={serviceSchema} />
+
+  <!-- Header -->
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">Hizmetler</p>
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] max-w-xl">
+          Hangi alanda<br />destek istiyorsunuz?
+        </h1>
+        <a
+          href="/iletisim"
+          class="inline-flex items-center justify-center py-3.5 px-6 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-600)] transition-colors min-h-[48px] flex-shrink-0"
+        >
+          İletişime Geç
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Group workshops -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="mb-8">
+        <p class="eyebrow mb-3">Grup Çalışmaları</p>
+        <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+          Online grup eğitimleri
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        {services.filter(s => s.format === 'Online Grup').map((service) => (
+          <div
+            class="group p-6 lg:p-7 rounded-2xl bg-white hover:shadow-lg transition-all duration-300"
+            style="box-shadow: var(--shadow-card);"
+          >
+            <div class="text-2xl text-[var(--color-sage-500)] mb-4" aria-hidden="true">{service.icon}</div>
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-sage-50)] text-[var(--color-sage-700)] border border-[var(--color-sage-200)]">
+                {service.audience}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-surface)] text-[var(--color-ink-muted)] border border-[var(--color-border)]">
+                {service.format}
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-3 leading-snug">
+              {service.title}
+            </h3>
+            <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Individual sessions -->
+  <section class="section-padding bg-[var(--color-surface)]">
+    <div class="container-site">
+      <div class="mb-8">
+        <p class="eyebrow mb-3">Bireysel Seanslar</p>
+        <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+          1:1 çalışmalar
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        {services.filter(s => s.format === 'Bireysel (1:1)').map((service) => (
+          <div
+            class="group p-6 lg:p-7 rounded-2xl bg-white hover:shadow-lg transition-all duration-300"
+            style="box-shadow: var(--shadow-card);"
+          >
+            <div class="text-2xl text-[var(--color-sage-500)] mb-4" aria-hidden="true">{service.icon}</div>
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-50 text-[var(--color-terra-600)] border border-orange-200">
+                {service.audience}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-surface)] text-[var(--color-ink-muted)] border border-[var(--color-border)]">
+                {service.format}
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-3 leading-snug">
+              {service.title}
+            </h3>
+            <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[var(--color-sage-800)] py-16">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl lg:text-4xl font-light text-white mb-4 -tracking-[0.03em]">
+        Hangi hizmet size uygun?
+      </h2>
+      <p class="text-[var(--color-cream)]/70 mb-8 max-w-md mx-auto text-base">
+        Birlikte konuşalım, ihtiyaçlarınıza göre en uygun yolu bulalım.
+      </p>
+      <a
+        href="/iletisim"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[52px]"
+      >
+        İletişime Geç
+      </a>
+    </div>
+  </section>
+</PageLayout>

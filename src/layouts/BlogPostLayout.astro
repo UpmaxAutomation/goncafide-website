@@ -1,0 +1,111 @@
+---
+import PageLayout from './PageLayout.astro';
+import PostMeta from '../components/blog/PostMeta.astro';
+import Prose from '../components/ui/Prose.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  readingTime?: string;
+  tags?: string[];
+  ogImage?: string;
+}
+
+const { title, description, pubDate, updatedDate, author, readingTime, tags, ogImage } = Astro.props;
+---
+
+<PageLayout title={title} description={description} ogImage={ogImage} ogType="article">
+  <article>
+    <!-- Article header -->
+    <header class="bg-[var(--color-surface)] pt-10 pb-12 lg:pt-16 lg:pb-20 border-b border-[var(--color-border)]">
+      <div class="container-site">
+        <!-- Breadcrumb -->
+        <nav class="mb-6 text-sm" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2 text-[var(--color-ink-muted)]">
+            <li><a href="/" class="hover:text-[var(--color-ink)] transition-colors">Ana Sayfa</a></li>
+            <li aria-hidden="true">›</li>
+            <li><a href="/blog" class="hover:text-[var(--color-ink)] transition-colors">Blog</a></li>
+            <li aria-hidden="true">›</li>
+            <li class="text-[var(--color-ink)] font-medium truncate max-w-[200px]">{title}</li>
+          </ol>
+        </nav>
+
+        <div class="max-w-3xl">
+          <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-6">
+            {title}
+          </h1>
+          <p class="text-[var(--color-ink-muted)] text-lg mb-6">
+            {description}
+          </p>
+          <PostMeta
+            pubDate={pubDate}
+            updatedDate={updatedDate}
+            author={author}
+            readingTime={readingTime}
+            tags={tags}
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Article body + sidebar -->
+    <div class="container-site py-12 lg:py-16">
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+        <!-- Content -->
+        <div class="flex-1 min-w-0">
+          <Prose>
+            <slot />
+          </Prose>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="w-full lg:w-72 flex-shrink-0">
+          <div class="sticky top-24 space-y-5">
+            <!-- CTA card -->
+            <div
+              class="rounded-2xl bg-[var(--color-sage-800)] p-6 text-white"
+            >
+              <p class="eyebrow text-[var(--color-sage-300)] mb-3">Programa Kaydol</p>
+              <h3 class="font-display text-xl font-light text-white mb-3 leading-snug">
+                NVC yolculuğuna başlamaya hazır mısınız?
+              </h3>
+              <p class="text-[var(--color-cream)]/70 text-sm leading-relaxed mb-5">
+                Başlangıç programından ileri seviye seanslarına, size uygun bir yol var.
+              </p>
+              <a
+                href="/programlar"
+                class="flex items-center justify-center py-3.5 px-5 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[48px]"
+              >
+                Programlara Bak
+              </a>
+            </div>
+
+            <!-- About Gonca mini card -->
+            <div
+              class="rounded-2xl bg-white p-6"
+              style="box-shadow: var(--shadow-card);"
+            >
+              <p class="eyebrow text-[var(--color-sage-500)] mb-3">Yazar Hakkında</p>
+              <p class="font-body font-semibold text-[var(--color-ink)] text-sm">Gonca Fide</p>
+              <p class="text-[var(--color-ink-muted)] text-xs leading-relaxed mt-1">
+                CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. 1000+ saat NVC eğitimi almış, 900+ saat eğitim vermiş.
+              </p>
+              <a
+                href="/hakkimda"
+                class="mt-4 inline-flex items-center gap-1.5 text-[var(--color-sage-700)] text-sm font-medium hover:text-[var(--color-sage-800)] transition-colors"
+              >
+                Daha fazla bilgi
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+</PageLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Navbar from '../components/nav/Navbar.astro';
+import MobileMenu from '../components/nav/MobileMenu.astro';
+import Footer from '../components/footer/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description, ogImage, ogType, noindex } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage} ogType={ogType} noindex={noindex}>
+  <slot name="jsonld" slot="jsonld" />
+  <Navbar />
+  <MobileMenu />
+  <main id="main-content">
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>

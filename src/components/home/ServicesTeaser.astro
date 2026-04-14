@@ -1,0 +1,79 @@
+---
+const services = [
+  {
+    icon: '◯',
+    title: 'Şiddetsiz İletişim\'e Giriş',
+    description: 'NVC\'nin temel kavramlarını, 4 adımını ve günlük hayatta nasıl uygulanacağını keşfedersiniz.',
+  },
+  {
+    icon: '◎',
+    title: 'NVC Becerileri',
+    description: 'Duygu ve ihtiyaç farkındalığını derinleştirerek NVC becerilerini pratikte geliştirirsiniz.',
+  },
+  {
+    icon: '⊕',
+    title: 'Anahtar Ayrımlar',
+    description: 'Liv Larsson ve Miki Kashtan\'ın 54 temel ayrımıyla NVC anlayışınızı ileri seviyeye taşırsınız.',
+  },
+  {
+    icon: '⊗',
+    title: 'Empati Koçluğu',
+    description: 'Bireysel seanslarda empatik varlık pratiği yaparak kendi iç sesinizi daha net duyarsınız.',
+  },
+  {
+    icon: '◈',
+    title: 'Anlaşmazlık Dönüştürme',
+    description: 'NVC temelli arabuluculuk araçlarıyla çatışmaları dönüştürmeyi öğrenirsiniz.',
+  },
+  {
+    icon: '◇',
+    title: 'Mentörlük',
+    description: 'NVC pratisyenleri için özelleştirilmiş birebir mentörlük süreci.',
+  },
+];
+---
+
+<section class="section-padding bg-[var(--color-canvas)]">
+  <div class="container-site">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 lg:mb-14">
+      <div>
+        <p class="eyebrow mb-3">Hizmetler</p>
+        <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+          Hangi alanda<br />destek istiyorsunuz?
+        </h2>
+      </div>
+      <a
+        href="/hizmetler"
+        class="inline-flex items-center gap-2 text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] text-sm font-medium transition-colors group flex-shrink-0"
+      >
+        Tüm hizmetleri gör
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+          class="transition-transform group-hover:translate-x-1">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+      {services.map((service) => (
+        <div
+          class="group p-6 lg:p-7 rounded-2xl bg-[var(--color-surface)] hover:bg-white transition-all duration-300"
+          style="box-shadow: var(--shadow-card);"
+        >
+          <div
+            class="w-10 h-10 rounded-xl flex items-center justify-center mb-5 text-[var(--color-sage-600)] text-xl bg-[var(--color-sage-50)] group-hover:bg-[var(--color-sage-100)] transition-colors"
+            aria-hidden="true"
+          >
+            {service.icon}
+          </div>
+          <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-2.5 leading-snug">
+            {service.title}
+          </h3>
+          <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed">
+            {service.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
