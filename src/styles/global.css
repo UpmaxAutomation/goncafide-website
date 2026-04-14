@@ -28,11 +28,11 @@
   --color-sage-800: #1B4332;
   --color-sage-900: #0D2219;
 
-  /* ── Terracotta (CTA) ── */
-  --color-terra-400: #D96B1A;
-  --color-terra-500: #C2550A;
-  --color-terra-600: #A34508;
-  --color-terra-700: #7D3406;
+  /* ── Amber Gold (CTA) ── */
+  --color-terra-400: #D4903F;
+  --color-terra-500: #C47B2B;
+  --color-terra-600: #A8691F;
+  --color-terra-700: #8A5518;
 
   /* ── Border ── */
   --color-border: rgba(0, 0, 0, 0.08);
