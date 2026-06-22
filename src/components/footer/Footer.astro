@@ -1,4 +1,6 @@
 ---
+import Logo from '../brand/Logo.astro';
+
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
@@ -62,10 +64,7 @@ const footerLinks = [
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <!-- Brand column -->
       <div>
-        <a href="/" class="inline-block leading-none" aria-label="Gonca Fide — birbirine bağlar">
-          <span class="block font-display text-2xl font-light text-white hover:text-[var(--color-sage-200)] transition-colors">Gonca Fide</span>
-          <span class="block font-body text-[11px] font-medium tracking-[0.2em] uppercase text-[var(--color-terra-400)] mt-1.5">birbirine bağlar</span>
-        </a>
+        <Logo tone="dark" />
         <p class="mt-4 text-sm text-[var(--color-cream)]/70 leading-relaxed max-w-xs">
           CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. NVC kursları, empati koçluğu ve anlaşmazlık dönüştürme.
         </p>

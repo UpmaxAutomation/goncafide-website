@@ -60,8 +60,9 @@ const faqSchema = {
   <JsonLd slot="jsonld" schema={faqSchema} />
 
   <!-- Header -->
-  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
-    <div class="container-site">
+  <section class="relative overflow-hidden bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <span class="pointer-events-none select-none absolute -top-12 right-2 lg:right-16 font-display italic text-[13rem] lg:text-[20rem] leading-none text-[var(--color-sage-100)]" aria-hidden="true">?</span>
+    <div class="container-site relative">
       <p class="eyebrow mb-4">Sık Sorulan Sorular</p>
       <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
         Aklınızdaki sorular
@@ -87,7 +88,7 @@ const faqSchema = {
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </span>
             </summary>
-            <p class="mt-3 text-[var(--color-ink-muted)] leading-relaxed pr-10">{f.a}</p>
+            <p class="faq-a mt-3 text-[var(--color-ink-muted)] leading-relaxed pr-10">{f.a}</p>
           </details>
         ))}
       </div>

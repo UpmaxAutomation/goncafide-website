@@ -1,4 +1,6 @@
 ---
+import Logo from '../brand/Logo.astro';
+
 const navLinks = [
   { href: '/nvc-nedir', label: 'NVC Nedir?' },
   { href: '/hakkimda', label: 'Hakkımda' },
@@ -14,15 +16,8 @@ const pathname = Astro.url.pathname;
 <header class="sticky top-0 z-40 w-full bg-[var(--color-canvas)]/95 backdrop-blur-sm border-b border-[var(--color-border)]">
   <div class="container-site">
     <nav class="flex items-center justify-between h-16 lg:h-[72px]" aria-label="Ana navigasyon">
-      <!-- Logo / Wordmark + slogan lockup -->
-      <a href="/" class="flex-shrink-0 group leading-none" aria-label="Gonca Fide — birbirine bağlar">
-        <span class="block font-display text-xl lg:text-2xl font-light tracking-tight text-[var(--color-ink)] group-hover:text-[var(--color-sage-700)] transition-colors">
-          Gonca Fide
-        </span>
-        <span class="hidden sm:block font-body text-[10px] font-medium tracking-[0.2em] uppercase text-[var(--color-terra-500)] mt-1">
-          birbirine bağlar
-        </span>
-      </a>
+      <!-- Logo lockup -->
+      <Logo class="flex-shrink-0" />
 
       <!-- Desktop nav links -->
       <ul class="hidden lg:flex items-center gap-1" role="list">

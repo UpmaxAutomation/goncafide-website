@@ -1,4 +1,6 @@
 ---
+import Logo from '../brand/Logo.astro';
+
 const navLinks = [
   { href: '/', label: 'Ana Sayfa' },
   { href: '/nvc-nedir', label: 'NVC Nedir?' },
@@ -24,10 +26,7 @@ const pathname = Astro.url.pathname;
 >
   <!-- Header -->
   <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--color-border)]">
-    <a href="/" class="leading-none" aria-label="Gonca Fide — birbirine bağlar">
-      <span class="block font-display text-xl font-light tracking-tight text-[var(--color-ink)]">Gonca Fide</span>
-      <span class="block font-body text-[10px] font-medium tracking-[0.2em] uppercase text-[var(--color-terra-500)] mt-1">birbirine bağlar</span>
-    </a>
+    <Logo />
     <button
       id="mobile-menu-close"
       aria-label="Menüyü kapat"

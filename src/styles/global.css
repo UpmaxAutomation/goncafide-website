@@ -413,8 +413,13 @@ html.reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
 .card-rise { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1); }
 .card-rise:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
 
+/* FAQ answer reveal (native <details> open) */
+details[open] .faq-a { animation: faqIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes faqIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   html.reveal-ready [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
   .card-rise { transition: none; }
+  details[open] .faq-a { animation: none; }
   html { scroll-behavior: auto; }
 }
