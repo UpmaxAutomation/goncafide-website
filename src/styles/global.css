@@ -12,8 +12,8 @@
 
   /* ── Ink / Text ── */
   --color-ink: #1A1A18;
-  --color-ink-muted: #565A52;
-  --color-ink-faint: #969A90;
+  --color-ink-muted: #565A52;       /* 6.9:1 on white — AA body */
+  --color-ink-faint: #707468;       /* 4.8:1 on white — AA (was #969A90 = 2.9:1, failed) */
   --color-cream: #EEF4EC;
 
   /* ── Green (primary brand — Gonca's logo color "yeşil") ──
@@ -374,4 +374,47 @@
     font-weight: 400;
     letter-spacing: -0.03em;
   }
+}
+
+/* ── Motion: scroll-reveal + micro-interactions ──
+   Hidden state is scoped to html.reveal-ready (added by JS only when motion is OK),
+   so with no JS / reduced motion the content is always visible. */
+html.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+html.reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal-delay="1"] { transition-delay: 0.07s; }
+[data-reveal-delay="2"] { transition-delay: 0.14s; }
+[data-reveal-delay="3"] { transition-delay: 0.21s; }
+[data-reveal-delay="4"] { transition-delay: 0.28s; }
+[data-reveal-delay="5"] { transition-delay: 0.35s; }
+
+/* Animated link underline (editorial) */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover, .link-underline:focus-visible { background-size: 100% 1px; }
+
+/* Soft hero glow utility */
+.brand-veil {
+  background:
+    radial-gradient(60% 50% at 85% 18%, rgba(108, 160, 95, 0.10), transparent 70%),
+    radial-gradient(40% 40% at 8% 90%, rgba(232, 146, 74, 0.07), transparent 70%);
+}
+
+/* Refined card hover */
+.card-rise { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1); }
+.card-rise:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .card-rise { transition: none; }
+  html { scroll-behavior: auto; }
 }

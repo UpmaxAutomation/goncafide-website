@@ -23,7 +23,7 @@ const trust = [
 
 <section class="section-padding bg-[var(--color-canvas)]">
   <div class="container-site">
-    <div class="mb-10 lg:mb-14 text-center max-w-xl mx-auto">
+    <div class="mb-10 lg:mb-14 text-center max-w-xl mx-auto" data-reveal>
       <p class="eyebrow mb-3">{hasTestimonials ? 'Katılımcı Deneyimleri' : 'Neden Gonca Fide?'}</p>
       <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
         {hasTestimonials ? 'Dönüşüm hikayeleri' : 'Güvenle öğrenebileceğiniz bir alan'}
@@ -49,8 +49,8 @@ const trust = [
       </div>
     ) : (
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-        {trust.map((t) => (
-          <div class="flex flex-col items-center text-center p-6 lg:p-7 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
+        {trust.map((t, i) => (
+          <div class="card-rise flex flex-col items-center text-center p-6 lg:p-7 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);" data-reveal data-reveal-delay={String(i + 1)}>
             <span class="font-display text-3xl lg:text-4xl font-light text-[var(--color-sage-600)] mb-2">{t.stat}</span>
             <span class="font-body font-semibold text-sm text-[var(--color-ink)]">{t.label}</span>
             <span class="text-xs text-[var(--color-ink-muted)] mt-1.5 leading-relaxed">{t.detail}</span>

@@ -111,11 +111,68 @@ const programs = [
   <!-- Submit -->
   <button
     type="submit"
-    class="w-full lg:w-auto flex items-center justify-center gap-2 py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] active:scale-[0.98] transition-all min-h-[52px]"
+    data-submit
+    class="group w-full lg:w-auto flex items-center justify-center gap-2 py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] active:scale-[0.98] transition-all min-h-[52px] disabled:opacity-70 disabled:cursor-wait"
   >
-    Mesajı Gönder
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <span data-label>Mesajı Gönder</span>
+    <svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
       <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
+    <svg data-spinner width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="hidden animate-spin">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
   </button>
+
+  <p data-status role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
 </form>
+
+<script>
+  function initContactForm() {
+    const form = document.querySelector('form[name="iletisim"]');
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = '1';
+    const btn = form.querySelector('[data-submit]');
+    const label = form.querySelector('[data-label]');
+    const arrow = form.querySelector('[data-arrow]');
+    const spinner = form.querySelector('[data-spinner]');
+    const status = form.querySelector('[data-status]');
+
+    function setStatus(msg, ok) {
+      status.textContent = msg;
+      status.className = 'text-sm rounded-xl px-4 py-3 ' + (ok
+        ? 'bg-[var(--color-sage-50)] text-[var(--color-sage-800)] border border-[var(--color-sage-200)]'
+        : 'bg-orange-50 text-[var(--color-terra-700)] border border-orange-200');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      btn.disabled = true;
+      label.textContent = 'Gönderiliyor…';
+      arrow.classList.add('hidden');
+      spinner.classList.remove('hidden');
+      status.className = 'hidden';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        setStatus('Teşekkürler! Mesajınız ulaştı. En kısa sürede geri döneceğim.', true);
+      } catch (err) {
+        setStatus('Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp’tan yazın: +90 533 716 79 40', false);
+      } finally {
+        btn.disabled = false;
+        label.textContent = 'Mesajı Gönder';
+        spinner.classList.add('hidden');
+        arrow.classList.remove('hidden');
+      }
+    });
+  }
+  document.addEventListener('astro:page-load', initContactForm);
+  if (document.readyState !== 'loading') initContactForm();
+  else document.addEventListener('DOMContentLoaded', initContactForm);
+</script>

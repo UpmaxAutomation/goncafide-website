@@ -1,42 +1,52 @@
 ---
+// Offerings overview. Custom line icons (no emoji / glyph placeholders).
 const services = [
   {
-    icon: '◯',
+    icon: 'sprout',
     title: 'Şiddetsiz İletişim\'e Giriş',
     description: 'NVC\'nin temel kavramlarını, 4 adımını ve günlük hayatta nasıl uygulanacağını keşfedersiniz.',
   },
   {
-    icon: '◎',
+    icon: 'layers',
     title: 'NVC Becerileri',
     description: 'Duygu ve ihtiyaç farkındalığını derinleştirerek NVC becerilerini pratikte geliştirirsiniz.',
   },
   {
-    icon: '⊕',
+    icon: 'key',
     title: 'Anahtar Ayrımlar',
     description: 'Liv Larsson ve Miki Kashtan\'ın 54 temel ayrımıyla NVC anlayışınızı ileri seviyeye taşırsınız.',
   },
   {
-    icon: '⊗',
+    icon: 'heart',
     title: 'Empati Koçluğu',
     description: 'Bireysel seanslarda empatik varlık pratiği yaparak kendi iç sesinizi daha net duyarsınız.',
   },
   {
-    icon: '◈',
+    icon: 'bridge',
     title: 'Anlaşmazlık Dönüştürme',
     description: 'NVC temelli arabuluculuk araçlarıyla çatışmaları dönüştürmeyi öğrenirsiniz.',
   },
   {
-    icon: '◇',
+    icon: 'compass',
     title: 'Mentörlük',
     description: 'NVC pratisyenleri için özelleştirilmiş birebir mentörlük süreci.',
   },
 ];
+
+const icons: Record<string, string> = {
+  sprout: '<path d="M12 22V12M12 12c0-3.3-2.7-6-6-6 0 3.3 2.7 6 6 6zM12 11c0-3.3 2.7-6 6-6 0 3.3-2.7 6-6 6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  layers: '<path d="M12 3l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  key: '<path d="M14.5 9.5a4 4 0 1 0-3.6 3.98L10 15l-1.5 1.5L10 18l-1.5 1.5L11 22l3.5-3.5V13.5a4 4 0 0 0 0-4zM15.5 8.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  heart: '<path d="M12 20s-7-4.4-7-9.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 7 2.7C19 15.6 12 20 12 20z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  bridge: '<path d="M3 12c3 0 4-5 9-5s6 5 9 5M4 12v6M20 12v6M9 13v5M15 13v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  compass: '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+};
 ---
 
 <section class="section-padding bg-[var(--color-canvas)]">
   <div class="container-site">
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 lg:mb-14">
-      <div>
+      <div data-reveal>
         <p class="eyebrow mb-3">Sunduklarım</p>
         <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
           Hangi alanda<br />destek istiyorsunuz?
@@ -44,7 +54,8 @@ const services = [
       </div>
       <a
         href="/programlar"
-        class="inline-flex items-center gap-2 text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] text-sm font-medium transition-colors group flex-shrink-0"
+        class="inline-flex items-center gap-2 text-[var(--color-ink-muted)] hover:text-[var(--color-sage-700)] text-sm font-medium transition-colors group flex-shrink-0 link-underline"
+        data-reveal data-reveal-delay="1"
       >
         Tümünü gör
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
@@ -55,16 +66,17 @@ const services = [
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-      {services.map((service) => (
+      {services.map((service, i) => (
         <div
-          class="group p-6 lg:p-7 rounded-2xl bg-[var(--color-surface)] hover:bg-white transition-all duration-300"
+          class="group card-rise p-6 lg:p-7 rounded-2xl bg-[var(--color-surface)] hover:bg-white"
           style="box-shadow: var(--shadow-card);"
+          data-reveal data-reveal-delay={String((i % 3) + 1)}
         >
           <div
-            class="w-10 h-10 rounded-xl flex items-center justify-center mb-5 text-[var(--color-sage-600)] text-xl bg-[var(--color-sage-50)] group-hover:bg-[var(--color-sage-100)] transition-colors"
+            class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-[var(--color-sage-600)] bg-[var(--color-sage-50)] group-hover:bg-[var(--color-sage-100)] group-hover:scale-105 transition-all duration-300"
             aria-hidden="true"
           >
-            {service.icon}
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
           </div>
           <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-2.5 leading-snug">
             {service.title}

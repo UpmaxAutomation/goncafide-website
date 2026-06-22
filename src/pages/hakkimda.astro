@@ -23,11 +23,18 @@ const credentials = [
 ];
 
 const background = [
-  { area: 'Uluslararası Kalkınma', icon: '🌍' },
-  { area: 'Doğa Koruma', icon: '🌿' },
-  { area: 'Enerji Sektörü Sosyal Etki', icon: '⚡' },
-  { area: 'Alternatif Eğitim', icon: '📚' },
+  { area: 'Uluslararası Kalkınma', icon: 'globe' },
+  { area: 'Doğa Koruma', icon: 'leaf' },
+  { area: 'Enerji Sektörü Sosyal Etki', icon: 'spark' },
+  { area: 'Alternatif Eğitim', icon: 'book' },
 ];
+
+const bgIcons: Record<string, string> = {
+  globe: '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" stroke="currentColor" stroke-width="1.5"/>',
+  leaf: '<path d="M5 19c0-7 5-12 14-12 0 9-5 14-12 14-1.5 0-2-1-2-2zM5 19c2-4 5-6 9-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  spark: '<path d="M13 2L5 13h6l-2 9 8-11h-6l2-9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  book: '<path d="M4 5.5A2 2 0 0 1 6 4h6v15H6a2 2 0 0 0-2 1.5V5.5zM20 5.5A2 2 0 0 0 18 4h-6v15h6a2 2 0 0 1 2 1.5V5.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+};
 ---
 
 <PageLayout
@@ -141,12 +148,15 @@ const background = [
         NVC öncesi: çeşitli alanlarda deneyim
       </h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {background.map((item) => (
+        {background.map((item, i) => (
           <div
-            class="p-5 lg:p-6 rounded-2xl bg-white text-center"
+            class="card-rise p-5 lg:p-6 rounded-2xl bg-white text-center flex flex-col items-center"
             style="box-shadow: var(--shadow-card);"
+            data-reveal data-reveal-delay={String((i % 4) + 1)}
           >
-            <div class="text-3xl mb-3" aria-hidden="true">{item.icon}</div>
+            <span class="w-11 h-11 mb-3 rounded-xl flex items-center justify-center bg-[var(--color-sage-50)] text-[var(--color-sage-600)]" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={bgIcons[item.icon]} />
+            </span>
             <p class="font-body text-sm font-medium text-[var(--color-ink)]">{item.area}</p>
           </div>
         ))}

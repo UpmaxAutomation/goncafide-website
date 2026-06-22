@@ -31,11 +31,11 @@ const pillars = [
   <div class="container-site">
     <!-- Section header -->
     <div class="mb-10 lg:mb-16 max-w-2xl">
-      <p class="eyebrow mb-3">Şiddetsiz İletişim</p>
-      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4">
+      <p class="eyebrow mb-3" data-reveal>Şiddetsiz İletişim</p>
+      <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4" data-reveal data-reveal-delay="1">
         Dört adımda daha derin bir bağ
       </h2>
-      <p class="text-[var(--color-ink-muted)] text-base lg:text-lg leading-relaxed">
+      <p class="text-[var(--color-ink-muted)] text-base lg:text-lg leading-relaxed" data-reveal data-reveal-delay="2">
         Marshall Rosenberg tarafından geliştirilen NVC modeli, empatiyi merkeze alır
         ve iletişimi dönüştürür.
       </p>
@@ -51,25 +51,26 @@ const pillars = [
 
       <div class="flex flex-col lg:flex-row gap-0 lg:gap-8">
         {pillars.map((pillar, i) => (
-          <div class="relative flex lg:flex-col gap-5 lg:gap-0 flex-1">
+          <div class="relative flex lg:flex-col gap-5 lg:gap-0 flex-1" data-reveal data-reveal-delay={String(i + 1)}>
             <!-- Mobile connecting line -->
             {i < pillars.length - 1 && (
               <div
-                class="lg:hidden absolute left-6 top-14 bottom-0 w-px bg-gradient-to-b from-[var(--color-sage-300)] to-[var(--color-sage-100)]"
+                class="lg:hidden absolute left-7 top-16 bottom-0 w-px bg-gradient-to-b from-[var(--color-sage-300)] to-[var(--color-sage-100)]"
                 aria-hidden="true"
               ></div>
             )}
 
-            <!-- Number bubble -->
+            <!-- Number node: ring + dot -->
             <div
-              class="relative z-10 flex-shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center lg:mb-6 font-display font-light text-white text-lg"
-              style={`background-color: ${pillar.color};`}
+              class="relative z-10 flex-shrink-0 w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center lg:mb-6 font-display font-light text-lg bg-[var(--color-canvas)] border"
+              style={`border-color: ${pillar.color}; color: ${pillar.color};`}
             >
-              {pillar.number}
+              <span class="absolute inset-2 rounded-full opacity-[0.10]" style={`background-color: ${pillar.color};`} aria-hidden="true"></span>
+              <span class="relative">{pillar.number}</span>
             </div>
 
             <!-- Content -->
-            <div class="pb-8 lg:pb-0">
+            <div class="pb-8 lg:pb-0 lg:pr-4">
               <h3 class="font-display text-2xl lg:text-3xl font-light text-[var(--color-ink)] mb-2 lg:mb-3 -tracking-[0.02em]">
                 {pillar.label}
               </h3>
