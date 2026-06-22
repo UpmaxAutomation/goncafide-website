@@ -17,16 +17,14 @@ const programs = [
 <form
   name="iletisim"
   method="POST"
-  action="/tesekkurler"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
+  action="/api/contact"
   class="space-y-5"
   aria-label="İletişim formu"
   novalidate
 >
-  <input type="hidden" name="form-name" value="iletisim" />
+  <input type="hidden" name="formType" value="iletisim" />
   <p class="hidden" aria-hidden="true">
-    <label>Bunu doldurmayın: <input name="bot-field" /></label>
+    <label>Bunu doldurmayın: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
   </p>
 
   <!-- Name + Email: stacked on mobile, side by side on lg -->

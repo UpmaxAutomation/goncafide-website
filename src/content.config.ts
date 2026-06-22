@@ -37,4 +37,51 @@ const programlar = defineCollection({
   }),
 });
 
-export const collections = { blog, programlar };
+// Tematik Seminerler — Gonca's single-session thematic workshops
+// (Kıyas, Şaka Gibi, Nazar Etme, Küsmek, Duy Beni)
+const seminerler = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/seminerler' }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string(),
+    level: z.enum(['Başlangıç', 'Orta', 'Orta-İleri', 'İleri', 'Tüm Seviyeler']).default('Tüm Seviyeler'),
+    format: z.enum(['Online Grup', 'Yüz Yüze', 'Hibrit']).default('Online Grup'),
+    duration: z.string().optional(),
+    order: z.number().default(99),
+    draft: z.boolean().default(false),
+  }),
+});
+
+// Etkinlikler — upcoming workshop/seminar announcements.
+// Starts EMPTY by design; Gonca adds a file per cohort. No fabricated dates.
+const etkinlikler = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/etkinlikler' }),
+  schema: z.object({
+    title: z.string(),
+    programSlug: z.string().optional(),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
+    format: z.enum(['Online Grup', 'Yüz Yüze', 'Hibrit']).default('Online Grup'),
+    location: z.string().optional(),
+    enrollmentUrl: z.string().optional(),
+    enrollmentOpen: z.boolean().default(true),
+    description: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+// Katılımcı görüşleri — REAL testimonials only.
+// Starts EMPTY by design; section renders only when Gonca supplies consented quotes.
+const gorusler = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/gorusler' }),
+  schema: z.object({
+    author: z.string(),
+    role: z.string().optional(),
+    program: z.string().optional(),
+    order: z.number().default(99),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, programlar, seminerler, etkinlikler, gorusler };

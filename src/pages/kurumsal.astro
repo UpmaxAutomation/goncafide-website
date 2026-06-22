@@ -1,0 +1,121 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Kurumlara Özel Şiddetsiz İletişim Eğitimleri',
+  'serviceType': 'Kurumsal Şiddetsiz İletişim Eğitimi',
+  'description':
+    'Ekipler ve organizasyonlar için ihtiyaca göre tasarlanmış Şiddetsiz İletişim eğitimleri: ekip içi iletişim, anlaşmazlık dönüştürme, empati ve iş birliği.',
+  'provider': { '@type': 'Person', '@id': 'https://www.goncafide.com/#gonca' },
+  'areaServed': { '@type': 'Country', 'name': 'Turkey' },
+  'availableChannel': {
+    '@type': 'ServiceChannel',
+    'serviceUrl': 'https://www.goncafide.com/iletisim',
+  },
+};
+
+const faydalar = [
+  { icon: '◯', title: 'Ekip içi iletişim', text: 'Yargı ve suçlama yerine ihtiyaç odaklı, açık bir iletişim kültürü.' },
+  { icon: '◎', title: 'Anlaşmazlık dönüştürme', text: 'Çatışmaları bastırmadan, her iki tarafın ihtiyacını duyarak çözme becerisi.' },
+  { icon: '⊕', title: 'Empati ve iş birliği', text: 'Empatik dinleme ile güven ve birlikte üretme zemininin güçlenmesi.' },
+  { icon: '◈', title: 'Geri bildirim kültürü', text: 'Zedelemeden söyleyebilme ve savunmaya geçmeden duyabilme pratiği.' },
+];
+
+const surec = [
+  { n: '1', title: 'İhtiyaç görüşmesi', text: 'Ekibinizin önceliklerini ve hedeflerini birlikte netleştiriyoruz.' },
+  { n: '2', title: 'Özel tasarım', text: 'İçeriği, süreyi ve formatı (online / yüz yüze) ihtiyaca göre tasarlıyorum.' },
+  { n: '3', title: 'Uygulamalı eğitim', text: 'Yaşatarak ve paylaşarak, gerçek durumlar üzerinden deneyimsel öğrenme.' },
+];
+---
+
+<PageLayout
+  title="Kurumsal Eğitimler"
+  description="Kurum ve organizasyonlara özel tasarlanmış Şiddetsiz İletişim eğitimleri. Ekip içi iletişim, anlaşmazlık dönüştürme ve empati üzerine ihtiyaca göre tasarım."
+>
+  <JsonLd slot="jsonld" schema={schema} />
+
+  <!-- Hero -->
+  <section class="bg-[var(--color-surface)] pt-12 pb-16 lg:pt-20 lg:pb-24 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">Kurumsal Eğitimler</p>
+      <h1 class="font-display text-4xl lg:text-5xl xl:text-6xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-6 max-w-3xl">
+        Kurumunuz için özel tasarlanmış<br class="hidden lg:block" /> Şiddetsiz İletişim
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-2xl mb-8">
+        Ekiplerin ve organizasyonların ihtiyaçlarına göre tasarlanmış eğitimler düzenliyorum.
+        Amaç; suçlama ve savunma döngüsünü, ihtiyaçları duyan ve bağ kuran bir iletişim kültürüne dönüştürmek.
+      </p>
+      <a
+        href="/iletisim?program=kurumsal"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-600)] transition-colors min-h-[52px]"
+      >
+        Eğitim talebi oluştur
+      </a>
+    </div>
+  </section>
+
+  <!-- Faydalar -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="mb-10">
+        <p class="eyebrow mb-3">Ne kazandırır?</p>
+        <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+          Ekibinizde neyi güçlendirir
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+        {faydalar.map((f) => (
+          <div class="flex items-start gap-4 p-6 lg:p-7 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[var(--color-sage-600)] text-xl bg-[var(--color-sage-50)]" aria-hidden="true">{f.icon}</div>
+            <div>
+              <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-1.5 leading-snug">{f.title}</h3>
+              <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed">{f.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Süreç -->
+  <section class="section-padding bg-[var(--color-surface)]">
+    <div class="container-site">
+      <div class="mb-10">
+        <p class="eyebrow mb-3">Nasıl ilerliyoruz?</p>
+        <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+          Üç adımda kurumsal tasarım
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+        {surec.map((s) => (
+          <div class="p-6 lg:p-7 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
+            <span class="font-display text-3xl font-light text-[var(--color-terra-500)]">{s.n}</span>
+            <h3 class="font-display text-xl font-light text-[var(--color-ink)] mt-3 mb-2 -tracking-[0.02em]">{s.title}</h3>
+            <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[var(--color-sage-800)] py-16">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl lg:text-4xl font-light text-white mb-4 -tracking-[0.03em]">
+        Kurumunuza özel bir eğitim konuşalım
+      </h2>
+      <p class="text-[var(--color-cream)]/70 mb-8 max-w-md mx-auto text-base">
+        İhtiyaçlarınızı paylaşın; size en uygun içeriği birlikte tasarlayalım.
+      </p>
+      <a
+        href="/iletisim?program=kurumsal"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[52px]"
+      >
+        İletişime Geç
+      </a>
+    </div>
+  </section>
+</PageLayout>

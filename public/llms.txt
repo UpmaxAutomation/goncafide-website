@@ -1,35 +1,66 @@
 # Gonca Fide — Şiddetsiz İletişim Eğitmeni
 
-Gonca Fide, CNVC (Center for Nonviolent Communication) Sertifikalı Şiddetsiz İletişim (NVC) Eğitmeni ve Sosyologdur.
+Gonca Fide, CNVC (Center for Nonviolent Communication) Sertifikalı Şiddetsiz İletişim (NVC) Eğitmeni ve Sosyologdur. Sloganı: **"birbirine bağlar"**.
 
 ## Kim
 
 - ODTÜ (METU) Sosyoloji mezunu
-- CNVC Sertifikalı Eğitmen (2022'den beri)
-- 1000+ saat NVC eğitimi almış, 900+ saat eğitim vermiş
-- Uluslararası kalkınma, doğa koruma ve sosyal etki alanlarında deneyim
-- BBOM Ankara Kooperatifi kurucusu (alternatif eğitim hareketi)
+- CNVC Sertifikalı Eğitmen (Ağustos 2022'den beri)
+- Şiddetsiz İletişim Türkiye Derneği üyesi (2019'dan beri)
+- 1000+ saat NVC eğitimi almış, 900+ saat eğitim/paylaşım vermiş
+- Uluslararası kalkınma, doğa koruma, yaban hayatı, erozyon önleme ve enerji sektörü sosyal etki alanlarında deneyim
+- BBOM (Başka Bir Okul Mümkün) Ankara Kooperatifi kurucu döneminde Genel Koordinatör ve Yönetim Kurulu Başkanı
 
 ## Ne Yapar
 
-Online ve yüz yüze NVC (Şiddetsiz İletişim) eğitimleri, empati koçluğu ve anlaşmazlık dönüştürme seansları sunar.
+Online ve yüz yüze NVC (Şiddetsiz İletişim) eğitimleri, tematik seminerler, empatik koçluk, anlaşmazlık dönüştürme rehberliği ve kurumlara özel tasarlanmış eğitimler sunar.
 
-## Programlar
+## Programlar (Sunduklarım) — seviyeye göre
 
-- **Anda Kal Canda Kal** — NVC giriş programı, 12 saat, başlangıç seviyesi
-- **Anahtar Ayrımlar Programı** — 54 anahtar ayrım, 80 saat, orta-ileri seviye
-- **Anlaşmazlık Dönüştürme** — 50 saat, ileri seviye, arabuluculuk
-- **Beceri Geliştirme** — Giriş sonrası pratik, orta seviye
-- **Mentörlük Programı** — Bireysel 1:1, eğitmen adayları için
-- **Empatik Koçluk** — Bireysel seans, tüm seviyeler
+Başlangıç:
+- **Anda Kal Canda Kal** — NVC giriş programı, 12 saat
+- **Duy Beni** — giriş niteliğinde tematik buluşma
+
+Orta / Orta-İleri:
+- **Anda Kal Canda Kal – Beceri Geliştirme** — giriş sonrası pratik
+- **Anahtar Ayrımlar Programı** — 54 anahtar ayrım, orta-ileri seviye
+
+İleri:
+- **Anlaşmazlık Dönüştürme** — arabuluculuk, ileri seviye
+- **Mentörlük Programı** — bireysel 1:1, eğitmen adayları için
+
+Bireysel:
+- **Empatik Koçluk** — bireysel 1:1 seans, tüm seviyeler
+
+Tematik Seminerler (tek oturumluk):
+- **Kıyas: Haset, Kıskançlık**
+- **Şaka Gibi… Neye Neden Gülüyorum?**
+- **Nazar Etme N'olur**
+- **Küsmek**
+
+Kurumsal:
+- **Kurumlara Özel Eğitimler** — ekiplerin ihtiyacına göre tasarlanır
 
 ## İletişim
 
 - Web: https://www.goncafide.com
 - E-posta: info@goncafide.com
+- Telefon / WhatsApp: +90 533 716 79 40
 - Instagram: https://www.instagram.com/goncolog
-- Konum: Türkiye (Online)
+- Konum: Ankara · Online
+
+## Sayfalar
+
+- / (Ana Sayfa)
+- /nvc-nedir (Şiddetsiz İletişim nedir)
+- /hakkimda (Gonca Fide kimdir)
+- /programlar (Sunduklarım — programlar, seminerler, bireysel seanslar)
+- /kurumsal (Kurumlara özel eğitimler)
+- /etkinlikler (Yaklaşan atölyeler)
+- /blog (Yazılar)
+- /sss (Sık sorulan sorular)
+- /iletisim (İletişim)
 
 ## NVC (Şiddetsiz İletişim) Hakkında
 
-Şiddetsiz İletişim (NVC), Dr. Marshall Rosenberg tarafından geliştirilmiş bir iletişim ve empati pratiğidir. Dört temel bileşenden oluşur: Gözlem → Duygu → İhtiyaç → Rica. 50'den fazla ülkede uygulanmaktadır.
+Şiddetsiz İletişim (NVC), Dr. Marshall Rosenberg tarafından geliştirilmiş, ihtiyaç odaklı bir iletişim ve empati pratiğidir. Dört temel bileşenden oluşur: Gözlem → Duygu → İhtiyaç → Rica. 50'den fazla ülkede uygulanmaktadır.

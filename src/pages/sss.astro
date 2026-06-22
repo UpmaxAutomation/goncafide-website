@@ -1,0 +1,111 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+// Factual FAQ — answers reflect Gonca's real credentials and offerings only.
+const faqs = [
+  {
+    q: 'Şiddetsiz İletişim (NVC) nedir?',
+    a: 'Şiddetsiz İletişim, Marshall Rosenberg’in geliştirdiği, ihtiyaç odaklı bir iletişim yaklaşımıdır. Gözlem, duygu, ihtiyaç ve rica olmak üzere dört adıma dayanır. Suçlama ve yargı yerine, hem kendimizin hem de karşımızdakinin ihtiyaçlarını duyarak bağ kurmayı önerir.',
+  },
+  {
+    q: 'NVC kimler için uygun?',
+    a: 'Cinsiyet, yaş, din, ırk veya milliyet ayrımı olmadan herkes için. İlişkilerinde, ailesinde, iş yerinde ya da kendisiyle olan ilişkisinde daha sağlıklı bir iletişim kurmak isteyen herkes katılabilir.',
+  },
+  {
+    q: 'Önceden NVC bilmem gerekiyor mu?',
+    a: 'Hayır. “Anda Kal Canda Kal” gibi giriş programları, NVC’yi sıfırdan öğrenmek isteyenler için tasarlanmıştır. Deneyiminiz varsa orta ve ileri seviye programlarla devam edebilirsiniz.',
+  },
+  {
+    q: 'Hangi seviyeden başlamalıyım?',
+    a: 'Yeni başlıyorsanız Başlangıç seviyesindeki “Anda Kal Canda Kal” giriş programı iyi bir başlangıçtır. Sonrasında orta seviye (Anahtar Ayrımlar, beceri geliştirme) ve ileri seviye (Anlaşmazlık Dönüştürme, Mentörlük) programlarıyla derinleşebilirsiniz. Emin değilseniz iletişime geçin, birlikte karar verelim.',
+  },
+  {
+    q: 'Eğitimler online mı, yüz yüze mi?',
+    a: 'Hem online grup programları hem de yüz yüze atölyeler yürütüyorum. Her programın formatı (Online Grup ya da Yüz Yüze) ilgili program sayfasında belirtilir.',
+  },
+  {
+    q: 'Empatik Koçluk nedir?',
+    a: 'Empatik Koçluk, bire bir yapılan bireysel seanslardır. Zor duygular, ilişkisel çatışmalar veya hayat dönüşümleri sırasında, kendi ihtiyaçlarınızı daha net duymak için güvenli bir alan açar.',
+  },
+  {
+    q: 'Gonca Fide’nin deneyimi ve sertifikası nedir?',
+    a: 'ODTÜ Sosyoloji mezunuyum. 1000 saatin üzerinde NVC eğitimi aldım, 900 saatin üzerinde paylaşımda bulundum. Ağustos 2022’den bu yana CNVC (Uluslararası Şiddetsiz İletişim Merkezi) Sertifikalı Eğitmeniyim ve 2019’dan beri Şiddetsiz İletişim Türkiye Derneği üyesiyim.',
+  },
+  {
+    q: 'Kurumlara ve organizasyonlara özel eğitim veriyor musunuz?',
+    a: 'Evet. Ekiplerin ve organizasyonların ihtiyaçlarına göre tasarlanmış NVC eğitimleri düzenliyorum. Detaylar için Kurumsal Eğitimler sayfasına bakabilir veya doğrudan iletişime geçebilirsiniz.',
+  },
+  {
+    q: 'Kayıt ve ücret bilgisini nasıl alabilirim?',
+    a: 'İletişim formunu doldurarak, WhatsApp’tan ya da info@goncafide.com adresinden bana ulaşabilirsiniz. Güncel dönem, kontenjan ve katılım koşullarını sizinle paylaşırım.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map((f) => ({
+    '@type': 'Question',
+    'name': f.q,
+    'acceptedAnswer': { '@type': 'Answer', 'text': f.a },
+  })),
+};
+---
+
+<PageLayout
+  title="Sık Sorulan Sorular"
+  description="Şiddetsiz İletişim eğitimleri, seviyeler, format, empatik koçluk ve kayıt hakkında sık sorulan sorular — Gonca Fide."
+>
+  <JsonLd slot="jsonld" schema={faqSchema} />
+
+  <!-- Header -->
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">Sık Sorulan Sorular</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
+        Aklınızdaki sorular
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-xl">
+        Şiddetsiz İletişim, programlar ve katılım hakkında en çok merak edilenler.
+        Cevabını bulamadığınız bir soru olursa çekinmeden yazın.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ accordion -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto divide-y divide-[var(--color-border)]">
+        {faqs.map((f) => (
+          <details class="group py-5">
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none">
+              <h2 class="font-display text-xl lg:text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] leading-snug">
+                {f.q}
+              </h2>
+              <span class="mt-1.5 flex-shrink-0 w-6 h-6 rounded-full border border-[var(--color-sage-300)] text-[var(--color-sage-600)] flex items-center justify-center transition-transform group-open:rotate-45" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-[var(--color-ink-muted)] leading-relaxed pr-10">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 bg-[var(--color-sage-800)]">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl font-light text-white mb-6 -tracking-[0.03em]">
+        Başka bir sorunuz mu var?
+      </h2>
+      <a
+        href="/iletisim"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-600)] transition-colors min-h-[52px]"
+      >
+        İletişime Geç
+      </a>
+    </div>
+  </section>
+</PageLayout>

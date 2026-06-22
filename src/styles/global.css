@@ -6,42 +6,44 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
 
-  /* ── Canvas / Background ── */
-  --color-canvas: #FAFAF7;
-  --color-surface: #F4F0F8;
+  /* ── Canvas / Background ── (white, per Gonca's brief: "beyaz zemin") */
+  --color-canvas: #FCFCFA;
+  --color-surface: #F2F6F0;   /* faint green-tinted off-white */
 
   /* ── Ink / Text ── */
   --color-ink: #1A1A18;
-  --color-ink-muted: #5A5A55;
-  --color-ink-faint: #9A9A93;
-  --color-cream: #F5F0FA;
+  --color-ink-muted: #565A52;
+  --color-ink-faint: #969A90;
+  --color-cream: #EEF4EC;
 
-  /* ── Mauve / Lavender (primary brand — replaces sage green) ── */
-  --color-sage-50:  #F8F5FD;
-  --color-sage-100: #EDE5F8;
-  --color-sage-200: #D5C8F0;
-  --color-sage-300: #B5A0E0;
-  --color-sage-400: #9478C9;
-  --color-sage-500: #7555B0;
-  --color-sage-600: #5C3E93;
-  --color-sage-700: #432D6E;
-  --color-sage-800: #2B1D4A;
-  --color-sage-900: #170E28;
+  /* ── Green (primary brand — Gonca's logo color "yeşil") ──
+     token names stay `sage-*`; values are now her green. */
+  --color-sage-50:  #F2F7F1;
+  --color-sage-100: #E0ECDC;
+  --color-sage-200: #C2D8BB;
+  --color-sage-300: #9BBF90;
+  --color-sage-400: #6CA05F;
+  --color-sage-500: #4E8243;  /* primary green */
+  --color-sage-600: #3C6735;  /* button/link green — white text ≥6:1 */
+  --color-sage-700: #2C4C28;
+  --color-sage-800: #1E3320;  /* deep green — dark sections / footer */
+  --color-sage-900: #122017;
 
-  /* ── Amber Gold (CTA) ── */
-  --color-terra-400: #D4903F;
-  --color-terra-500: #C47B2B;
-  --color-terra-600: #A8691F;
-  --color-terra-700: #8A5518;
+  /* ── Orange (CTA + accent — Gonca's logo color "turuncu") ──
+     token names stay `terra-*`. 400 = bright decorative, 500/600 = white-text AA-safe CTA. */
+  --color-terra-400: #E8924A;  /* bright orange — icons, decorative, badges */
+  --color-terra-500: #A8500F;  /* CTA base — white text ≈5.4:1 (AA) */
+  --color-terra-600: #8A4310;  /* CTA hover */
+  --color-terra-700: #6E350D;  /* active / deep */
 
   /* ── Border ── */
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-border-focus: rgba(148, 120, 201, 0.6);
+  --color-border: rgba(20, 30, 18, 0.10);
+  --color-border-focus: rgba(78, 130, 67, 0.6);
 
   /* ── Shadows (Vercel shadow-as-border technique) ── */
   --shadow-card:       rgba(0,0,0,0.08) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 8px;
   --shadow-card-hover: rgba(0,0,0,0.12) 0 0 0 1px, rgba(0,0,0,0.08) 0 8px 24px;
-  --shadow-elevated:   rgba(43,29,74,0.14) 0 0 0 1px, rgba(43,29,74,0.08) 0 16px 48px;
+  --shadow-elevated:   rgba(20,40,22,0.14) 0 0 0 1px, rgba(20,40,22,0.08) 0 16px 48px;
 
   /* ── Fluid type scale ── */
   --text-display: clamp(2.75rem, 7vw, 6rem);
