@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
+import YouTubeEmbed from '../components/ui/YouTubeEmbed.astro';
 
 const schema = {
   "@context": "https://schema.org",
@@ -15,11 +16,14 @@ const schema = {
 };
 
 const credentials = [
-  { year: '2022', label: 'CNVC Sertifikalı Eğitmen', detail: 'Center for Nonviolent Communication' },
-  { year: '2021+', label: '1000+ saat NVC eğitimi', detail: 'Liv Larsson, Miki Kashtan ve diğer CNVC eğitmenlerinden' },
-  { year: '2019+', label: '900+ saat eğitim', detail: 'Online gruplar ve bireysel seanslar' },
-  { year: '—', label: 'BBOM Ankara Kurucusu', detail: 'Alternatif eğitim kooperatifi' },
-  { year: 'ODTÜ', label: 'Sosyoloji Mezunu', detail: 'Orta Doğu Teknik Üniversitesi' },
+  { year: '1999', label: 'ODTÜ Sosyoloji', detail: 'Orta Doğu Teknik Üniversitesi mezunu' },
+  { year: '2000–2007', label: 'Kırsal Kalkınma Proje Yönetimi', detail: 'Ulusal ve uluslararası programlar' },
+  { year: '2008–2012', label: 'Doğa Koruma Proje Yönetimi', detail: 'Yaban hayatı ve erozyon önleme projeleri' },
+  { year: '2013–2016', label: 'BBOM Ankara Kooperatifi', detail: 'Genel Koordinatör ve Yönetim Kurulu Başkanı' },
+  { year: '2017–2022', label: 'Sosyal Etki Uzmanlığı', detail: 'Enerji sektörü sosyal etki alanı' },
+  { year: '2017–2022', label: 'Şiddetsiz İletişim Eğitmenliği', detail: 'Eğitim ve paylaşım süreci' },
+  { year: "2022'den beri", label: 'CNVC Sertifikalı Eğitmen', detail: 'Center for Nonviolent Communication' },
+  { year: '—', label: '1500+ saat Şiddetsiz İletişim eğitimi', detail: 'Alınan ve paylaşılan eğitim deneyimi' },
 ];
 
 const background = [
@@ -39,7 +43,7 @@ const bgIcons: Record<string, string> = {
 
 <PageLayout
   title="Hakkımda"
-  description="Gonca Fide — ODTÜ Sosyoloji mezunu, CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. 1000+ saat NVC eğitimi almış, 900+ saat eğitim vermiş."
+  description="Gonca Fide — ODTÜ Sosyoloji mezunu, CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. 1500+ saat Şiddetsiz İletişim eğitimi deneyimi."
 >
   <JsonLd slot="jsonld" schema={schema} />
 
@@ -57,7 +61,7 @@ const bgIcons: Record<string, string> = {
             ODTÜ Sosyoloji mezunuyum. Uluslararası ve ulusal programların kalkınma, doğa koruma, yaban hayatı ve erozyon önleme projelerinde görev aldım; enerji sektörünün sosyal etki alanında çalıştım. Sayısız Anadolu köyünü ziyaret ettiğimde, insanların farklılıktan çok benzerlikleri olduğunu ama bakış açılarını esnetmeyi daha önce deneyimlemedikleri için anlaşmazlık yaşadıklarını gözlemledim.
           </p>
           <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-8">
-            2019'dan bu yana Şiddetsiz İletişim Türkiye Derneği üyesiyim. Liv Larsson, Miki Kashtan ve çok sayıda CNVC eğitmeninden 1000+ saat eğitim aldım, 900+ saat paylaşımda bulundum. Ağustos 2022'den beri CNVC (Uluslararası Şiddetsiz İletişim Merkezi) Sertifikalı Eğitmeniyim.
+            2019'dan bu yana Şiddetsiz İletişim Türkiye Derneği üyesiyim. Liv Larsson, Miki Kashtan ve çok sayıda CNVC eğitmeninden 1500 saatin üzerinde Şiddetsiz İletişim eğitimi deneyimim oldu. Ağustos 2022'den beri CNVC (Uluslararası Şiddetsiz İletişim Merkezi) Sertifikalı Eğitmeniyim.
           </p>
           <div class="flex flex-wrap gap-3">
             <a
@@ -188,6 +192,34 @@ const bgIcons: Record<string, string> = {
             olduğunu görüyorum; yayılması için elimden geleni yapmaya devam ediyorum. Eğitimlerim
             yaşatarak ve paylaşarak öğrenme alanları açmakla ilgili.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video & Podcast -->
+  <section class="section-padding bg-[var(--color-surface-iris)]">
+    <div class="container-site">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow mb-4">Video & Podcast</p>
+        <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4">
+          Beni dinleyin, tanışalım
+        </h2>
+        <p class="text-[var(--color-ink-muted)] leading-relaxed">
+          Şiddetsiz İletişim üzerine sohbetler ve podcast bölümleri. Birlikte çalışmadan önce
+          sesimi ve yaklaşımımı buradan duyabilirsiniz.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div data-reveal>
+          <YouTubeEmbed id="N93XALPo0_k" start={73} title="Gonca Fide ile tanışın" />
+          <p class="mt-3 font-display text-lg font-light text-[var(--color-ink)]">Tanışalım</p>
+          <p class="text-sm text-[var(--color-ink-muted)]">Gonca Fide ve Şiddetsiz İletişim yolculuğu üzerine.</p>
+        </div>
+        <div data-reveal data-reveal-delay="1">
+          <YouTubeEmbed id="LWQituchtPg" start={600} title="Podcast — Şiddetsiz İletişim sohbeti" />
+          <p class="mt-3 font-display text-lg font-light text-[var(--color-ink)]">Podcast</p>
+          <p class="text-sm text-[var(--color-ink-muted)]">Şiddetsiz İletişim üzerine bir podcast sohbeti.</p>
         </div>
       </div>
     </div>

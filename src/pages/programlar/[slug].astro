@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 import ProgramHero from '../../components/programs/ProgramHero.astro';
 import Prose from '../../components/ui/Prose.astro';
+import YouTubeEmbed from '../../components/ui/YouTubeEmbed.astro';
 import JsonLd from '../../components/seo/JsonLd.astro';
 
 export async function getStaticPaths() {
@@ -65,6 +66,16 @@ const courseSchema = {
     <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
       <!-- Main content -->
       <div class="flex-1 min-w-0">
+        {program.data.youtubeId && (
+          <div class="mb-8 lg:mb-10">
+            <p class="eyebrow mb-3">Tanıtım Videosu</p>
+            <YouTubeEmbed
+              id={program.data.youtubeId}
+              start={program.data.youtubeStart}
+              title={`${program.data.title} — Tanıtım`}
+            />
+          </div>
+        )}
         <Prose>
           <Content />
         </Prose>

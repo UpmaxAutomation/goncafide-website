@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'sage' | 'terra' | 'neutral' | 'dark';
+  variant?: 'sage' | 'terra' | 'neutral' | 'dark' | 'iris';
 }
 
 const { variant = 'sage' } = Astro.props;
@@ -10,6 +10,7 @@ const variantClasses = {
   terra: 'bg-orange-50 text-[var(--color-terra-600)] border border-orange-200',
   neutral: 'bg-[var(--color-surface)] text-[var(--color-ink-muted)] border border-[var(--color-border)]',
   dark: 'bg-[var(--color-sage-800)] text-[var(--color-sage-100)]',
+  iris: 'bg-[var(--color-iris-50)] text-[var(--color-iris-700)] border border-[var(--color-iris-200)]',
 };
 ---
 

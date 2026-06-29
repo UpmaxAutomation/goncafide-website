@@ -33,6 +33,8 @@ const programlar = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().default(99),
     coverImage: z.object({ src: z.string(), alt: z.string() }).optional(),
+    youtubeId: z.string().optional(),
+    youtubeStart: z.number().optional(),
     draft: z.boolean().default(false),
   }),
 });

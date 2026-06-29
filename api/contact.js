@@ -107,12 +107,14 @@ async function sendViaResend(fields) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return;
 
-  const { name, email, phone, program, message, formType } = fields;
+  const { name, email, phone, program, message, formType, community } = fields;
 
   const subject =
     formType === "newsletter"
       ? `Bülten kaydı: ${email}`
-      : `Yeni iletişim formu: ${name ?? email}`;
+      : formType === "topluluk"
+        ? `Topluluk kaydı: ${community || "—"} — ${name || email}`
+        : `Yeni iletişim formu: ${name ?? email}`;
 
   const html = `
     <h2>Yeni form gönderimi — ${formType ?? "bilinmiyor"}</h2>
@@ -120,6 +122,7 @@ async function sendViaResend(fields) {
       <tr><th align="left">Ad:</th><td>${name ?? "—"}</td></tr>
       <tr><th align="left">E-posta:</th><td>${email}</td></tr>
       <tr><th align="left">Telefon:</th><td>${phone ?? "—"}</td></tr>
+      <tr><th align="left">Topluluk:</th><td>${community || "—"}</td></tr>
       <tr><th align="left">Program:</th><td>${program ?? "—"}</td></tr>
       <tr><th align="left">Mesaj:</th><td style="white-space:pre-wrap">${message ?? "—"}</td></tr>
     </table>
@@ -183,6 +186,7 @@ export default async function handler(req, res) {
   const phone = str(body.phone);
   const program = str(body.program);
   const message = str(body.message);
+  const community = str(body.community);
   // Support both a custom `formType` field and the Netlify-style `form-name`
   const formType = str(body.formType) || str(body["form-name"]) || "iletisim";
 
@@ -195,12 +199,13 @@ export default async function handler(req, res) {
   }
 
   if (formType !== "newsletter") {
-    // Contact form requires name + message too
+    // All non-newsletter forms require a name
     if (!name) {
       res.status(400).json({ error: "Ad alanı zorunludur." });
       return;
     }
-    if (!message) {
+    // Only the contact form requires a message; the topluluk waitlist does not
+    if (formType !== "topluluk" && !message) {
       res.status(400).json({ error: "Mesaj alanı zorunludur." });
       return;
     }
@@ -209,7 +214,7 @@ export default async function handler(req, res) {
   // ------------------------------------------------------------------
   // Delivery — fire both sinks concurrently; errors are non-fatal
   // ------------------------------------------------------------------
-  const fields = { name, email, phone, program, message, formType };
+  const fields = { name, email, phone, program, message, formType, community };
 
   await Promise.all([sendToGHL(fields), sendViaResend(fields)]);
 

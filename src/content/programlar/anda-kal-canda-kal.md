@@ -1,23 +1,22 @@
 ---
 title: "Anda Kal Canda Kal"
-subtitle: "Şiddetsiz İletişim'e Giriş Programı"
-description: "NVC'yi sıfırdan öğrenmek isteyenler için 12 saatlik giriş programı. Gözlem, duygu, ihtiyaç ve rica — dört adımı günlük hayata taşıyın."
+subtitle: "Şiddetsiz İletişim'e Giriş ve Temel Beceri Programı"
+description: "NVC'yi temelden öğrenmek isteyenler için kapsamlı giriş programı: dört adım, iletişimi engelleyenler, empati ve dürüstçe ifade, 'hayır' ve 'evet' demenin yolları ve anlaşma zemini yaratma. 36 saat, online veya yüz yüze."
 level: "Başlangıç"
-format: "Online Grup"
-totalHours: 12
-sessionCount: 4
-sessionDuration: "3 saat"
+format: "Hibrit"
+totalHours: 36
+sessionDuration: "Online veya yüz yüze"
 enrollmentOpen: true
 featured: true
-order: 2
+order: 1
 draft: false
 ---
 
 ## Program Hakkında
 
-*Anda Kal Canda Kal*, Şiddetsiz İletişim'e ilk adımını atmak isteyenler için tasarlanmış 12 saatlik bir giriş programıdır. İsim, NVC'nin özündeki iki daveti yansıtır: şu anda kalmak (ana kal) ve can ile bağlantıda kalmak (canda kal).
+*Anda Kal Canda Kal*, Şiddetsiz İletişim'e ilk adımını atmak isteyenler için tasarlanmış, giriş ve temel becerileri geliştirme programıdır. İsim, NVC'nin özündeki iki daveti yansıtır: şu anda kalmak (*anda kal*) ve can ile bağlantıda kalmak (*canda kal*).
 
-Program boyunca NVC'nin dört temel bileşenini — gözlem, duygu, ihtiyaç ve rica — hem teorik hem de pratik olarak keşfedersiniz. Bol uygulama, gerçek hayat örnekleri ve destekleyici bir grup ortamında öğrenirsiniz.
+36 saatlik bu yolculukta Şiddetsiz İletişim'in temel becerilerini hem teorik hem de bol pratikle, destekleyici bir grup ortamında öğrenirsiniz. Program online veya yüz yüze yürütülebilir.
 
 ## Kimler Katılabilir?
 
@@ -27,49 +26,27 @@ NVC hakkında hiçbir ön bilgisi olmayan herkes bu programa katılabilir. Şu a
 - Çatışma ve anlaşmazlık durumlarında yeni bir yaklaşım arayanlar
 - Kendi duygu ve ihtiyaçlarını daha net ifade etmek isteyenler
 - Empatiyi gerçek anlamda pratiğe dökmek isteyenler
-- Şiddetsiz İletişim'i duymş, merak etmiş ama nereden başlayacağını bilmeyenler
+- Şiddetsiz İletişim'i duymuş, merak etmiş ama nereden başlayacağını bilmeyenler
 
 ## Program İçeriği
 
-### 1. Oturum — Gözlem: Gerçekte Ne Oluyor?
+Program boyunca aşağıdaki temel becerileri adım adım keşfeder ve uygularsınız:
 
-Zihnimiz sürekli yorumlar, değerlendirir ve etiketler. Peki gerçekte *ne* oldu? İlk oturumda:
+- **Dört Adım: Gözlem, Duygu, İhtiyaç, Rica** — NVC'nin temel çerçevesi
+- **İletişimi Engelleyenler** — bağlantıyı kesen alışkanlıkları fark etme
+- **Empati yetkinliği** — kendinize ve başkalarına empatiyle yaklaşma
+- **Dürüstçe ifade yetkinliği** — yargısız, net ve içten ifade
+- **"Hayır" ve "Evet" demenin yolları** — sınır koyma ve rıza
+- **Anlaşma zemini yaratma** — ortak ihtiyaçlardan çözüm üretme
 
-- Gözlem ile değerlendirme arasındaki farkı öğrenirsiniz
-- "Her zaman geç kalırsın" yerine ne diyebileceğinizi keşfedersiniz
-- Somut, gözlemlenebilir ifadeler kurmayı pratiğe dökersiniz
-
-### 2. Oturum — Duygular: Bedenin Bilgeliği
-
-Duygular bize ne söylüyor? Neden bazı duygulardan kaçar, bazılarını yok sayarız? İkinci oturumda:
-
-- Gerçek duygular ile düşünce-duygular arasındaki farkı kavrarsiniz
-- Duygu kelime dağarcığınızı genişletirsiniz
-- Bedenin duygusal sinyallerini dinlemeye başlarsınız
-
-### 3. Oturum — İhtiyaçlar: Davranışın Arkasındaki Güç
-
-Her duygunun ardında bir ihtiyaç vardır. Her davranışın arkasında bir ihtiyaç vardır. Üçüncü oturumda:
-
-- İhtiyaçların evrensel doğasını keşfedersiniz
-- İhtiyaç ile strateji arasındaki kritik ayrımı öğrenirsiniz
-- Kendi kök ihtiyaçlarınızla bağlantı kurarsınız
-
-### 4. Oturum — Rica: Bağlantıya Davet
-
-Rica, NVC'de bir talep değil, bir davettir. Son oturumda:
-
-- Rica ile talep arasındaki farkı pratiğe dökersiniz
-- "Hayır" alabilme kapasitesini güçlendirirsiniz
-- Dört bileşeni bütünleştiren konuşmalar kurarsınız
+…ve daha fazlası. Her konu, gerçek hayat örnekleri ve canlı pratiklerle pekiştirilir.
 
 ## Program Yapısı
 
-- **Süre:** 4 hafta / 4 oturum
-- **Oturum süresi:** 3 saat
-- **Katılımcı sayısı:** 6-10 kişi
-- **Platform:** Zoom
-- **Materyaller:** Oturum notları ve egzersiz kitapçığı (PDF)
+- **Süre:** 36 saat
+- **Format:** Online veya yüz yüze
+- **Öğrenme biçimi:** Kavramsal açılım + bol canlı pratik + grup paylaşımı
+- **Platform:** Zoom (online) veya belirlenen mekân (yüz yüze)
 
 ## Ne Öğreneceksiniz?
 
@@ -82,7 +59,7 @@ Programın sonunda:
 
 ## Sonraki Adım
 
-Bu programı tamamlayanlar için *Anda Kal Canda Kal — Beceri Geliştirme* programı doğal bir devam sunar. İleri düzeyde çalışmak isteyenler için Anahtar Ayrımlar Programı'na geçiş yapılabilir.
+Bu programı tamamlayanlar, pratiklerini derinleştirmek için **Anahtar Ayrımlar Programı**'na geçiş yapabilir.
 
 ## Kayıt ve Bilgi
 

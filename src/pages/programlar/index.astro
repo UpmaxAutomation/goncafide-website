@@ -6,7 +6,7 @@ import ProgramCard from '../../components/programs/ProgramCard.astro';
 const allPrograms = await getCollection('programlar', ({ data }) => !data.draft);
 const programs = allPrograms.sort((a, b) => a.data.order - b.data.order);
 
-const groupPrograms = programs.filter((p) => p.data.format === 'Online Grup');
+const groupPrograms = programs.filter((p) => p.data.format === 'Online Grup' || p.data.format === 'Hibrit');
 const individualPrograms = programs.filter((p) => p.data.format === 'Bireysel (1:1)');
 
 // Group the online-group programs by level (Gonca's taxonomy: Başlangıç → İleri)
@@ -41,6 +41,10 @@ const levelBlurb: Record<string, string> = {
       <p class="text-[var(--color-ink-muted)] text-lg max-w-xl">
         Her seviye ve ihtiyaç için bir alan var: başlangıçtan ileri seviyeye grup programları,
         tek oturumluk tematik seminerler ve bire bir seanslar.
+      </p>
+      <p class="mt-5 text-sm lg:text-base text-[var(--color-ink-muted)] max-w-2xl">
+        <span class="font-semibold text-[var(--color-iris-700)]">Önerilen yolculuk:</span>
+        Anda Kal Canda Kal → Anahtar Ayrımlar → Anlaşmazlık Dönüştürme → Belirli Konularda Güçlenme
       </p>
     </div>
   </section>
@@ -95,19 +99,19 @@ const levelBlurb: Record<string, string> = {
     <section class="section-padding bg-[var(--color-surface)]">
       <div class="container-site">
         <div class="mb-8">
-          <p class="eyebrow mb-3">Tematik Seminerler</p>
+          <p class="eyebrow mb-3">Belirli Konularda Güçlenme</p>
           <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
-            Tek oturumluk atölyeler
+            Tek oturumluk tematik atölyeler
           </h2>
           <p class="text-[var(--color-ink-muted)] mt-3 max-w-xl">
-            Belirli bir temayı NVC merceğiyle ele alan, tek seanslık buluşmalar.
+            Kıyas, küsmek, nazar ve mizah gibi belirli bir temayı NVC merceğiyle ele alan, tek seanslık buluşmalar.
           </p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {seminerler.map((s) => (
             <div class="flex flex-col p-6 lg:p-7 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
               <div class="flex items-center gap-2 mb-3 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-sage-50)] text-[var(--color-sage-700)] border border-[var(--color-sage-200)]">{s.data.level}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-iris-50)] text-[var(--color-iris-700)] border border-[var(--color-iris-200)]">{s.data.level}</span>
                 <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-surface)] text-[var(--color-ink-muted)] border border-[var(--color-border)]">{s.data.format}</span>
               </div>
               <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-2.5 leading-snug">{s.data.title}</h3>

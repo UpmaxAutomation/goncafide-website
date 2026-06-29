@@ -60,21 +60,6 @@ const programs = [
     </div>
   </div>
 
-  <!-- Phone (optional) -->
-  <div>
-    <label for="phone" class="block text-sm font-medium text-[var(--color-ink)] mb-2">
-      Telefon <span class="text-[var(--color-ink-muted)] text-xs font-normal">(opsiyonel)</span>
-    </label>
-    <input
-      id="phone"
-      type="tel"
-      name="phone"
-      autocomplete="tel"
-      placeholder="+90 5xx xxx xx xx"
-      class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-sage-300)] focus:border-[var(--color-sage-400)] transition-shadow text-base"
-    />
-  </div>
-
   <!-- Program select -->
   <div>
     <label for="program" class="block text-sm font-medium text-[var(--color-ink)] mb-2">
@@ -163,7 +148,7 @@ const programs = [
         form.reset();
         setStatus('Teşekkürler! Mesajınız ulaştı. En kısa sürede geri döneceğim.', true);
       } catch (err) {
-        setStatus('Bir sorun oluştu. Lütfen tekrar deneyin ya da WhatsApp’tan yazın: +90 533 716 79 40', false);
+        setStatus('Bir sorun oluştu. Lütfen tekrar deneyin ya da info@goncafide.com adresine yazın.', false);
       } finally {
         btn.disabled = false;
         label.textContent = 'Mesajı Gönder';

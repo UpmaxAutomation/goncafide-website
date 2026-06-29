@@ -1,0 +1,130 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import CommunityJoinForm from '../../components/forms/CommunityJoinForm.astro';
+import { communities } from '../../lib/communities';
+
+export function getStaticPaths() {
+  return communities.map((c) => ({ params: { slug: c.slug }, props: { community: c } }));
+}
+
+const { community } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: `${community.name} — Gonca Fide`,
+  url: `https://www.goncafide.com/topluluk/${community.slug}`,
+  description: community.tagline,
+  inLanguage: 'tr',
+  isPartOf: { '@type': 'WebSite', '@id': 'https://www.goncafide.com/#website' },
+};
+---
+
+<PageLayout title={community.name} description={community.tagline}>
+  <JsonLd slot="jsonld" schema={schema} />
+
+  <!-- Header -->
+  <section class="relative overflow-hidden bg-[var(--color-surface)] pt-10 pb-12 lg:pt-16 lg:pb-16 border-b border-[var(--color-border)]">
+    <div class="absolute inset-0 pointer-events-none brand-veil" aria-hidden="true"></div>
+    <div class="container-site relative">
+      <nav class="mb-6 text-sm" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 text-[var(--color-ink-muted)]">
+          <li><a href="/" class="hover:text-[var(--color-ink)] transition-colors">Ana Sayfa</a></li>
+          <li aria-hidden="true">›</li>
+          <li><a href="/topluluk" class="hover:text-[var(--color-ink)] transition-colors">Topluluklar</a></li>
+          <li aria-hidden="true">›</li>
+          <li class="text-[var(--color-ink)] font-medium">{community.name}</li>
+        </ol>
+      </nav>
+      <p class="eyebrow mb-4">Topluluk</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4 max-w-3xl">
+        {community.name}
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-2xl">{community.tagline}</p>
+    </div>
+  </section>
+
+  <!-- Intro + details -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16">
+        <div>
+          <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-10 max-w-2xl">{community.intro}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div>
+              <h2 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-4">Kimler için?</h2>
+              <ul class="space-y-2.5">
+                {community.forWhom.map((item) => (
+                  <li class="flex items-start gap-2.5 text-[var(--color-ink-muted)] text-sm leading-relaxed">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-iris-400)] flex-shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-4">Neler yapıyoruz?</h2>
+              <ul class="space-y-2.5">
+                {community.activities.map((item) => (
+                  <li class="flex items-start gap-2.5 text-[var(--color-ink-muted)] text-sm leading-relaxed">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-sage-400)] flex-shrink-0" aria-hidden="true"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {community.relatedProgram && (
+            <a
+              href={`/programlar/${community.relatedProgram.slug}`}
+              class="mt-10 inline-flex items-center gap-2 text-[var(--color-iris-700)] hover:text-[var(--color-iris-800)] text-sm font-medium transition-colors link-underline"
+            >
+              İlgili program: {community.relatedProgram.title}
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          )}
+        </div>
+
+        <!-- Join card -->
+        <aside>
+          <div class="rounded-2xl bg-[var(--color-surface-iris)] p-6 lg:p-8 border border-[var(--color-iris-100)]" style="box-shadow: var(--shadow-card);">
+            <p class="eyebrow mb-3">Katıl</p>
+            {community.joinUrl ? (
+              <div>
+                <h2 class="font-display text-xl font-light text-[var(--color-ink)] mb-3 leading-snug">Topluluğa katılın</h2>
+                <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed mb-5">
+                  Üyeler burada buluşur, paylaşır ve birlikte pratik yapar.
+                </p>
+                <a
+                  href={community.joinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-600)] transition-colors min-h-[50px]"
+                >
+                  Topluluğa Katıl
+                </a>
+              </div>
+            ) : (
+              <div>
+                <h2 class="font-display text-xl font-light text-[var(--color-ink)] mb-3 leading-snug">Açıldığında haber alın</h2>
+                <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed mb-5">
+                  Topluluk yakında kendi üyelerine açılıyor. Aşağıdan kaydolun; açıldığında ilk siz haberdar olun.
+                </p>
+                <CommunityJoinForm communitySlug={community.slug} communityName={community.name} />
+              </div>
+            )}
+          </div>
+
+          {community.externalDomain && (
+            <p class="mt-4 text-xs text-[var(--color-ink-muted)] leading-relaxed">
+              Bu topluluk ileride <span class="font-medium text-[var(--color-ink)]">{community.externalDomain}</span> üzerinden de yürütülebilir.
+            </p>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+</PageLayout>

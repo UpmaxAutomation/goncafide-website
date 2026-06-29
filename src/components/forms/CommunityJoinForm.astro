@@ -1,0 +1,122 @@
+---
+interface Props {
+  communitySlug: string;
+  communityName: string;
+}
+const { communitySlug, communityName } = Astro.props;
+---
+
+<form
+  class="community-join-form space-y-4"
+  method="POST"
+  action="/api/contact"
+  aria-label={`${communityName} katılım formu`}
+  novalidate
+>
+  <input type="hidden" name="formType" value="topluluk" />
+  <input type="hidden" name="community" value={communityName} />
+  <p class="hidden" aria-hidden="true">
+    <label>Bunu doldurmayın: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-name-${communitySlug}`}>
+        Adınız <span class="text-[var(--color-terra-500)]" aria-label="zorunlu">*</span>
+      </label>
+      <input
+        id={`cj-name-${communitySlug}`}
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder="Adınız Soyadınız"
+        class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-iris-300)] focus:border-[var(--color-iris-400)] transition-shadow text-base"
+      />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-email-${communitySlug}`}>
+        E-posta <span class="text-[var(--color-terra-500)]" aria-label="zorunlu">*</span>
+      </label>
+      <input
+        id={`cj-email-${communitySlug}`}
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder="ornek@email.com"
+        class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-iris-300)] focus:border-[var(--color-iris-400)] transition-shadow text-base"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-msg-${communitySlug}`}>
+      Mesajınız <span class="text-[var(--color-ink-muted)] text-xs font-normal">(opsiyonel)</span>
+    </label>
+    <textarea
+      id={`cj-msg-${communitySlug}`}
+      name="message"
+      rows="3"
+      placeholder="NVC deneyiminiz ya da neden katılmak istediğiniz…"
+      class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-iris-300)] focus:border-[var(--color-iris-400)] transition-shadow text-base resize-y min-h-[90px]"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    data-submit
+    class="inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] active:scale-[0.98] transition-all min-h-[50px] disabled:opacity-70 disabled:cursor-wait"
+  >
+    <span data-label>Katılmak istiyorum</span>
+  </button>
+
+  <p data-status role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
+</form>
+
+<script>
+  function initCommunityForms() {
+    document.querySelectorAll('form.community-join-form').forEach((form) => {
+      if (form.dataset.bound) return;
+      form.dataset.bound = '1';
+      const btn = form.querySelector('[data-submit]');
+      const label = form.querySelector('[data-label]');
+      const status = form.querySelector('[data-status]');
+
+      function setStatus(msg, ok) {
+        status.textContent = msg;
+        status.className =
+          'text-sm rounded-xl px-4 py-3 ' +
+          (ok
+            ? 'bg-[var(--color-sage-50)] text-[var(--color-sage-800)] border border-[var(--color-sage-200)]'
+            : 'bg-orange-50 text-[var(--color-terra-700)] border border-orange-200');
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        btn.disabled = true;
+        label.textContent = 'Gönderiliyor…';
+        status.className = 'hidden';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          setStatus('Teşekkürler! Kaydınızı aldım. Topluluk açıldığında size haber vereceğim.', true);
+        } catch (err) {
+          setStatus('Bir sorun oluştu. Lütfen tekrar deneyin ya da info@goncafide.com adresine yazın.', false);
+        } finally {
+          btn.disabled = false;
+          label.textContent = 'Katılmak istiyorum';
+        }
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initCommunityForms);
+  if (document.readyState !== 'loading') initCommunityForms();
+  else document.addEventListener('DOMContentLoaded', initCommunityForms);
+</script>

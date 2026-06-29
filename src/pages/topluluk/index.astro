@@ -1,0 +1,51 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { communities } from '../../lib/communities';
+---
+
+<PageLayout
+  title="Topluluklar"
+  description="Gonca Fide ile Şiddetsiz İletişim topluluklarını keşfedin: Acemi Zürafa Topluluğu ve Anlaşmazlık Dönüştürme Topluluğu. Birlikte pratik yapın, üyelerle bağlantı kurun."
+>
+  <!-- Header -->
+  <section class="relative overflow-hidden bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="absolute inset-0 pointer-events-none brand-veil" aria-hidden="true"></div>
+    <div class="container-site relative">
+      <p class="eyebrow mb-4">Topluluklar</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
+        Birlikte pratik edelim
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-xl">
+        Şiddetsiz İletişim'i sürdürmenin en güzel yolu birlikte pratik yapmaktır.
+        Kendi üyeleriyle buluşan iki topluluğa katılın, deneyiminizi paylaşın ve birbirinizden öğrenin.
+      </p>
+    </div>
+  </section>
+
+  <!-- Community cards -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        {communities.map((c, i) => (
+          <a
+            href={`/topluluk/${c.slug}`}
+            class="group flex flex-col p-7 lg:p-9 rounded-2xl bg-white border border-[var(--color-border)] hover:border-[var(--color-iris-200)] transition-all duration-300 hover:-translate-y-1"
+            style="box-shadow: var(--shadow-card);"
+            data-reveal
+            data-reveal-delay={String(i + 1)}
+          >
+            <span class="w-12 h-12 mb-5 rounded-xl flex items-center justify-center bg-[var(--color-iris-50)] text-[var(--color-iris-600)]" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 19a4 4 0 0 0-8 0M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 19a3 3 0 0 0-5-2.2M3 19a3 3 0 0 1 5-2.2M19 9a2.5 2.5 0 1 0-2-4M5 9a2.5 2.5 0 1 1 2-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h2 class="font-display text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-2 leading-snug">{c.name}</h2>
+            <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed flex-1">{c.tagline}</p>
+            <span class="mt-6 inline-flex items-center gap-1.5 text-[var(--color-iris-700)] group-hover:text-[var(--color-iris-800)] text-sm font-medium transition-colors">
+              Topluluğu keşfet
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

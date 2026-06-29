@@ -1,9 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 
-// REAL testimonials only. The `gorusler` collection starts empty; this section
-// shows quote cards only when Gonca has added consented entries. Until then it
-// shows a factual trust block (no fabricated quotes).
+// REAL testimonials only. The `gorusler` collection holds consented entries;
+// the factual trust block is always shown, and participant quotes appear below
+// it when real entries exist. (No fabricated quotes.)
 const all = await getCollection('gorusler', ({ data }) => !data.draft);
 const gorusler = all.sort((a, b) => a.data.order - b.data.order);
 const hasTestimonials = gorusler.length > 0;
@@ -15,47 +15,56 @@ const rendered = hasTestimonials
 // Factual trust signals — every item is verifiable from Gonca's credentials.
 const trust = [
   { stat: 'CNVC', label: 'Sertifikalı Eğitmen', detail: '2022’den beri (Center for Nonviolent Communication)' },
-  { stat: '1000+', label: 'saat NVC eğitimi', detail: 'Liv Larsson, Miki Kashtan ve CNVC eğitmenlerinden' },
-  { stat: '900+', label: 'saat paylaşım', detail: 'Online gruplar ve bireysel seanslar' },
+  { stat: '1500+', label: 'saat NVC eğitimi', detail: 'Liv Larsson, Katarina Hoffman, Miki Kashtan ve CNVC eğitmenlerinden' },
+  { stat: 'ODTÜ', label: 'Sosyoloji mezunu', detail: 'Orta Doğu Teknik Üniversitesi' },
   { stat: '2019+', label: 'Dernek üyeliği', detail: 'Şiddetsiz İletişim Türkiye Derneği' },
 ];
 ---
 
 <section class="section-padding bg-[var(--color-canvas)]">
   <div class="container-site">
-    <div class:list={['mb-10 lg:mb-14', hasTestimonials ? 'text-center max-w-xl mx-auto' : 'max-w-2xl']} data-reveal>
-      <p class="eyebrow mb-3">{hasTestimonials ? 'Katılımcı Deneyimleri' : 'Neden Gonca Fide?'}</p>
+    <div class="max-w-2xl mb-10 lg:mb-14" data-reveal>
+      <p class="eyebrow mb-3">Neden Gonca Fide?</p>
       <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
-        {hasTestimonials ? 'Dönüşüm hikayeleri' : 'Güvenle öğrenebileceğiniz bir alan'}
+        Güvenle öğrenebileceğiniz bir alan
       </h2>
     </div>
 
-    {hasTestimonials ? (
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {rendered.map(({ data, Content }) => (
-          <figure class="flex flex-col p-6 lg:p-8 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
-            <div class="w-8 h-8 mb-5 font-display text-5xl leading-none text-[var(--color-sage-300)] select-none" aria-hidden="true">”</div>
-            <blockquote class="flex-1 font-display text-lg lg:text-xl font-light italic leading-relaxed text-[var(--color-ink)] -tracking-[0.01em] prose-quote">
-              <Content />
-            </blockquote>
-            <figcaption class="mt-6 pt-5 border-t border-[var(--color-border)]">
-              <p class="font-body font-semibold text-sm text-[var(--color-ink)]">{data.author}</p>
-              {(data.role || data.program) && (
-                <p class="text-xs text-[var(--color-ink-muted)] mt-0.5">{data.role ?? data.program}</p>
-              )}
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    ) : (
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-6 border-t border-[var(--color-border)] pt-9">
-        {trust.map((t, i) => (
-          <div class={i % 4 !== 0 ? 'lg:border-l lg:border-[var(--color-border)] lg:pl-6' : 'lg:pl-0'} data-reveal data-reveal-delay={String(i + 1)}>
-            <p class="font-display text-4xl lg:text-5xl font-light text-[var(--color-sage-600)] leading-none">{t.stat}</p>
-            <p class="font-body font-semibold text-sm text-[var(--color-ink)] mt-3">{t.label}</p>
-            <p class="text-xs text-[var(--color-ink-muted)] mt-1.5 leading-relaxed">{t.detail}</p>
-          </div>
-        ))}
+    <!-- Trust signals (always shown) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-6 border-t border-[var(--color-border)] pt-9">
+      {trust.map((t, i) => (
+        <div class={i % 4 !== 0 ? 'lg:border-l lg:border-[var(--color-border)] lg:pl-6' : 'lg:pl-0'} data-reveal data-reveal-delay={String(i + 1)}>
+          <p class="font-display text-4xl lg:text-5xl font-light text-[var(--color-sage-600)] leading-none">{t.stat}</p>
+          <p class="font-body font-semibold text-sm text-[var(--color-ink)] mt-3">{t.label}</p>
+          <p class="text-xs text-[var(--color-ink-muted)] mt-1.5 leading-relaxed">{t.detail}</p>
+        </div>
+      ))}
+    </div>
+
+    {hasTestimonials && (
+      <div class="mt-16 lg:mt-20">
+        <div class="max-w-xl mb-8" data-reveal>
+          <p class="eyebrow mb-3">Katılımcı Deneyimleri</p>
+          <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
+            Dönüşüm hikayeleri
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {rendered.map(({ data, Content }) => (
+            <figure class="flex flex-col p-6 lg:p-8 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
+              <div class="w-8 h-8 mb-5 font-display text-5xl leading-none text-[var(--color-iris-300)] select-none" aria-hidden="true">”</div>
+              <blockquote class="flex-1 font-display text-lg lg:text-xl font-light italic leading-relaxed text-[var(--color-ink)] -tracking-[0.01em] prose-quote">
+                <Content />
+              </blockquote>
+              <figcaption class="mt-6 pt-5 border-t border-[var(--color-border)]">
+                <p class="font-body font-semibold text-sm text-[var(--color-ink)]">{data.author}</p>
+                {(data.role || data.program) && (
+                  <p class="text-xs text-[var(--color-ink-muted)] mt-0.5">{data.role ?? data.program}</p>
+                )}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     )}
   </div>

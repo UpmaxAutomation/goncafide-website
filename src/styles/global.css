@@ -34,6 +34,22 @@
   --color-terra-600: #8A4310;  /* CTA hover */
   --color-terra-700: #6E350D;  /* active / deep */
 
+  /* ── Purple / Iris (secondary accent — "mor tonları", per Gonca's request) ──
+     Woven through eyebrows, badges, hero glow and accents; green stays the logo anchor. */
+  --color-iris-50:  #F5F2FB;
+  --color-iris-100: #EBE4F6;
+  --color-iris-200: #D8CCEC;
+  --color-iris-300: #BBA6DC;
+  --color-iris-400: #997CC6;
+  --color-iris-500: #7857AB;  /* primary violet */
+  --color-iris-600: #5E3F90;  /* text/links on white ≈7:1 (AA) */
+  --color-iris-700: #4A3173;
+  --color-iris-800: #342350;
+  --color-iris-900: #221635;
+
+  /* faint violet surface for alternating sections */
+  --color-surface-iris: #F6F3FB;
+
   /* ── Border ── */
   --color-border: rgba(20, 30, 18, 0.10);
   --color-border-focus: rgba(78, 130, 67, 0.6);
@@ -157,7 +173,7 @@
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-sage-500);
+    color: var(--color-iris-600);
   }
 
   .display {
@@ -186,8 +202,8 @@
     --tw-prose-counters: var(--color-sage-400);
     --tw-prose-bullets: var(--color-sage-400);
     --tw-prose-hr: var(--color-border);
-    --tw-prose-quotes: var(--color-sage-800);
-    --tw-prose-quote-borders: var(--color-sage-400);
+    --tw-prose-quotes: var(--color-iris-800);
+    --tw-prose-quote-borders: var(--color-iris-400);
     --tw-prose-captions: var(--color-ink-muted);
     font-family: var(--font-body);
     font-size: 1.0625rem;
@@ -227,11 +243,12 @@ html.reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
 }
 .link-underline:hover, .link-underline:focus-visible { background-size: 100% 1px; }
 
-/* Soft hero glow utility */
+/* Soft hero glow utility — violet-led ("mor tonları") + green + warm orange */
 .brand-veil {
   background:
-    radial-gradient(60% 50% at 85% 18%, rgba(108, 160, 95, 0.10), transparent 70%),
-    radial-gradient(40% 40% at 8% 90%, rgba(232, 146, 74, 0.07), transparent 70%);
+    radial-gradient(58% 50% at 86% 16%, rgba(120, 87, 171, 0.13), transparent 70%),
+    radial-gradient(46% 46% at 10% 14%, rgba(108, 160, 95, 0.08), transparent 70%),
+    radial-gradient(40% 40% at 8% 92%, rgba(232, 146, 74, 0.07), transparent 70%);
 }
 
 /* Refined card hover */

@@ -1,56 +1,56 @@
 ---
 title: "Anahtar Ayrımlar Programı"
 subtitle: "Şiddetsiz İletişim'in Derinliklerine Yolculuk"
-description: "Liv Larsson ve Katarina Hoffman'ın 'Kodu Çözme' kitabına dayanan, 54 anahtar ayrımı derinlemesine inceleyen orta-ileri düzey NVC programı."
+description: "Liv Larsson ve Katarina Hoffman'ın 'Kodu Kırmak' kitabına dayanan, 54 anahtar ayrımı 6 ay boyunca derinlemesine inceleyen orta-ileri düzey NVC programı."
 level: "Orta-İleri"
 format: "Online Grup"
-totalHours: 80
-sessionCount: 20
-sessionDuration: "4 saat"
+totalHours: 82
+sessionCount: 33
+sessionDuration: "2.5 saat"
+youtubeId: "5L0OsNC_Too"
 enrollmentOpen: true
 featured: true
-order: 1
+order: 2
 draft: false
 ---
 
 ## Program Hakkında
 
-Anahtar Ayrımlar Programı, Şiddetsiz İletişim pratiğini bir üst seviyeye taşımak isteyenler için tasarlanmış 5 aylık kapsamlı bir öğrenme yolculuğudur. Program, İsveçli NVC eğitmenleri Liv Larsson ve Katarina Hoffman'ın *Kodu Çözme: İletişim Şifrenizi Çözün* adlı kitabına dayanmakta; aynı zamanda Miki Kashtan'ın çalışmalarından da beslenmektedir.
+Anahtar Ayrımlar Programı, Şiddetsiz İletişim pratiğini bir üst seviyeye taşımak isteyenler için tasarlanmış 6 aylık kapsamlı bir öğrenme yolculuğudur. Program, İsveçli NVC eğitmenleri Liv Larsson ve Katarina Hoffman'ın *Kodu Kırmak: İletişim Şifrenizi Çözün* adlı kitabına dayanmakta; aynı zamanda Inbal ve Miki Kashtan kardeşlerin ek anahtar ayrımlarından oluşmaktadır.
 
-54 temel ayrım — NVC'nin kalbindeki nüansları, sıkça karıştırılan kavramları ve dönüştürücü bakış açılarını — sistematik bir şekilde ele alır. Her buluşmada 2-3 ayrım üzerinde çalışılır; kavramsal öğrenme ile canlı pratik iç içe örülür.
+54 anahtar ayrım — NVC'nin kalbindeki nüansları, sıkça karıştırılan kavramları ve dönüştürücü bakış açılarını — sistematik bir şekilde ele alır. Her buluşmada 2-3 ayrım üzerinde çalışılır; kavramsal öğrenme ile canlı pratik iç içe örülür.
+
+Programın pratik yapma bölümünü temsil eden **"Acemi Zürafa"**, Anahtar Ayrımlar'ın hayatta nerede karşımıza çıktığını içselleştirmemize yardımcı olurken Şiddetsiz İletişim'i daha akıcı konuşmamızı sağlar.
 
 ## Kimler Katılabilir?
 
-Bu program, en az bir temel NVC eğitimi almış ve pratiklerini derinleştirmek isteyen katılımcılara yöneliktir. Aşağıdaki koşullardan en az birini taşımanız önerilir:
+Bu program, en az bir temel NVC eğitimini —yani yıllık eğitim programını— bitirmiş olanlara yöneliktir. Aşağıdaki koşullardan en az birini taşımanız önerilir:
 
-- Bir NVC giriş programını tamamlamış olmak
+- Bir NVC yıllık programını tamamlamış olmak (en az 36 saatlik)
 - NVC kavramlarına aşinalık (4 bileşen: gözlem, duygu, ihtiyaç, rica)
-- Empati pratiklerine başlamış olmak
+- Empatiyle dinleme ve dürüstlükle ifade etme pratiklerine hakim olmak
 
-## Program İçeriği
+## Program İçeriği — 4 Paket
 
-### Temel Ayrım Kümeleri
+Program dört temel ayrım kümesinden (paketten) oluşur:
 
-**Gözlem ve Değerlendirme**
-Saf gözlem ile yorumlama arasındaki ince çizgiyi keşfedersiniz. Zihnin oto-pilot değerlendirmelerini fark etmek ve bunları somut, gözlemlenebilir ifadelere dönüştürmek için pratik araçlar edinirsiniz.
+**1. Temel Ayrımlar Paketi**
+Şiddetsiz İletişim'in temel unsurlarını Anahtar Ayrımlar perspektifinden algılamayı öğretir. Böylece NVC bilmeyenlere anlatımın nasıl kolaylaştırılacağı deneyimlenir.
 
-**Duygular ve Beden**
-Gerçek duygular ile düşünce-duygular arasındaki farkı; bedenin duygusal bilgeliğini ve sosyalleşmenin duygusal hayatımıza etkisini incelersiniz.
+**2. Empati Ayrımları Paketi**
+Empatiyle dinlemenin inceliklerini kapsar. Aktif dinleme sırasında ne yapıldığında neye yol açtığını teorik ve pratik olarak öğrenirsiniz.
 
-**İhtiyaçlar ve Stratejiler**
-İhtiyaçların evrensel doğasını ve stratejilerin kişisel niteliğini kavrarken; kök ihtiyaçlarla bağlantı kurmanın yollarını bulursunuz.
+**3. Zürafa-Çakal Ayrımları Paketi**
+Şiddetsiz İletişim'i öğrenmeyi kolaylaştıran Zürafa ve Çakal sembolleriyle tanışır; bunları hangi konularda kullanmanın iletişimde işimize yarayacağını keşfedersiniz.
 
-**Rica ve Talep**
-Rica ile talep arasındaki nüansı; "hayır"ı duyabilme kapasitesini ve ricalarımızı nasıl daha net, daha özgür kılabileceğimizi öğrenirsiniz.
+**4. Güç Ayrımları Paketi**
+Şiddetsiz İletişim dilinin, toplumsal dönüşüm kapsamında güç kullanımında şiddetsizliği önerirken nelerin farklı yapılabileceğini araştırır. Bireysel gücün kullanımının kolektif ve sistemsel etkileri fark edilir.
 
-**Empati ve Kendini İfade**
-Tam varlık gerektiren empatinin nasıl pratiğe döküleceğini; kendinizle ve başkalarıyla dürüst bağlantı kurmanın yollarını keşfedersiniz.
+## Program Yapısı
 
-### Program Yapısı
-
-- **Süre:** 5 ay / 20 oturum
-- **Oturum süresi:** 4 saat (haftada bir)
-- **Katılımcı sayısı:** 8-12 kişi (küçük grup dinamiği için)
+- **Süre:** 6 ay / 33 oturum
+- **Oturum süresi:** 2.5 saat (haftada bir)
+- **Katılımcı sayısı:** 8-15 kişi (küçük grup dinamiği için)
 - **Platform:** Zoom
 
 Her oturum şu yapıyı takip eder:
@@ -71,11 +71,9 @@ Programın sonunda:
 - Başkalarına NVC öğretmek veya kolaylaştırmak için daha sağlam bir zemine sahip olacaksınız
 - Anlaşmazlık ve çatışma durumlarında daha güçlü bir kapasite geliştireceksiniz
 
-## Katılımcı Görüşleri
+## Katılımcı Görüşü
 
-> "Bu program NVC anlayışımı tamamen dönüştürdü. Sadece 'duygu ve ihtiyaç bulmak' olmadığını, çok daha derin bir dönüşüm sürecine girdiğimi anladım."
-
-> "54 ayrım başta ürkütücü geldi ama Gonca'nın sunuş biçimi her kavramı hem anlayışlı hem de pratiğe dönüştürülebilir hale getirdi."
+> "54 ayrım başta ürkütücü geldi ama Gonca'nın sunuş biçimi her kavramı hem anlayışlı hem de pratiğe dönüştürülebilir hale getirmesiyle süreci kolaylaştırdı."
 
 ## Kayıt ve Bilgi
 
