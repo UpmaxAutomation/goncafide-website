@@ -9,6 +9,9 @@ sessionDuration: "Online veya yüz yüze"
 enrollmentOpen: true
 featured: true
 order: 1
+coverImage:
+  src: "/images/programlar/anda-kal-canda-kal.jpg"
+  alt: "Anda Kal Canda Kal atölyesi — kalpli Anda Canda simgesi"
 draft: false
 ---
 

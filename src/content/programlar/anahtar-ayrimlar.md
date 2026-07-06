@@ -11,6 +11,9 @@ youtubeId: "5L0OsNC_Too"
 enrollmentOpen: true
 featured: true
 order: 2
+coverImage:
+  src: "/images/programlar/anahtar-ayrimlar.jpg"
+  alt: "Anahtar Ayrımlar atölyesi — kalp biçimli anahtar simgesi"
 draft: false
 ---
 

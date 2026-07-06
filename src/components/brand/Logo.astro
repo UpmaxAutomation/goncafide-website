@@ -10,8 +10,8 @@ interface Props {
 const { tone = 'light', showSlogan = true, class: cls = '' } = Astro.props;
 
 const word = tone === 'dark' ? 'text-white' : 'text-[var(--color-ink)]';
-const hover = tone === 'dark' ? 'group-hover:text-[var(--color-sage-200)]' : 'group-hover:text-[var(--color-sage-700)]';
-const sloganColor = tone === 'dark' ? 'text-[var(--color-terra-400)]' : 'text-[var(--color-terra-500)]';
+const hover = tone === 'dark' ? 'group-hover:text-[var(--color-plum-200)]' : 'group-hover:text-[var(--color-plum-700)]';
+const sloganColor = tone === 'dark' ? 'text-[var(--color-plum-300)]' : 'text-[var(--color-orchid-500)]';
 ---
 
 <a href="/" class={`group inline-flex flex-col leading-none ${cls}`} aria-label="Gonca Fide — birbirine bağlar">

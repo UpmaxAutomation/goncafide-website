@@ -10,6 +10,7 @@ interface Props {
   sessionDuration?: string;
   slug: string;
   enrollmentOpen?: boolean;
+  image?: { src: string; alt: string };
 }
 
 const {
@@ -21,26 +22,35 @@ const {
   sessionDuration,
   slug,
   enrollmentOpen = true,
+  image,
 } = Astro.props;
 ---
 
 <article
-  class="group flex flex-col rounded-2xl bg-white overflow-hidden"
+  class="group card-rise flex flex-col rounded-2xl bg-white overflow-hidden"
   style="box-shadow: var(--shadow-card);"
 >
   <!-- Top accent bar -->
-  <div class="h-1 bg-gradient-to-r from-[var(--color-sage-400)] to-[var(--color-sage-600)]"></div>
+  <div class="h-1 bg-gradient-to-r from-[var(--color-plum-400)] via-[var(--color-orchid-400)] to-[var(--color-orchid-600)]"></div>
 
   <div class="flex flex-col flex-1 p-6 lg:p-7">
+    {image && (
+      <img
+        src={image.src}
+        alt={image.alt}
+        width="800" height="800" loading="lazy" decoding="async"
+        class="w-16 h-16 rounded-2xl object-cover ring-1 ring-[var(--color-iris-200)] mb-5 transition-transform duration-300 group-hover:scale-105"
+      />
+    )}
     <!-- Meta badges -->
     <div class="flex items-center gap-2 flex-wrap mb-4">
-      <Badge variant="sage">{level}</Badge>
+      <Badge variant="plum">{level}</Badge>
       <Badge variant="neutral">{format}</Badge>
-      {!enrollmentOpen && <Badge variant="terra">Kayıt Kapalı</Badge>}
+      {!enrollmentOpen && <Badge variant="orchid">Kayıt Kapalı</Badge>}
     </div>
 
     <!-- Title -->
-    <h3 class="font-display text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-3 leading-snug group-hover:text-[var(--color-sage-800)] transition-colors">
+    <h3 class="font-display text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-3 leading-snug group-hover:text-[var(--color-plum-800)] transition-colors">
       {title}
     </h3>
 
@@ -74,7 +84,7 @@ const {
     <!-- CTA -->
     <a
       href={`/programlar/${slug}`}
-      class="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-[var(--color-sage-50)] text-[var(--color-sage-800)] font-medium text-sm hover:bg-[var(--color-sage-100)] transition-colors min-h-[48px] group/btn"
+      class="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-[var(--color-plum-50)] text-[var(--color-plum-800)] font-medium text-sm hover:bg-[var(--color-plum-100)] transition-colors min-h-[48px] group/btn"
     >
       Detayları incele
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"

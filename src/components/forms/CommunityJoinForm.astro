@@ -22,7 +22,7 @@ const { communitySlug, communityName } = Astro.props;
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-name-${communitySlug}`}>
-        Adınız <span class="text-[var(--color-terra-500)]" aria-label="zorunlu">*</span>
+        Adınız <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
       </label>
       <input
         id={`cj-name-${communitySlug}`}
@@ -36,7 +36,7 @@ const { communitySlug, communityName } = Astro.props;
     </div>
     <div>
       <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-email-${communitySlug}`}>
-        E-posta <span class="text-[var(--color-terra-500)]" aria-label="zorunlu">*</span>
+        E-posta <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
       </label>
       <input
         id={`cj-email-${communitySlug}`}
@@ -66,7 +66,7 @@ const { communitySlug, communityName } = Astro.props;
   <button
     type="submit"
     data-submit
-    class="inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] active:scale-[0.98] transition-all min-h-[50px] disabled:opacity-70 disabled:cursor-wait"
+    class="inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] active:scale-[0.98] transition-all min-h-[50px] disabled:opacity-70 disabled:cursor-wait"
   >
     <span data-label>Katılmak istiyorum</span>
   </button>
@@ -88,8 +88,8 @@ const { communitySlug, communityName } = Astro.props;
         status.className =
           'text-sm rounded-xl px-4 py-3 ' +
           (ok
-            ? 'bg-[var(--color-sage-50)] text-[var(--color-sage-800)] border border-[var(--color-sage-200)]'
-            : 'bg-orange-50 text-[var(--color-terra-700)] border border-orange-200');
+            ? 'bg-[var(--color-plum-50)] text-[var(--color-plum-800)] border border-[var(--color-plum-200)]'
+            : 'bg-rose-50 text-rose-800 border border-rose-200');
       }
 
       form.addEventListener('submit', async (e) => {

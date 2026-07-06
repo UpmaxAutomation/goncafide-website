@@ -3,7 +3,7 @@
  * Generates public/og-default.jpg (1200x630) for Gonca Fide's Astro site.
  *
  * Composition:
- *   1. Deep-green (#1E3320) background
+ *   1. Deep-plum (#3D2150) background
  *   2. Portrait photo (public/images/gonca-fide.jpg) on the right panel (~430px wide)
  *      — resized/cropped to cover, with a soft gradient fade on the left edge
  *   3. SVG text overlay on the left ~670px
@@ -31,10 +31,10 @@ const PORTRAIT_W = 430;    // right panel width
 const PORTRAIT_X = W - PORTRAIT_W;  // 770
 
 // ─── Colors ──────────────────────────────────────────────────────────────────
-const BG        = '#1E3320';
-const CREAM     = '#F5F1E8';
-const ORANGE    = '#E8924A';
-const LIGHT_GREEN = '#C2D8BB';
+const BG        = '#3D2150';
+const CREAM     = '#F6ECF3';
+const ORCHID    = '#B14CC0';
+const LIGHT_PLUM = '#C5A5D8';
 
 // ─── Fonts ───────────────────────────────────────────────────────────────────
 // sharp/librsvg uses system fonts. Georgia is available on macOS and most Linux
@@ -50,7 +50,7 @@ const portraitBuf = await sharp(PORTRAIT)
 
 // ─── Step 2: Build a gradient-fade mask for the portrait left edge ───────────
 // We'll composite a dark-to-transparent gradient over the portrait's left edge
-// so it blends into the green background seamlessly.
+// so it blends into the plum background seamlessly.
 const fadeW = 120;  // width of fade zone
 const fadeSvg = `<svg width="${PORTRAIT_W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -88,7 +88,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
     font-size="16"
     font-weight="600"
     letter-spacing="4"
-    fill="${ORANGE}"
+    fill="${ORCHID}"
     text-anchor="start"
   >CNVC SERTİFİKALI EĞİTMEN</text>
 
@@ -96,7 +96,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
   <line
     x1="${MARGIN_L}" y1="222"
     x2="${MARGIN_L + 48}" y2="222"
-    stroke="${ORANGE}" stroke-width="2" opacity="0.7"
+    stroke="${ORCHID}" stroke-width="2" opacity="0.7"
   />
 
   <!-- Big name: serif, cream -->
@@ -115,7 +115,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
     font-family="${SANS}"
     font-size="26"
     font-weight="300"
-    fill="${LIGHT_GREEN}"
+    fill="${LIGHT_PLUM}"
     letter-spacing="1"
     text-anchor="start"
   >Şiddetsiz İletişim Eğitmeni</text>
@@ -124,7 +124,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
   <line
     x1="${MARGIN_L}" y1="406"
     x2="${MARGIN_L + 280}" y2="406"
-    stroke="${LIGHT_GREEN}" stroke-width="1" opacity="0.4"
+    stroke="${LIGHT_PLUM}" stroke-width="1" opacity="0.4"
   />
 
   <!-- Slogan: serif italic, orange -->
@@ -134,7 +134,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
     font-size="40"
     font-style="italic"
     font-weight="400"
-    fill="${ORANGE}"
+    fill="${ORCHID}"
     text-anchor="start"
   >"birbirine bağlar"</text>
 </svg>`;
@@ -142,7 +142,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
 const textBuf = await sharp(Buffer.from(textSvg)).png().toBuffer();
 
 // ─── Step 4: Compose everything ─────────────────────────────────────────────
-// Layer order: green bg → portrait (right) with fade → text SVG (full canvas)
+// Layer order: plum bg → portrait (right) with fade → text SVG (full canvas)
 await sharp({
   create: {
     width: W,

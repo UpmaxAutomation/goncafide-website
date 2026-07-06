@@ -59,6 +59,7 @@ const courseSchema = {
     sessionDuration={program.data.sessionDuration}
     enrollmentOpen={program.data.enrollmentOpen}
     slug={program.id}
+    image={program.data.coverImage}
   />
 
   <!-- Content + sidebar -->
@@ -85,8 +86,8 @@ const courseSchema = {
       <aside class="w-full lg:w-72 flex-shrink-0">
         <div class="sticky top-24 space-y-5">
           <!-- CTA -->
-          <div class="rounded-2xl bg-[var(--color-sage-800)] p-6 text-white">
-            <p class="eyebrow text-[var(--color-sage-300)] mb-3">Kayıt</p>
+          <div class="rounded-2xl bg-[var(--color-plum-800)] p-6 text-white">
+            <p class="eyebrow text-[var(--color-plum-300)] mb-3">Kayıt</p>
             <h3 class="font-display text-xl font-light mb-3 text-white leading-snug">
               {program.data.title}
             </h3>
@@ -99,7 +100,7 @@ const courseSchema = {
             </div>
             <a
               href={`/iletisim?program=${program.id}`}
-              class="flex items-center justify-center py-3.5 px-5 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[48px]"
+              class="flex items-center justify-center py-3.5 px-5 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm hover:bg-[var(--color-orchid-400)] transition-colors min-h-[48px]"
             >
               Kayıt İçin İletişime Geç
             </a>

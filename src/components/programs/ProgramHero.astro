@@ -11,9 +11,10 @@ interface Props {
   sessionDuration?: string;
   enrollmentOpen: boolean;
   slug: string;
+  image?: { src: string; alt: string };
 }
 
-const { title, subtitle, level, format, totalHours, sessionCount, sessionDuration, enrollmentOpen, slug } = Astro.props;
+const { title, subtitle, level, format, totalHours, sessionCount, sessionDuration, enrollmentOpen, slug, image } = Astro.props;
 ---
 
 <section class="bg-[var(--color-surface)] pt-10 pb-12 lg:pt-16 lg:pb-20 border-b border-[var(--color-border)]">
@@ -32,10 +33,19 @@ const { title, subtitle, level, format, totalHours, sessionCount, sessionDuratio
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
       <!-- Left: title block -->
       <div class="flex-1">
+        {image && (
+          <img
+            src={image.src}
+            alt={image.alt}
+            width="800" height="800" loading="eager" fetchpriority="high" decoding="async"
+            class="w-24 h-24 lg:w-28 lg:h-28 rounded-3xl object-cover ring-1 ring-[var(--color-iris-200)] mb-6"
+            style="box-shadow: var(--shadow-card);"
+          />
+        )}
         <div class="flex items-center gap-2 flex-wrap mb-4">
           <Badge variant="iris">{level}</Badge>
           <Badge variant="neutral">{format}</Badge>
-          {!enrollmentOpen && <Badge variant="terra">Kayıt Kapalı</Badge>}
+          {!enrollmentOpen && <Badge variant="orchid">Kayıt Kapalı</Badge>}
         </div>
 
         <h1 class="font-display text-4xl lg:text-5xl xl:text-6xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
@@ -87,7 +97,7 @@ const { title, subtitle, level, format, totalHours, sessionCount, sessionDuratio
 
           <a
             href={`/iletisim?program=${slug}`}
-            class="flex items-center justify-center w-full py-4 px-5 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] transition-colors min-h-[52px]"
+            class="flex items-center justify-center w-full py-4 px-5 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] transition-colors min-h-[52px]"
           >
             Kayıt İçin İletişime Geç
           </a>

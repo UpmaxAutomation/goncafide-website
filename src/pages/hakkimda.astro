@@ -66,7 +66,7 @@ const bgIcons: Record<string, string> = {
           <div class="flex flex-wrap gap-3">
             <a
               href="/programlar"
-              class="inline-flex items-center justify-center py-3.5 px-6 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-terra-600)] transition-colors min-h-[48px]"
+              class="inline-flex items-center justify-center py-3.5 px-6 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] transition-colors min-h-[48px]"
             >
               Programları Keşfet
             </a>
@@ -83,7 +83,7 @@ const bgIcons: Record<string, string> = {
         <div class="flex justify-center lg:justify-end">
           <div class="relative">
             <div
-              class="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-[var(--color-sage-100)] to-[var(--color-sage-50)] -z-10"
+              class="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-[var(--color-plum-100)] to-[var(--color-plum-50)] -z-10"
               aria-hidden="true"
             ></div>
             <div
@@ -93,8 +93,8 @@ const bgIcons: Record<string, string> = {
               <img
                 src="/images/gonca-fide.jpg"
                 alt="Gonca Fide — CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni"
-                width="556"
-                height="707"
+                width="416"
+                height="603"
                 loading="eager"
                 fetchpriority="high"
                 class="w-full h-full object-cover object-top"
@@ -116,16 +116,16 @@ const bgIcons: Record<string, string> = {
         </h2>
 
         <div class="relative">
-          <div class="absolute left-4 top-0 bottom-0 w-px bg-[var(--color-sage-200)]" aria-hidden="true"></div>
+          <div class="absolute left-4 top-0 bottom-0 w-px bg-[var(--color-plum-200)]" aria-hidden="true"></div>
           <div class="space-y-8 pl-12">
             {credentials.map((cred) => (
               <div class="relative">
                 <div
-                  class="absolute -left-8 top-1 w-4 h-4 rounded-full bg-[var(--color-sage-400)] border-2 border-[var(--color-canvas)]"
+                  class="absolute -left-8 top-1 w-4 h-4 rounded-full bg-[var(--color-plum-400)] border-2 border-[var(--color-canvas)]"
                   aria-hidden="true"
                 ></div>
                 <div>
-                  <p class="text-xs font-medium text-[var(--color-sage-500)] mb-1 font-body uppercase tracking-wider">
+                  <p class="text-xs font-medium text-[var(--color-plum-500)] mb-1 font-body uppercase tracking-wider">
                     {cred.year}
                   </p>
                   <h3 class="font-display text-xl font-light text-[var(--color-ink)] mb-1">
@@ -155,7 +155,7 @@ const bgIcons: Record<string, string> = {
             style="box-shadow: var(--shadow-card);"
             data-reveal data-reveal-delay={String((i % 4) + 1)}
           >
-            <span class="w-11 h-11 mb-3 rounded-xl flex items-center justify-center bg-[var(--color-sage-50)] text-[var(--color-sage-600)]" aria-hidden="true">
+            <span class="w-11 h-11 mb-3 rounded-xl flex items-center justify-center bg-[var(--color-plum-50)] text-[var(--color-plum-600)]" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={bgIcons[item.icon]} />
             </span>
             <p class="font-body text-sm font-medium text-[var(--color-ink)]">{item.area}</p>
@@ -210,7 +210,7 @@ const bgIcons: Record<string, string> = {
           sesimi ve yaklaşımımı buradan duyabilirsiniz.
         </p>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         <div data-reveal>
           <YouTubeEmbed id="N93XALPo0_k" start={73} title="Gonca Fide ile tanışın" />
           <p class="mt-3 font-display text-lg font-light text-[var(--color-ink)]">Tanışalım</p>
@@ -221,12 +221,17 @@ const bgIcons: Record<string, string> = {
           <p class="mt-3 font-display text-lg font-light text-[var(--color-ink)]">Podcast</p>
           <p class="text-sm text-[var(--color-ink-muted)]">Şiddetsiz İletişim üzerine bir podcast sohbeti.</p>
         </div>
+        <div data-reveal data-reveal-delay="2">
+          <YouTubeEmbed id="5L0OsNC_Too" title="Anahtar Ayrımlar 2026 Tanıtımı" />
+          <p class="mt-3 font-display text-lg font-light text-[var(--color-ink)]">Anahtar Ayrımlar 2026</p>
+          <p class="text-sm text-[var(--color-ink-muted)]">Yeni dönem Anahtar Ayrımlar Programı tanıtımı.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact strip -->
-  <section class="py-14 bg-[var(--color-sage-800)]">
+  <section class="py-14 bg-[var(--color-plum-800)]">
     <div class="container-site text-center">
       <h2 class="font-display text-3xl lg:text-4xl font-light text-white mb-6 -tracking-[0.03em]">
         Sunduklarımı keşfetmeye hazır mısınız?
@@ -234,7 +239,7 @@ const bgIcons: Record<string, string> = {
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a
           href="/programlar"
-          class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-terra-500)] text-white font-semibold text-sm hover:bg-[var(--color-terra-400)] transition-colors min-h-[52px]"
+          class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm hover:bg-[var(--color-orchid-400)] transition-colors min-h-[52px]"
         >
           Sunduklarımı Keşfet
         </a>

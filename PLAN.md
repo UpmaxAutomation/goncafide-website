@@ -21,7 +21,11 @@
   **Domain:** www.goncafide.com.
 
 ### Decisions locked (2026‑06‑21)
-- **Palette → green + orange on white** (honor Gonca's notes; reverses the earlier plum/burgundy change).
+- ~~**Palette → green + orange on white**~~ **SUPERSEDED 2026‑07‑05:** Gonca delivered purple brand
+  assets (3 glitter-purple workshop icons + new profile photo, blush `#FFF5F4` background, @goncolog).
+  Site rebranded to a **plum/orchid purple system on blush-white** sampled from those assets
+  (`--color-plum-*` primary `#8B57A6`, `--color-orchid-*` CTA `#922BA4`, canvas `#FDF8F7`).
+  Token names `sage`/`terra` renamed to `plum`/`orchid` across the codebase.
 - **Process → this plan reviewed/approved before implementation.**
 
 ---

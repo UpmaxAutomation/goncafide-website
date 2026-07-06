@@ -34,7 +34,7 @@ const trust = [
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-6 border-t border-[var(--color-border)] pt-9">
       {trust.map((t, i) => (
         <div class={i % 4 !== 0 ? 'lg:border-l lg:border-[var(--color-border)] lg:pl-6' : 'lg:pl-0'} data-reveal data-reveal-delay={String(i + 1)}>
-          <p class="font-display text-4xl lg:text-5xl font-light text-[var(--color-sage-600)] leading-none">{t.stat}</p>
+          <p class="font-display text-4xl lg:text-5xl font-light text-[var(--color-plum-600)] leading-none">{t.stat}</p>
           <p class="font-body font-semibold text-sm text-[var(--color-ink)] mt-3">{t.label}</p>
           <p class="text-xs text-[var(--color-ink-muted)] mt-1.5 leading-relaxed">{t.detail}</p>
         </div>

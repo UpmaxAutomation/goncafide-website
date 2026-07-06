@@ -10,6 +10,9 @@ sessionDuration: "4-5 saat"
 enrollmentOpen: false
 featured: false
 order: 3
+coverImage:
+  src: "/images/programlar/anlasmazlik-donusturme.jpg"
+  alt: "Anlaşmazlık Dönüştürme programı — üçlü spiral simgesi"
 draft: false
 ---
 
