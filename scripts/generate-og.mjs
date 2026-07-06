@@ -81,7 +81,7 @@ const TEXT_MAX_W = 640;
 // Slogan: y=460
 
 const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-  <!-- Eyebrow: uppercase tracking, orange -->
+  <!-- Eyebrow: uppercase tracking, orchid -->
   <text
     x="${MARGIN_L}" y="205"
     font-family="${SANS}"
@@ -109,7 +109,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
     text-anchor="start"
   >Gonca Fide</text>
 
-  <!-- Subtitle: sans, light green -->
+  <!-- Subtitle: sans, light plum -->
   <text
     x="${MARGIN_L}" y="374"
     font-family="${SANS}"
@@ -127,7 +127,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
     stroke="${LIGHT_PLUM}" stroke-width="1" opacity="0.4"
   />
 
-  <!-- Slogan: serif italic, orange -->
+  <!-- Slogan: serif italic, orchid -->
   <text
     x="${MARGIN_L}" y="458"
     font-family="${SERIF}"
