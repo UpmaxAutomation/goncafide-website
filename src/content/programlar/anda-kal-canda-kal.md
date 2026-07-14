@@ -1,7 +1,7 @@
 ---
 title: "Anda Kal Canda Kal"
 subtitle: "Şiddetsiz İletişim'e Giriş ve Temel Beceri Programı"
-description: "NVC'yi temelden öğrenmek isteyenler için kapsamlı giriş programı: dört adım, iletişimi engelleyenler, empati ve dürüstçe ifade, 'hayır' ve 'evet' demenin yolları ve anlaşma zemini yaratma. 36 saat, online veya yüz yüze."
+description: "NVC'yi temelden öğrenmek isteyenler için kapsamlı giriş programı: dört adım, şefkati engelleyenler, empati ve dürüstçe ifade, 'hayır' ve 'evet' demenin yolları ve daha fazlası… 36 saat, online veya yüz yüze."
 level: "Başlangıç"
 format: "Hibrit"
 totalHours: 36

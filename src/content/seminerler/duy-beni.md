@@ -5,7 +5,7 @@ description: "Duyulma ve duyabilme üzerine giriş niteliğinde bir buluşma. Em
 level: "Başlangıç"
 format: "Online Grup"
 order: 5
-draft: false
+draft: true
 ---
 
 Çoğu çatışmanın altında basit bir özlem yatar: duyulmak. "Duy Beni", duyulma ve

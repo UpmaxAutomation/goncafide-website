@@ -5,7 +5,7 @@ description: "Beğeni, imrenme ve 'nazar' etrafında dönen duyguları Şiddetsi
 level: "Orta"
 format: "Online Grup"
 order: 3
-draft: false
+draft: true
 ---
 
 "Nazar değmesin" derken aslında neyi koruma telaşındayız? Beğenildiğimizde

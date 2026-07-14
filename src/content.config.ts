@@ -40,7 +40,7 @@ const programlar = defineCollection({
 });
 
 // Tematik Seminerler — Gonca's single-session thematic workshops
-// (Kıyas, Şaka Gibi, Nazar Etme, Küsmek, Duy Beni)
+// (Kıyas, Şaka Gibi, Küsmek)
 const seminerler = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/seminerler' }),
   schema: z.object({

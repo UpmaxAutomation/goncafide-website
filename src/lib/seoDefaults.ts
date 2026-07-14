@@ -1,5 +1,5 @@
 export const siteName = 'Gonca Fide';
-export const slogan = 'birbirine bağlar';
+export const slogan = 'birbirine bağlar güçlendirir';
 export const baseUrl = 'https://www.goncafide.com';
 export const defaultOgImage = `${baseUrl}/og-default.jpg`;
 export const defaultDescription =

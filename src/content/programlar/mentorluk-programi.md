@@ -1,7 +1,7 @@
 ---
 title: "Mentörlük Programı"
 subtitle: "NVC Eğitmenliğine Giden Yol"
-description: "NVC eğitmen adayları ve deneyimli pratisyenler için bireysel mentörlük programı. 18+ buluşmayla derinleştirilmiş kişisel gelişim ve eğitmenlik becerisi."
+description: "NVC eğitmen adayları ve deneyimli uygulayıcılar için bireysel mentörlük programı. NVC'nin Taahhütlerinin ve Varsayımlarının çalışıldığı, güvenli derinleşme ve gelişim alanı."
 level: "İleri"
 format: "Bireysel (1:1)"
 sessionCount: 18

@@ -1,7 +1,7 @@
 ---
 title: "Küsmek"
 subtitle: "Tek oturumluk tematik atölye"
-description: "Küsmenin altında yatan kırgınlık, beklenti ve bağ kurma çabasını Şiddetsiz İletişim'le inceliyoruz. Sessizliğin söylemek istediğini birlikte duyuyoruz."
+description: "Küsmenin altında yatan kırgınlık, beklenti ve bağ kurma çabası NVC ile incelenir. Sessizlikle tekrar bağlantı kurmanın yolları keşfedilir."
 level: "Orta"
 format: "Online Grup"
 order: 4

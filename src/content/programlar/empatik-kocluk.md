@@ -1,7 +1,7 @@
 ---
 title: "Empatik Koçluk"
 subtitle: "Bireysel Empati Seansları"
-description: "Bireysel empatik koçluk seansları. Zor duygularla, ilişkisel çatışmalarla veya hayat dönüşümleriyle baş başa kalmak için güvenli bir alan."
+description: "Bireysel empatik destek. NVC yaklaşımıyla danışmak istediğiniz konularda destek olunur."
 level: "Tüm Seviyeler"
 format: "Bireysel (1:1)"
 sessionDuration: "maks 2 saat"

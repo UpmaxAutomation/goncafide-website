@@ -6,7 +6,7 @@ level: "Orta-İleri"
 format: "Online Grup"
 totalHours: 82
 sessionCount: 33
-sessionDuration: "2.5 saat"
+sessionDuration: "Online"
 youtubeId: "5L0OsNC_Too"
 enrollmentOpen: true
 featured: true
@@ -52,7 +52,7 @@ Empatiyle dinlemenin inceliklerini kapsar. Aktif dinleme sırasında ne yapıld�
 ## Program Yapısı
 
 - **Süre:** 6 ay / 33 oturum
-- **Oturum süresi:** 2.5 saat (haftada bir)
+- **Format:** Online (haftada bir oturum)
 - **Katılımcı sayısı:** 8-15 kişi (küçük grup dinamiği için)
 - **Platform:** Zoom
 

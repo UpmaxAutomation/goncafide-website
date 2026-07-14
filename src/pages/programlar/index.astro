@@ -18,12 +18,20 @@ const byLevel = LEVEL_ORDER
 const seminerler = (await getCollection('seminerler', ({ data }) => !data.draft))
   .sort((a, b) => a.data.order - b.data.order);
 
+// Section headers per level (group program sections)
 const levelBlurb: Record<string, string> = {
   'Başlangıç': 'Şiddetsiz İletişim’e ilk adım — temel kavramlar ve dört adım.',
-  'Orta': 'Giriş sonrası beceriyi pratikte derinleştiren programlar.',
-  'Orta-İleri': 'Kavramları inceltip ileri seviyeye taşıyan derinleşme.',
-  'İleri': 'Anlaşmazlık dönüştürme ve eğitmenliğe giden yol.',
+  'Orta': 'Giriş sonrası beceriyi derinleştiren programlar.',
+  'Orta-İleri': 'NVC’nin kapsam ve derinliğini anlamaya yarayan kavramlarla kişileri ileri seviyeye taşıyan derinleşme programı.',
+  'İleri': 'Anlaşmazlık dönüştürme ve günlük hayata entegre etme.',
   'Tüm Seviyeler': 'Her seviyeden katılımcıya açık çalışmalar.',
+};
+
+// 3-card level overview at the top (Gonca's 2026-07-13 wording)
+const overviewBlurb: Record<string, string> = {
+  'Başlangıç': 'Şiddetsiz İletişim’e ilk adım — temel kavramlar ve dört adım.',
+  'Orta': 'Giriş sonrası beceriyi derinleştiren programlar. Örn: Anahtar Ayrımlar',
+  'İleri': 'Farkındalık geliştirme ve NVC’yi günlük hayatta uygulama pratikleri edinme. Anlaşmazlık Dönüştürme ve tematik programlar.',
 };
 ---
 
@@ -58,7 +66,7 @@ const levelBlurb: Record<string, string> = {
             <span class="font-display text-2xl font-light text-[var(--color-orchid-500)] leading-none">{i + 1}</span>
             <div>
               <p class="font-body font-semibold text-sm text-[var(--color-ink)]">{lvl} Seviye</p>
-              <p class="text-xs text-[var(--color-ink-muted)] mt-1 leading-relaxed">{levelBlurb[lvl]}</p>
+              <p class="text-xs text-[var(--color-ink-muted)] mt-1 leading-relaxed">{overviewBlurb[lvl]}</p>
             </div>
           </div>
         ))}
@@ -102,10 +110,10 @@ const levelBlurb: Record<string, string> = {
         <div class="mb-8">
           <p class="eyebrow mb-3">Belirli Konularda Güçlenme</p>
           <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
-            Tek oturumluk tematik atölyeler
+            Tek oturumluk tematik güçlenme atölyeleri
           </h2>
           <p class="text-[var(--color-ink-muted)] mt-3 max-w-xl">
-            Kıyas, küsmek, nazar ve mizah gibi belirli bir temayı NVC merceğiyle ele alan, tek seanslık buluşmalar.
+            Kıyas, küsmek ve mizah gibi belirli bir temayı NVC merceğiyle ele alan, tek seanslık buluşmalar.
           </p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">

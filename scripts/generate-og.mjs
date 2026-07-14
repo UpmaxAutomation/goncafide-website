@@ -136,7 +136,7 @@ const textSvg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
     font-weight="400"
     fill="${ORCHID}"
     text-anchor="start"
-  >"birbirine bağlar"</text>
+  >"birbirine bağlar güçlendirir"</text>
 </svg>`;
 
 const textBuf = await sharp(Buffer.from(textSvg)).png().toBuffer();

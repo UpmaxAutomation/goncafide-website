@@ -9,7 +9,7 @@ sessionDuration: "2.5 saat"
 enrollmentOpen: true
 featured: false
 order: 4
-draft: false
+draft: true
 ---
 
 ## Program Hakkında

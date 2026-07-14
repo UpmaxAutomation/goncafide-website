@@ -2,6 +2,72 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
 
+const steps = [
+  {
+    number: '01',
+    title: 'Gözlem',
+    subtitle: 'Ne oldu?',
+    description: 'Gözlem, değerlendirme, yorum veya yargı ifadeleri yerine o an ne olduğunu somut bir biçimde tanımlar.',
+    example: 'Değerlendirme: "Tembelsin, işlerini son ana bırakıyorsun." → Gözlem: "Son 3 sınavına bir gece önce çalıştığını fark ettim."',
+    color: 'var(--color-plum-500)',
+  },
+  {
+    number: '02',
+    title: 'Duygu',
+    subtitle: 'Ne hissediyorum?',
+    description: 'Bu gözlemle bağlantılı olarak ne hissettiğimizi ifade ederiz. Düşünceler ve yorumlar değil, sadece duygular: üzgün, korkmuş, mutlu, yorgun...',
+    example: '"...endişe hissediyorum."',
+    color: 'var(--color-plum-600)',
+  },
+  {
+    number: '03',
+    title: 'İhtiyaç',
+    subtitle: 'Hangi ihtiyacım canlı?',
+    description: 'Duygularımız, karşılanmış ya da karşılanmamış ihtiyaçlarımızın habercisidir. İhtiyaçlar evrenseldir: bağlantı, saygı, özerklik, güvenlik, katkı...',
+    example: '"...Sınavlarını geçebilecek kadar öğrenmeye vakit ayırdığından emin olmaya ihtiyacım var."',
+    color: 'var(--color-plum-700)',
+  },
+  {
+    number: '04',
+    title: 'Rica',
+    subtitle: 'Ne istiyorum?',
+    description: 'Hayatımızı zenginleştirecek somut, olumlu, şimdiki zamana yönelik bir eylem talep ederiz. Rica, talep değildir; karşılıklı gönüllülüğe dayanır.',
+    example: '"...Şimdi seninle bu konuyu konuşabilir miyiz?"',
+    color: 'var(--color-plum-800)',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Şiddetsiz İletişim (NVC) nedir?',
+    a: 'Şiddetsiz İletişim (NVC), Klinik Psikolog Prof. Dr. Marshall Rosenberg\'in geliştirdiği bir iletişim modeli ve farkındalık disiplinidir. İletişim modeli Gözlem, Duygu, İhtiyaç, Rica olmak üzere dört adımdan oluşur ve insanların birbiriyle empati ve dürüstlük zemininde bağlantı kurmasını sağlar.'
+  },
+  {
+    q: 'NVC eğitimi Türkiye\'de nerede alınabilir?',
+    a: 'Türkiye\'de Şiddetsiz İletişim Türkiye Derneği\'ne bağlı CNVC Sertifikalı Eğitmen ve Eğitmen Adaylarından alınabilir. Daha detaylı bilgi için www.siddetsiziletisim.com adresini ziyaret edebilirsiniz.'
+  },
+  {
+    q: 'NVC öğrenmek ne kadar sürer, nasıl öğrenilir?',
+    a: 'NVC\'nin temelleri çoğunlukla 12 saatlik bir atölye ile öğrenilebilmektedir. Becerileri edinmek için yıllık programlara katılmak önerilir. Derinlik kazanmak ve farkındalık düzeyinizi iletişim biçiminize yansıtmak isterseniz Gonca Fide\'nin de sunduğu orta ve ileri düzey eğitimleri almanız faydalı olur.'
+  },
+  {
+    q: 'NVC kimler için uygundur?',
+    a: 'Nerede olursa olsun; ailede, işte, okulda, özel hayatında ilişkilerini güçlendirmek isteyen yetişkinler NVC eğitimlerine katılabilir.'
+  },
+  {
+    q: 'NVC sadece sözlü iletişimle mi ilgilidir?',
+    a: 'Hayır. Hem sözlü, hem yazılı, hem de sözsüz iletişimi kapsar.'
+  },
+  {
+    q: 'CNVC nedir?',
+    a: 'CNVC (Center for Nonviolent Communication) — Uluslararası Şiddetsiz İletişim Merkezi — dünya çapında Şiddetsiz İletişim\'i paylaşanların oluşturduğu, kâr amacı gütmeyen uluslararası bir barış kuruluşudur. İnsanların kişisel, kurumsal ve siyasi ortamlardaki çatışmaları barışçıl ve etkin bir şekilde çözmelerine yardımcı olmaktadır. Daha detaylı bilgi siddetsiziletisim.com adresinden edinilebilir.'
+  },
+  {
+    q: 'CNVC Sertifikalı Eğitmen nedir?',
+    a: 'CNVC\'nin Eğitmen Hizmetleri Birimi\'nin hazırladığı "Sertifikasyon Hazırlık Paketi"nde (SHP) yer alan gereklilikleri yerine getirerek, Değerlendirici (Assessor) tarafından CNVC\'ye eğitmen olarak önerilmiş kişilerin aldığı unvandır.'
+  },
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -9,56 +75,11 @@ const faqSchema = {
       "@type": "FAQPage",
       "url": "https://www.goncafide.com/nvc-nedir",
       "name": "Şiddetsiz İletişim (NVC) Nedir? — Sık Sorulan Sorular",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Şiddetsiz İletişim (NVC) nedir?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Şiddetsiz İletişim (NVC), Klinik Psikolog Prof. Dr. Marshall Rosenberg tarafından geliştirilen bir iletişim modelidir. Gözlem, Duygu, İhtiyaç ve Rica olmak üzere dört adımdan oluşur ve insanların birbirleriyle empati ve dürüstlük temelli bağlantı kurmasını sağlar."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "NVC eğitimi Türkiye'de nerede alınabilir?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Türkiye'de CNVC sertifikalı eğitmenlerden NVC eğitimi alabilirsiniz. Gonca Fide, online gruplar ve bireysel seanslarla NVC eğitimi sunmaktadır. siddetsiziletisim.com ve CNVC.org adreslerinde Türkçe kaynaklara ulaşabilirsiniz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "NVC'yi öğrenmek ne kadar sürer?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "NVC'nin temellerini birkaç saatlik bir giriş eğitiminde öğrenebilirsiniz. Ancak derinlemesine pratik yapmak ve NVC'yi günlük hayata entegre etmek için aylık gruplar ve bireysel seanslar önerilir. Anahtar Ayrımlar gibi ileri programlar 5 ay sürebilir."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "NVC kimler için uygundur?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "NVC; ilişkilerini güçlendirmek isteyen herkes, ebeveynler, eğitimciler, yöneticiler, terapistler, arabulucular ve kendi duygusal farkındalığını geliştirmek isteyen bireyler için uygundur."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Şiddetsiz İletişim sadece sözlü iletişimle mi ilgilidir?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Hayır. NVC hem sözlü hem de yazılı iletişimi kapsar; aynı zamanda kendi iç sesinizle ilişkinizi de dönüştürür. Öz-empati, NVC pratiğinin merkezindedir."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "CNVC sertifikalı eğitmen nedir?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CNVC (Center for Nonviolent Communication), Marshall Rosenberg'in kurduğu dünya çapındaki NVC organizasyonudur. CNVC Sertifikalı Eğitmenler, kapsamlı bir eğitim ve değerlendirme sürecinden geçmiş, NVC'yi öğretme yeterliliğini kanıtlamış kişilerdir."
-          }
-        }
-      ]
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
     },
     {
       "@type": "Article",
@@ -72,68 +93,6 @@ const faqSchema = {
     }
   ]
 };
-
-const steps = [
-  {
-    number: '01',
-    title: 'Gözlem',
-    subtitle: 'Neyi gördüm?',
-    description: 'Değerlendirme, yorum veya yargı katmadan neyin yaşandığını somut biçimde tanımlarız. "Toplantıda hiç konuşmadın" yerine "Toplantıda beş kez söz aldığında sözünü kestim."',
-    example: '"Toplantıda üç kez söz aldığında dinlemedim."',
-    color: 'var(--color-plum-500)',
-  },
-  {
-    number: '02',
-    title: 'Duygu',
-    subtitle: 'Ne hissediyorum?',
-    description: 'Bu gözlemle bağlantılı olarak ne hissettiğimizi fark ederiz. Düşünceler ve yorumlar değil, gerçek duygular: üzgün, korkmuş, mutlu, yorgun...',
-    example: '"...üzgün hissediyorum."',
-    color: 'var(--color-plum-600)',
-  },
-  {
-    number: '03',
-    title: 'İhtiyaç',
-    subtitle: 'Hangi ihtiyacım var?',
-    description: 'Duygularımız, karşılanmış ya da karşılanmamış ihtiyaçlarımızın habercisidir. İhtiyaçlar evrenseldir: bağlantı, saygı, özerklik, güvenlik, katkı...',
-    example: '"...çünkü görülmeye, duyulmaya ihtiyacım var."',
-    color: 'var(--color-plum-700)',
-  },
-  {
-    number: '04',
-    title: 'Rica',
-    subtitle: 'Ne istiyorum?',
-    description: 'Hayatımızı zenginleştirecek somut, olumlu, şimdiki zamana yönelik bir eylem talep ederiz. Rica, talep değildir; karşılıklı gönüllülüğe dayanır.',
-    example: '"Şu an seninle bu konuyu konuşmak ister misin?"',
-    color: 'var(--color-plum-800)',
-  },
-];
-
-const faqs = [
-  {
-    q: 'Şiddetsiz İletişim (NVC) nedir?',
-    a: 'Şiddetsiz İletişim (NVC), Klinik Psikolog Prof. Dr. Marshall Rosenberg tarafından geliştirilen bir iletişim modelidir. Gözlem, Duygu, İhtiyaç ve Rica olmak üzere dört adımdan oluşur ve insanların birbirleriyle empati ve dürüstlük temelli bağlantı kurmasını sağlar.'
-  },
-  {
-    q: 'NVC eğitimi Türkiye\'de nerede alınabilir?',
-    a: 'Türkiye\'de CNVC sertifikalı eğitmenlerden NVC eğitimi alabilirsiniz. Gonca Fide, online gruplar ve bireysel seanslarla NVC eğitimi sunmaktadır.'
-  },
-  {
-    q: 'NVC\'yi öğrenmek ne kadar sürer?',
-    a: 'NVC\'nin temellerini birkaç saatlik bir giriş eğitiminde öğrenebilirsiniz. Ancak derinlemesine pratik yapmak ve günlük hayata entegre etmek için aylık gruplar ve bireysel seanslar önerilir.'
-  },
-  {
-    q: 'NVC kimler için uygundur?',
-    a: 'İlişkilerini güçlendirmek isteyen herkes, ebeveynler, eğitimciler, yöneticiler, terapistler, arabulucular ve kendi duygusal farkındalığını geliştirmek isteyen bireyler için uygundur.'
-  },
-  {
-    q: 'Şiddetsiz İletişim sadece sözlü iletişimle mi ilgilidir?',
-    a: 'Hayır. NVC hem sözlü hem yazılı iletişimi kapsar; aynı zamanda kendi iç sesinizle (öz-empati) ilişkinizi de dönüştürür.'
-  },
-  {
-    q: 'CNVC sertifikalı eğitmen nedir?',
-    a: 'CNVC, Marshall Rosenberg\'in kurduğu dünya çapındaki NVC organizasyonudur. CNVC Sertifikalı Eğitmenler, kapsamlı bir eğitim ve değerlendirme sürecinden geçmiş kişilerdir.'
-  },
-];
 ---
 
 <PageLayout
@@ -214,8 +173,8 @@ const faqs = [
       <div class="prose prose-lg">
         <p>
           NVC, yüzeyde bir "iletişim tekniği" gibi görünse de özünde çok daha derin bir yaşam felsefesidir.
-          Martin Luther King Jr. ve Mahatma Gandhi'nin şiddetsizlik anlayışından ilham alan Rosenberg,
-          NVC'yi dünya genelinde 50'den fazla ülkede yaydı.
+          Martin Luther King Jr. ve Mahatma Gandhi'nin şiddetsizlik anlayışından ilham alır.
+          NVC, 50'den fazla ülkede aktif olarak çalışılan bir farkındalık disiplinidir.
         </p>
         <h3>NVC şu alanlarda dönüşüm yaratır:</h3>
         <ul>

@@ -1,12 +1,12 @@
 ---
 title: "Anlaşmazlık Dönüştürme Programı"
 subtitle: "Çatışmadan Bağlantıya"
-description: "Kişisel ve profesyonel anlaşmazlıkları NVC temelli yaklaşımlarla dönüştürmek için 50 saatlik ileri düzey program. Arabuluculuk ve anlaşmazlık çözümü becerileri."
+description: "Kişisel ve profesyonel anlaşmazlıkları NVC temelli yaklaşımlarla dönüştürmek için 60 saatlik ileri düzey program."
 level: "İleri"
-format: "Online Grup"
-totalHours: 50
+format: "Hibrit"
+totalHours: 60
 sessionCount: 12
-sessionDuration: "4-5 saat"
+sessionDuration: "Online & Yüz Yüze"
 enrollmentOpen: false
 featured: false
 order: 3
@@ -80,9 +80,8 @@ Gerçek durumlarla çalışma, vaka sunumları ve grup süpervizyonu:
 
 - **Süre:** Yaklaşık 4 ay
 - **Oturum sayısı:** 12 oturum
-- **Oturum süresi:** 4-5 saat
+- **Format:** Online & Yüz Yüze
 - **Katılımcı sayısı:** 6-8 kişi (küçük grup, yoğun pratik için)
-- **Platform:** Zoom
 - **Ek:** Oturumlar arası ikili pratik partneri çalışması
 
 ## Kayıt ve Bilgi

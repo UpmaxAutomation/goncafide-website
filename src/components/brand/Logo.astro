@@ -1,6 +1,5 @@
 ---
-// Wordmark lockup. Per design review: a refined Cormorant wordmark reads more
-// premium than an illustrative mark. The slogan "birbirine bağlar" sits beneath
+// Wordmark lockup. The slogan "birbirine bağlar güçlendirir" sits beneath
 // in the established small-caps accent. Swap to Gonca's own logo file when supplied.
 interface Props {
   tone?: 'light' | 'dark';
@@ -14,13 +13,13 @@ const hover = tone === 'dark' ? 'group-hover:text-[var(--color-plum-200)]' : 'gr
 const sloganColor = tone === 'dark' ? 'text-[var(--color-plum-300)]' : 'text-[var(--color-orchid-500)]';
 ---
 
-<a href="/" class={`group inline-flex flex-col leading-none ${cls}`} aria-label="Gonca Fide — birbirine bağlar">
+<a href="/" class={`group inline-flex flex-col leading-none ${cls}`} aria-label="Gonca Fide — birbirine bağlar güçlendirir">
   <span class={`font-display text-2xl lg:text-[1.7rem] font-light tracking-tight transition-colors ${word} ${hover}`}>
     Gonca Fide
   </span>
   {showSlogan && (
     <span class={`font-body text-[10px] font-medium tracking-[0.22em] uppercase mt-1.5 ${sloganColor}`}>
-      birbirine bağlar
+      birbirine bağlar güçlendirir
     </span>
   )}
 </a>

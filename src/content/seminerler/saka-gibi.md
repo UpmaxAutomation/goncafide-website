@@ -1,7 +1,7 @@
 ---
 title: "Şaka Gibi… Neye Neden Gülüyorum?"
 subtitle: "Tek oturumluk tematik atölye"
-description: "Mizah ile Şiddetsiz İletişim'in kesişimi. Neyi komik bulduğumuzu, mizahın hangi ihtiyaçlarımıza hizmet ettiğini ve sınırlarını NVC çerçevesinden birlikte keşfediyoruz."
+description: "Mizah ile NVC'nin kesişimi. Mizah türlerine NVC merceği ile yaklaşarak neyin neden mizah olup olmadığı keşfedilir."
 level: "Orta"
 format: "Online Grup"
 order: 2

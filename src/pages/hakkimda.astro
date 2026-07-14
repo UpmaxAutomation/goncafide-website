@@ -15,15 +15,16 @@ const schema = {
   }
 };
 
+// Newest → oldest, per Gonca's 2026-07-13 feedback ("sırayı tersine çevirelim").
 const credentials = [
-  { year: '1999', label: 'ODTÜ Sosyoloji', detail: 'Orta Doğu Teknik Üniversitesi mezunu' },
-  { year: '2000–2007', label: 'Kırsal Kalkınma Proje Yönetimi', detail: 'Ulusal ve uluslararası programlar' },
-  { year: '2008–2012', label: 'Doğa Koruma Proje Yönetimi', detail: 'Yaban hayatı ve erozyon önleme projeleri' },
-  { year: '2013–2016', label: 'BBOM Ankara Kooperatifi', detail: 'Genel Koordinatör ve Yönetim Kurulu Başkanı' },
-  { year: '2017–2022', label: 'Sosyal Etki Uzmanlığı', detail: 'Enerji sektörü sosyal etki alanı' },
-  { year: '2017–2022', label: 'Şiddetsiz İletişim Eğitmenliği', detail: 'Eğitim ve paylaşım süreci' },
-  { year: "2022'den beri", label: 'CNVC Sertifikalı Eğitmen', detail: 'Center for Nonviolent Communication' },
   { year: '—', label: '1500+ saat Şiddetsiz İletişim eğitimi', detail: 'Alınan ve paylaşılan eğitim deneyimi' },
+  { year: "2022'den beri", label: 'CNVC Sertifikalı Eğitmen', detail: 'Center for Nonviolent Communication' },
+  { year: '2017–2022', label: 'Şiddetsiz İletişim Eğitmenliği', detail: 'Eğitim ve paylaşım süreci' },
+  { year: '2017–2022', label: 'Sosyal Etki Uzmanlığı', detail: 'Enerji sektörü sosyal etki alanı' },
+  { year: '2013–2016', label: 'BBOM Ankara Kooperatifi', detail: 'Genel Koordinatör ve Yönetim Kurulu Başkanı' },
+  { year: '2008–2012', label: 'Doğa Koruma Proje Yönetimi', detail: 'Yaban hayatı ve erozyon önleme projeleri' },
+  { year: '2000–2007', label: 'Kırsal Kalkınma Proje Yönetimi', detail: 'Ulusal ve uluslararası programlar' },
+  { year: '1999', label: 'ODTÜ Sosyoloji', detail: 'Orta Doğu Teknik Üniversitesi mezunu' },
 ];
 
 const background = [
@@ -60,8 +61,14 @@ const bgIcons: Record<string, string> = {
           <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-6">
             ODTÜ Sosyoloji mezunuyum. Uluslararası ve ulusal programların kalkınma, doğa koruma, yaban hayatı ve erozyon önleme projelerinde görev aldım; enerji sektörünün sosyal etki alanında çalıştım. Sayısız Anadolu köyünü ziyaret ettiğimde, insanların farklılıktan çok benzerlikleri olduğunu ama bakış açılarını esnetmeyi daha önce deneyimlemedikleri için anlaşmazlık yaşadıklarını gözlemledim.
           </p>
+          <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-6">
+            2016–2022 yılları arasında CNVC Sertifikalı Eğitmenler Vivet Alevi, Stephan Seibert, Deniz Spatar ve Liv Larsson'dan çeşitli eğitimler aldım. 2023 yılından beri Liv Larsson ve Kay Rung'ın oluşturduğu Uluslararası Arabuluculuk Eğitim Programının Asistanlığını yürütüyorum.
+          </p>
+          <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-6">
+            2019 yılından bugüne, Türkiye'de Şiddetsiz İletişim'in gelişmesi için faaliyet gösteren Şiddetsiz İletişim Türkiye Derneği'nin üyesiyim.
+          </p>
           <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-8">
-            2019'dan bu yana Şiddetsiz İletişim Türkiye Derneği üyesiyim. Liv Larsson, Miki Kashtan ve çok sayıda CNVC eğitmeninden 1500 saatin üzerinde Şiddetsiz İletişim eğitimi deneyimim oldu. Ağustos 2022'den beri CNVC (Uluslararası Şiddetsiz İletişim Merkezi) Sertifikalı Eğitmeniyim.
+            2022 yılında CNVC Sertifikalı Eğitmeni oldum ve atölyelerimi online ve yüz yüze olacak şekilde sunmaya devam ediyorum.
           </p>
           <div class="flex flex-wrap gap-3">
             <a

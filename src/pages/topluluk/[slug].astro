@@ -91,7 +91,7 @@ const schema = {
         <!-- Join card -->
         <aside>
           <div class="rounded-2xl bg-[var(--color-surface-iris)] p-6 lg:p-8 border border-[var(--color-iris-100)]" style="box-shadow: var(--shadow-card);">
-            <p class="eyebrow mb-3">Katıl</p>
+            <p class="eyebrow mb-3">Başvuru</p>
             {community.joinUrl ? (
               <div>
                 <h2 class="font-display text-xl font-light text-[var(--color-ink)] mb-3 leading-snug">Topluluğa katılın</h2>
@@ -109,9 +109,10 @@ const schema = {
               </div>
             ) : (
               <div>
-                <h2 class="font-display text-xl font-light text-[var(--color-ink)] mb-3 leading-snug">Açıldığında haber alın</h2>
+                <h2 class="font-display text-xl font-light text-[var(--color-ink)] mb-3 leading-snug">Programı bitirenler için başvuru formu</h2>
                 <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed mb-5">
-                  Topluluk yakında kendi üyelerine açılıyor. Aşağıdan kaydolun; açıldığında ilk siz haberdar olun.
+                  Bu topluluk, ilgili programı bitirenlere açıktır. Programı tamamladıysanız
+                  aşağıdaki formla başvurun; sizinle iletişime geçelim.
                 </p>
                 <CommunityJoinForm communitySlug={community.slug} communityName={community.name} />
               </div>

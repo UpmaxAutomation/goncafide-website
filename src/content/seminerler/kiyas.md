@@ -1,7 +1,7 @@
 ---
 title: "Kıyas: Haset, Kıskançlık"
 subtitle: "Tek oturumluk tematik atölye"
-description: "Karşılaştırma, kıskançlık ve haset duygularını Şiddetsiz İletişim merceğiyle inceliyoruz. Bu duyguların altındaki ihtiyaçları fark etmek dönüştürücü bir alan açar."
+description: "Kıyaslama, kıskançlık ve haset duygularına NVC merceğiyle yaklaşılır ve bu duyguların altındaki ihtiyaçları fark ederek seçim özgürlüğüne kavuşmayı kolaylaştırır."
 level: "Orta"
 format: "Online Grup"
 order: 1
