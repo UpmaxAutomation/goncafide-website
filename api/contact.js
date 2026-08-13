@@ -6,9 +6,17 @@
  * never crashes if they are absent.
  *
  * Env vars (set in Vercel → Project → Settings → Environment Variables):
+ *   WEB3FORMS_ACCESS_KEY — Web3Forms access key; delivers submissions to NOTIFY_EMAIL
  *   GHL_CONTACT_WEBHOOK  — GoHighLevel webhook URL for lead capture
  *   RESEND_API_KEY       — Resend.com API key for email notifications
+ *   NOTIFY_EMAIL         — override the notification recipient (optional)
+ *
+ * At least one sink must be configured, otherwise submissions are rejected with
+ * a 502 rather than silently accepted and dropped.
  */
+
+/** Where form submissions are emailed. Override via env without a redeploy. */
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "goncaf@gmail.com";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -20,17 +28,54 @@ function isValidEmail(email) {
 }
 
 /**
+ * Parse a multipart/form-data payload into a plain object.
+ *
+ * The Vercel Node runtime only parses JSON and URL-encoded bodies; multipart
+ * arrives as an unparsed Buffer. Our own forms post URL-encoded, but a browser
+ * running a cached older bundle — or any hand-rolled client — may still send
+ * multipart, and losing those submissions silently is worse than the ~15 lines
+ * it costs to read them. Text fields only; the forms upload no files.
+ */
+function parseMultipart(text, contentType) {
+  const match = /boundary=(?:"([^"]+)"|([^;]+))/i.exec(contentType || "");
+  if (!match) return null;
+
+  const boundary = (match[1] || match[2]).trim();
+  const out = {};
+
+  for (const part of text.split(`--${boundary}`)) {
+    const headerEnd = part.indexOf("\r\n\r\n");
+    if (headerEnd === -1) continue;
+
+    const name = /name="([^"]*)"/i.exec(part.slice(0, headerEnd));
+    if (!name) continue;
+
+    out[name[1]] = part.slice(headerEnd + 4).replace(/\r\n$/, "");
+  }
+
+  return out;
+}
+
+/**
  * Parse the request body regardless of content-type.
  * Vercel auto-populates req.body for common content types when the runtime
  * parses it, but we guard defensively for string payloads too.
  */
 function parseBody(req) {
   const raw = req.body;
+  const contentType = req.headers?.["content-type"] ?? "";
 
   if (raw === undefined || raw === null) return {};
 
   // Already an object (Vercel parsed it)
   if (typeof raw === "object" && !Buffer.isBuffer(raw)) return raw;
+
+  // Multipart — never parsed by the runtime, so decode it ourselves
+  if (contentType.includes("multipart/form-data")) {
+    const text = Buffer.isBuffer(raw) ? raw.toString("utf8") : String(raw);
+    const parsed = parseMultipart(text, contentType);
+    if (parsed) return parsed;
+  }
 
   // String — could be JSON or URL-encoded
   if (typeof raw === "string") {
@@ -75,15 +120,69 @@ function wantsJson(req) {
 }
 
 // ---------------------------------------------------------------------------
-// Delivery sinks  (all non-fatal — capture-and-log on failure)
+// Delivery sinks
+//
+// Each returns true only if the submission was actually accepted downstream.
+// An unconfigured sink returns false — the caller needs at least one success
+// before it tells the visitor their message went through.
 // ---------------------------------------------------------------------------
+
+/** Subject line shared by the email sinks. */
+function subjectFor({ formType, name, email, community }) {
+  if (formType === "newsletter") return `Bülten kaydı: ${email}`;
+  if (formType === "topluluk") return `Topluluk kaydı: ${community || "—"} — ${name || email}`;
+  return `Yeni iletişim formu: ${name || email}`;
+}
+
+/**
+ * Deliver the submission as email via Web3Forms.
+ * The access key is bound to the destination inbox on web3forms.com, so the
+ * recipient is configured there rather than here. https://docs.web3forms.com
+ */
+async function sendViaWeb3Forms(fields) {
+  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+  if (!accessKey) return false;
+
+  const { name, email, phone, program, message, formType, community } = fields;
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: subjectFor(fields),
+        from_name: "goncafide.com",
+        // Lets Gonca hit "reply" and answer the visitor directly.
+        replyto: email,
+        "Ad Soyad": name || "—",
+        "E-posta": email,
+        "Telefon": phone || "—",
+        "Program": program || "—",
+        "Topluluk": community || "—",
+        "Mesaj": message || "—",
+        "Form tipi": formType,
+      }),
+    });
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      console.error(`[contact] Web3Forms non-2xx: ${res.status}`, body);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("[contact] Web3Forms error:", err?.message ?? err);
+    return false;
+  }
+}
 
 /**
  * POST lead data to a GoHighLevel webhook.
  */
 async function sendToGHL(fields) {
   const url = process.env.GHL_CONTACT_WEBHOOK;
-  if (!url) return;
+  if (!url) return false;
 
   try {
     const res = await fetch(url, {
@@ -93,9 +192,12 @@ async function sendToGHL(fields) {
     });
     if (!res.ok) {
       console.error(`[contact] GHL webhook non-2xx: ${res.status}`);
+      return false;
     }
+    return true;
   } catch (err) {
     console.error("[contact] GHL webhook error:", err?.message ?? err);
+    return false;
   }
 }
 
@@ -105,16 +207,11 @@ async function sendToGHL(fields) {
  */
 async function sendViaResend(fields) {
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return;
+  if (!apiKey) return false;
 
   const { name, email, phone, program, message, formType, community } = fields;
 
-  const subject =
-    formType === "newsletter"
-      ? `Bülten kaydı: ${email}`
-      : formType === "topluluk"
-        ? `Topluluk kaydı: ${community || "—"} — ${name || email}`
-        : `Yeni iletişim formu: ${name ?? email}`;
+  const subject = subjectFor(fields);
 
   const html = `
     <h2>Yeni form gönderimi — ${formType ?? "bilinmiyor"}</h2>
@@ -137,7 +234,8 @@ async function sendViaResend(fields) {
       },
       body: JSON.stringify({
         from: "Gonca Fide Web <web@goncafide.com>",
-        to: ["info@goncafide.com"],
+        to: [NOTIFY_EMAIL],
+        reply_to: email,
         subject,
         html,
       }),
@@ -145,9 +243,12 @@ async function sendViaResend(fields) {
     if (!res.ok) {
       const body = await res.text().catch(() => "");
       console.error(`[contact] Resend non-2xx: ${res.status}`, body);
+      return false;
     }
+    return true;
   } catch (err) {
     console.error("[contact] Resend error:", err?.message ?? err);
+    return false;
   }
 }
 
@@ -212,11 +313,28 @@ export default async function handler(req, res) {
   }
 
   // ------------------------------------------------------------------
-  // Delivery — fire both sinks concurrently; errors are non-fatal
+  // Delivery — fire every sink concurrently, then require at least one to
+  // have succeeded. Reporting success on a message that reached nobody is
+  // the worst outcome here: the visitor walks away believing they wrote in.
   // ------------------------------------------------------------------
   const fields = { name, email, phone, program, message, formType, community };
 
-  await Promise.all([sendToGHL(fields), sendViaResend(fields)]);
+  const results = await Promise.all([
+    sendViaWeb3Forms(fields),
+    sendToGHL(fields),
+    sendViaResend(fields),
+  ]);
+
+  if (!results.some(Boolean)) {
+    console.error("[contact] No delivery sink succeeded — submission dropped:", {
+      formType,
+      email,
+    });
+    res.status(502).json({
+      error: "Mesaj şu anda iletilemedi. Lütfen doğrudan info@goncafide.com adresine yazın.",
+    });
+    return;
+  }
 
   // ------------------------------------------------------------------
   // Response

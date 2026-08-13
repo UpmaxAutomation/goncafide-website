@@ -99,10 +99,12 @@ const { communitySlug, communityName } = Astro.props;
         label.textContent = 'Gönderiliyor…';
         status.className = 'hidden';
         try {
+          // URLSearchParams (not FormData) — sends application/x-www-form-urlencoded,
+          // which the Vercel Node runtime parses natively. Raw multipart is not parsed.
           const res = await fetch(form.action, {
             method: 'POST',
             headers: { Accept: 'application/json' },
-            body: new FormData(form),
+            body: new URLSearchParams(new FormData(form)),
           });
           if (!res.ok) throw new Error(String(res.status));
           form.reset();
