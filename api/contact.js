@@ -15,8 +15,14 @@
  * a 502 rather than silently accepted and dropped.
  */
 
-/** Where form submissions are emailed. Override via env without a redeploy. */
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "goncaf@gmail.com";
+/**
+ * Where form submissions are emailed. This is the site's public contact address
+ * (footer, contact page, structured data), so keep the two in step.
+ *
+ * Only the Resend path reads this. Web3Forms binds the destination to the access
+ * key itself, so that inbox is chosen on web3forms.com, not here.
+ */
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "info@goncafide.com";
 
 // ---------------------------------------------------------------------------
 // Helpers
