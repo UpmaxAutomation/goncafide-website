@@ -36,11 +36,10 @@ function isValidEmail(email) {
 /**
  * Parse a multipart/form-data payload into a plain object.
  *
- * The Vercel Node runtime only parses JSON and URL-encoded bodies; multipart
- * arrives as an unparsed Buffer. Our own forms post URL-encoded, but a browser
- * running a cached older bundle — or any hand-rolled client — may still send
- * multipart, and losing those submissions silently is worse than the ~15 lines
- * it costs to read them. Text fields only; the forms upload no files.
+ * The Vercel Node runtime only parses JSON and URL-encoded bodies. Our own forms
+ * post URL-encoded, but any hand-rolled client may still send multipart, and
+ * losing those submissions silently is worse than the few lines it costs to read
+ * them. Text fields only; the forms upload no files.
  */
 function parseMultipart(text, contentType) {
   const match = /boundary=(?:"([^"]+)"|([^;]+))/i.exec(contentType || "");
@@ -62,26 +61,46 @@ function parseMultipart(text, contentType) {
   return out;
 }
 
+/** Read the request stream into a Buffer; empty if it was already consumed. */
+async function readRawBody(req) {
+  try {
+    const chunks = [];
+    for await (const chunk of req) {
+      chunks.push(typeof chunk === "string" ? Buffer.from(chunk, "utf8") : chunk);
+    }
+    return Buffer.concat(chunks);
+  } catch {
+    return Buffer.alloc(0);
+  }
+}
+
 /**
  * Parse the request body regardless of content-type.
- * Vercel auto-populates req.body for common content types when the runtime
- * parses it, but we guard defensively for string payloads too.
+ *
+ * Vercel populates req.body for JSON and URL-encoded payloads. Multipart is
+ * left unparsed, and depending on the runtime it surfaces as undefined, an
+ * empty object, or a raw Buffer — so multipart is checked FIRST here. Ordering
+ * it after the undefined/object guards below is what silently disabled this
+ * fallback in production: those guards returned before it could run.
  */
-function parseBody(req) {
+async function parseBody(req) {
   const raw = req.body;
   const contentType = req.headers?.["content-type"] ?? "";
+
+  if (contentType.includes("multipart/form-data")) {
+    let text;
+    if (Buffer.isBuffer(raw)) text = raw.toString("utf8");
+    else if (typeof raw === "string") text = raw;
+    else text = (await readRawBody(req)).toString("utf8");
+
+    const parsed = parseMultipart(text, contentType);
+    return parsed && Object.keys(parsed).length > 0 ? parsed : {};
+  }
 
   if (raw === undefined || raw === null) return {};
 
   // Already an object (Vercel parsed it)
   if (typeof raw === "object" && !Buffer.isBuffer(raw)) return raw;
-
-  // Multipart — never parsed by the runtime, so decode it ourselves
-  if (contentType.includes("multipart/form-data")) {
-    const text = Buffer.isBuffer(raw) ? raw.toString("utf8") : String(raw);
-    const parsed = parseMultipart(text, contentType);
-    if (parsed) return parsed;
-  }
 
   // String — could be JSON or URL-encoded
   if (typeof raw === "string") {
@@ -269,7 +288,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const body = parseBody(req);
+  const body = await parseBody(req);
 
   // ------------------------------------------------------------------
   // Honeypot — bots fill the hidden `bot-field`; humans don't see it.
