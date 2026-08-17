@@ -4,26 +4,46 @@ import PageLayout from '../../layouts/PageLayout.astro';
 
 // Upcoming events only. Past-dated and draft entries are filtered out.
 // The collection starts empty → honest "no scheduled dates yet" state.
-const now = new Date();
+//
+// Everything below works in UTC on purpose. Frontmatter carries date-only
+// values, which Zod coerces to UTC midnight; reading them back in the build
+// machine's local time shifts every date a day earlier anywhere west of UTC.
+const todayUTC = new Date();
+todayUTC.setUTCHours(0, 0, 0, 0);
+
 const all = await getCollection('etkinlikler', ({ data }) => !data.draft);
-const upcoming = all
-  .filter((e) => new Date(e.data.startDate) >= new Date(now.toDateString()))
-  .sort((a, b) => new Date(a.data.startDate).getTime() - new Date(b.data.startDate).getTime());
+
+// A fixed cohort expires by itself once its start date passes. An open-enrollment
+// season entry (no announced first meeting) carries no date to expire on, so it
+// trails the dated ones and stays until removed by hand.
+const ts = (e: (typeof all)[number]) => new Date(e.data.startDate ?? 0).getTime();
+const dated = all
+  .filter((e) => e.data.startDate && new Date(e.data.startDate) >= todayUTC)
+  .sort((a, b) => ts(a) - ts(b));
+const undated = all.filter((e) => !e.data.startDate);
+const upcoming = [...dated, ...undated];
 
 const fmt = (d: Date) =>
-  new Date(d).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+  new Date(d).toLocaleDateString('tr-TR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
 
-const eventsSchema = upcoming.length > 0
+// Only dated events go into structured data — schema.org/Event requires a
+// startDate, and Google drops the whole item without one.
+const eventsSchema = dated.length > 0
   ? {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      'itemListElement': upcoming.map((e, i) => ({
+      'itemListElement': dated.map((e, i) => ({
         '@type': 'ListItem',
         'position': i + 1,
         'item': {
           '@type': 'Event',
           'name': e.data.title,
-          'startDate': new Date(e.data.startDate).toISOString().slice(0, 10),
+          'startDate': new Date(e.data.startDate ?? 0).toISOString().slice(0, 10),
           ...(e.data.endDate ? { 'endDate': new Date(e.data.endDate).toISOString().slice(0, 10) } : {}),
           'eventAttendanceMode':
             e.data.format === 'Online Grup'
@@ -64,10 +84,37 @@ const eventsSchema = upcoming.length > 0
         <div class="max-w-3xl space-y-4">
           {upcoming.map((e) => (
             <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 p-6 rounded-2xl bg-white" style="box-shadow: var(--shadow-card);">
-              <div class="flex-shrink-0 sm:w-40">
-                <p class="font-display text-lg text-[var(--color-plum-700)]">{fmt(e.data.startDate)}</p>
-                {e.data.endDate && <p class="text-xs text-[var(--color-ink-muted)]">— {fmt(e.data.endDate)}</p>}
-                <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-plum-50)] text-[var(--color-plum-700)] border border-[var(--color-plum-200)]">{e.data.format}</span>
+              <div class="flex items-start gap-4 flex-shrink-0 sm:w-72">
+                {e.data.coverImage && (
+                  <a
+                    href={e.data.coverImage.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-shrink-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-plum-400)]"
+                    aria-label={`${e.data.title} afişini büyüt`}
+                  >
+                    <img
+                      src={e.data.coverImage.src}
+                      alt={e.data.coverImage.alt}
+                      width="700"
+                      height="874"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-20 h-auto rounded-lg border border-[var(--color-border)]"
+                    />
+                  </a>
+                )}
+                <div class="min-w-0">
+                  {e.data.startDate ? (
+                    <>
+                      <p class="font-display text-lg text-[var(--color-plum-700)]">{fmt(e.data.startDate)}</p>
+                      {e.data.endDate && <p class="text-xs text-[var(--color-ink-muted)]">— {fmt(e.data.endDate)}</p>}
+                    </>
+                  ) : (
+                    <p class="font-display text-lg text-[var(--color-plum-700)]">{e.data.dateLabel}</p>
+                  )}
+                  <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-plum-50)] text-[var(--color-plum-700)] border border-[var(--color-plum-200)]">{e.data.format}</span>
+                </div>
               </div>
               <div class="flex-1">
                 <h2 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] leading-snug">{e.data.title}</h2>

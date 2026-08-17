@@ -57,20 +57,34 @@ const seminerler = defineCollection({
 
 // Etkinlikler — upcoming workshop/seminar announcements.
 // Starts EMPTY by design; Gonca adds a file per cohort. No fabricated dates.
+//
+// Two shapes are allowed:
+//   1. A fixed cohort — set `startDate` (and optionally `endDate`). It drops off
+//      the page automatically once the start date passes.
+//   2. An open-enrollment season with no announced first meeting — leave
+//      `startDate` off and set `dateLabel` (e.g. "2026–2027 Sezonu") instead.
+//      These stay listed until removed by hand, since nothing can expire them.
 const etkinlikler = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/etkinlikler' }),
-  schema: z.object({
-    title: z.string(),
-    programSlug: z.string().optional(),
-    startDate: z.coerce.date(),
-    endDate: z.coerce.date().optional(),
-    format: z.enum(['Online Grup', 'Yüz Yüze', 'Hibrit']).default('Online Grup'),
-    location: z.string().optional(),
-    enrollmentUrl: z.string().optional(),
-    enrollmentOpen: z.boolean().default(true),
-    description: z.string().optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      programSlug: z.string().optional(),
+      startDate: z.coerce.date().optional(),
+      endDate: z.coerce.date().optional(),
+      dateLabel: z.string().optional(),
+      format: z.enum(['Online Grup', 'Yüz Yüze', 'Hibrit']).default('Online Grup'),
+      location: z.string().optional(),
+      enrollmentUrl: z.string().optional(),
+      enrollmentOpen: z.boolean().default(true),
+      description: z.string().optional(),
+      coverImage: z.object({ src: z.string(), alt: z.string() }).optional(),
+      draft: z.boolean().default(false),
+    })
+    .refine((d) => d.startDate || d.dateLabel, {
+      message:
+        'Etkinliğin ya `startDate` alanı ya da `dateLabel` alanı dolu olmalı, yoksa kartta tarih sütunu boş kalır.',
+    }),
 });
 
 // Katılımcı görüşleri — REAL testimonials only.
