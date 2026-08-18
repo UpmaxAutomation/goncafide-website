@@ -6,7 +6,8 @@
  * never crashes if they are absent.
  *
  * Env vars (set in Vercel → Project → Settings → Environment Variables):
- *   WEB3FORMS_ACCESS_KEY — Web3Forms access key; delivers submissions to NOTIFY_EMAIL
+ *   FORMSUBMIT_TARGET    — inbox for the FormSubmit path; defaults to NOTIFY_EMAIL
+ *   WEB3FORMS_ACCESS_KEY — Web3Forms access key; alternative to FormSubmit
  *   GHL_CONTACT_WEBHOOK  — GoHighLevel webhook URL for lead capture
  *   RESEND_API_KEY       — Resend.com API key for email notifications
  *   NOTIFY_EMAIL         — override the notification recipient (optional)
@@ -157,6 +158,58 @@ function subjectFor({ formType, name, email, community }) {
   if (formType === "newsletter") return `Bülten kaydı: ${email}`;
   if (formType === "topluluk") return `Topluluk kaydı: ${community || "—"} — ${name || email}`;
   return `Yeni iletişim formu: ${name || email}`;
+}
+
+/**
+ * Deliver the submission as email via FormSubmit.
+ *
+ * Chosen because it needs no account and no API key: the destination inbox is
+ * proven once, by clicking a link FormSubmit emails on the first submission.
+ * Until that click lands, FormSubmit accepts nothing and this returns false —
+ * which is what we want, since the visitor then gets an honest error instead of
+ * a message that goes nowhere.
+ *
+ * The address is only ever sent from the server, so it never appears in page
+ * source for spam harvesters. https://formsubmit.co
+ */
+async function sendViaFormSubmit(fields) {
+  const target = process.env.FORMSUBMIT_TARGET || NOTIFY_EMAIL;
+  if (!target) return false;
+
+  const { name, email, phone, program, message, formType, community } = fields;
+
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(target)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: subjectFor(fields),
+        _template: "table",
+        _captcha: "false",
+        // Lets Gonca hit "reply" and answer the visitor directly.
+        _replyto: email,
+        "Ad Soyad": name || "—",
+        "E-posta": email,
+        "Telefon": phone || "—",
+        "Program": program || "—",
+        "Topluluk": community || "—",
+        "Mesaj": message || "—",
+        "Form tipi": formType,
+      }),
+    });
+
+    const body = await res.json().catch(() => null);
+    // FormSubmit answers 200 with success:false while the inbox is unconfirmed.
+    const delivered = res.ok && body?.success !== false && body?.success !== "false";
+    if (!delivered) {
+      console.error(`[contact] FormSubmit not delivered (${res.status}):`, JSON.stringify(body));
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("[contact] FormSubmit error:", err?.message ?? err);
+    return false;
+  }
 }
 
 /**
@@ -345,6 +398,7 @@ export default async function handler(req, res) {
   const fields = { name, email, phone, program, message, formType, community };
 
   const results = await Promise.all([
+    sendViaFormSubmit(fields),
     sendViaWeb3Forms(fields),
     sendToGHL(fields),
     sendViaResend(fields),
