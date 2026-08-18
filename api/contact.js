@@ -16,6 +16,9 @@
  * a 502 rather than silently accepted and dropped.
  */
 
+/** Public origin of the site; sent to FormSubmit, which requires it. */
+const SITE_URL = "https://www.goncafide.com";
+
 /**
  * Where form submissions are emailed. This is the site's public contact address
  * (footer, contact page, structured data), so keep the two in step.
@@ -181,7 +184,16 @@ async function sendViaFormSubmit(fields) {
   try {
     const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(target)}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        // FormSubmit rejects requests it cannot trace to a web page ("will not
+        // work in pages browsed as HTML files"). We call it from the server, so
+        // the browser never sets these — send them explicitly or every
+        // submission is refused.
+        Referer: `${SITE_URL}/iletisim`,
+        Origin: SITE_URL,
+      },
       body: JSON.stringify({
         _subject: subjectFor(fields),
         _template: "table",
