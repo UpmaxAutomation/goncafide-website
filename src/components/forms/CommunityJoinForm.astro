@@ -1,28 +1,33 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+
 interface Props {
   communitySlug: string;
   communityName: string;
 }
 const { communitySlug, communityName } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <form
   class="community-join-form space-y-4"
   method="POST"
   action="/api/contact"
-  aria-label={`${communityName} katılım formu`}
+  aria-label={`${communityName} ${t('cjoin.aria')}`}
   novalidate
 >
   <input type="hidden" name="formType" value="topluluk" />
   <input type="hidden" name="community" value={communityName} />
   <p class="hidden" aria-hidden="true">
-    <label>Bunu doldurmayın: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+    <label>{t('form.honeypot')} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
   </p>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-name-${communitySlug}`}>
-        Adınız <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
+        {t('form.name')} <span class="text-[var(--color-orchid-500)]" aria-label={t('form.required')}>*</span>
       </label>
       <input
         id={`cj-name-${communitySlug}`}
@@ -30,13 +35,13 @@ const { communitySlug, communityName } = Astro.props;
         name="name"
         required
         autocomplete="name"
-        placeholder="Adınız Soyadınız"
+        placeholder={t('form.namePh')}
         class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] focus:border-[var(--color-plum-400)] transition-shadow text-base"
       />
     </div>
     <div>
       <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-email-${communitySlug}`}>
-        E-posta <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
+        {t('form.email')} <span class="text-[var(--color-orchid-500)]" aria-label={t('form.required')}>*</span>
       </label>
       <input
         id={`cj-email-${communitySlug}`}
@@ -44,7 +49,7 @@ const { communitySlug, communityName } = Astro.props;
         name="email"
         required
         autocomplete="email"
-        placeholder="ornek@email.com"
+        placeholder={t('form.emailPh')}
         class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] focus:border-[var(--color-plum-400)] transition-shadow text-base"
       />
     </div>
@@ -52,13 +57,13 @@ const { communitySlug, communityName } = Astro.props;
 
   <div>
     <label class="block text-sm font-medium text-[var(--color-ink)] mb-2" for={`cj-msg-${communitySlug}`}>
-      Mesajınız <span class="text-[var(--color-ink-muted)] text-xs font-normal">(opsiyonel)</span>
+      {t('form.message')} <span class="text-[var(--color-ink-muted)] text-xs font-normal">{t('cjoin.optional')}</span>
     </label>
     <textarea
       id={`cj-msg-${communitySlug}`}
       name="message"
       rows="3"
-      placeholder="NVC deneyiminiz ya da neden katılmak istediğiniz…"
+      placeholder={t('cjoin.messagePh')}
       class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] focus:border-[var(--color-plum-400)] transition-shadow text-base resize-y min-h-[90px]"
     ></textarea>
   </div>
@@ -68,10 +73,16 @@ const { communitySlug, communityName } = Astro.props;
     data-submit
     class="inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] active:scale-[0.98] transition-all min-h-[50px] disabled:opacity-70 disabled:cursor-wait"
   >
-    <span data-label>Katılmak istiyorum</span>
+    <span data-label>{t('cjoin.submit')}</span>
   </button>
 
-  <p data-status role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
+  <p
+    data-status
+    data-msg-ok={t('cjoin.ok')}
+    data-msg-error={t('form.error')}
+    data-msg-sending={t('form.sending')}
+    data-msg-submit={t('cjoin.submit')}
+    role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
 </form>
 
 <script>
@@ -96,7 +107,7 @@ const { communitySlug, communityName } = Astro.props;
         e.preventDefault();
         if (!form.reportValidity()) return;
         btn.disabled = true;
-        label.textContent = 'Gönderiliyor…';
+        label.textContent = status.dataset.msgSending;
         status.className = 'hidden';
         try {
           // URLSearchParams (not FormData) — sends application/x-www-form-urlencoded,
@@ -108,12 +119,12 @@ const { communitySlug, communityName } = Astro.props;
           });
           if (!res.ok) throw new Error(String(res.status));
           form.reset();
-          setStatus('Teşekkürler! Kaydınızı aldım. Topluluk açıldığında size haber vereceğim.', true);
+          setStatus(status.dataset.msgOk, true);
         } catch (err) {
-          setStatus('Bir sorun oluştu. Lütfen tekrar deneyin ya da info@goncafide.com adresine yazın.', false);
+          setStatus(status.dataset.msgError, false);
         } finally {
           btn.disabled = false;
-          label.textContent = 'Katılmak istiyorum';
+          label.textContent = status.dataset.msgSubmit;
         }
       });
     });

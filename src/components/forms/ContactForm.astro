@@ -1,15 +1,15 @@
 ---
 // Pre-fill program field from URL param if provided
+import { getLangFromUrl, useTranslations, programLinks } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const prefilledProgram = Astro.url.searchParams.get('program') ?? '';
 
 const programs = [
-  { value: '', label: 'Program seçin (opsiyonel)' },
-  { value: 'anda-kal-canda-kal', label: 'Anda Kal Canda Kal' },
-  { value: 'anahtar-ayrimlar', label: 'Anahtar Ayrımlar' },
-  { value: 'anlasmazlik-donusturme', label: 'Anlaşmazlık Dönüştürme' },
-  { value: 'mentorluk-programi', label: 'Mentörlük Programı' },
-  { value: 'empatik-kocluk', label: 'Empatik Koçluk' },
-  { value: 'diger', label: 'Diğer / Genel bilgi' },
+  { value: '', label: t('form.programNone') },
+  ...programLinks[lang].map((p) => ({ value: p.slug, label: p.label })),
+  { value: 'diger', label: t('form.programOther') },
 ];
 ---
 
@@ -18,19 +18,19 @@ const programs = [
   method="POST"
   action="/api/contact"
   class="space-y-5"
-  aria-label="İletişim formu"
+  aria-label={t('form.aria')}
   novalidate
 >
   <input type="hidden" name="formType" value="iletisim" />
   <p class="hidden" aria-hidden="true">
-    <label>Bunu doldurmayın: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+    <label>{t('form.honeypot')} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
   </p>
 
   <!-- Name + Email: stacked on mobile, side by side on lg -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div>
       <label for="name" class="block text-sm font-medium text-[var(--color-ink)] mb-2">
-        Adınız <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
+        {t('form.name')} <span class="text-[var(--color-orchid-500)]" aria-label={t('form.required')}>*</span>
       </label>
       <input
         id="name"
@@ -38,14 +38,14 @@ const programs = [
         name="name"
         required
         autocomplete="name"
-        placeholder="Adınız Soyadınız"
+        placeholder={t('form.namePh')}
         class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] focus:border-[var(--color-plum-400)] transition-shadow text-base"
       />
     </div>
 
     <div>
       <label for="email" class="block text-sm font-medium text-[var(--color-ink)] mb-2">
-        E-posta <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
+        {t('form.email')} <span class="text-[var(--color-orchid-500)]" aria-label={t('form.required')}>*</span>
       </label>
       <input
         id="email"
@@ -53,7 +53,7 @@ const programs = [
         name="email"
         required
         autocomplete="email"
-        placeholder="ornek@email.com"
+        placeholder={t('form.emailPh')}
         class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] focus:border-[var(--color-plum-400)] transition-shadow text-base"
       />
     </div>
@@ -62,7 +62,7 @@ const programs = [
   <!-- Program select -->
   <div>
     <label for="program" class="block text-sm font-medium text-[var(--color-ink)] mb-2">
-      İlgilendiğiniz program
+      {t('form.program')}
     </label>
     <select
       id="program"
@@ -80,14 +80,14 @@ const programs = [
   <!-- Message -->
   <div>
     <label for="message" class="block text-sm font-medium text-[var(--color-ink)] mb-2">
-      Mesajınız <span class="text-[var(--color-orchid-500)]" aria-label="zorunlu">*</span>
+      {t('form.message')} <span class="text-[var(--color-orchid-500)]" aria-label={t('form.required')}>*</span>
     </label>
     <textarea
       id="message"
       name="message"
       required
       rows="5"
-      placeholder="Merhaba, hakkında bilgi almak istiyorum..."
+      placeholder={t('form.messagePh')}
       class="w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)] focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] focus:border-[var(--color-plum-400)] transition-shadow text-base resize-y min-h-[140px]"
     ></textarea>
   </div>
@@ -98,7 +98,7 @@ const programs = [
     data-submit
     class="group w-full lg:w-auto flex items-center justify-center gap-2 py-4 px-8 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] active:scale-[0.98] transition-all min-h-[52px] disabled:opacity-70 disabled:cursor-wait"
   >
-    <span data-label>Mesajı Gönder</span>
+    <span data-label>{t('form.submit')}</span>
     <svg data-arrow width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
       <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -108,7 +108,13 @@ const programs = [
     </svg>
   </button>
 
-  <p data-status role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
+  <p
+    data-status
+    data-msg-ok={t('form.ok')}
+    data-msg-error={t('form.error')}
+    data-msg-sending={t('form.sending')}
+    data-msg-submit={t('form.submit')}
+    role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
 </form>
 
 <script>
@@ -133,7 +139,7 @@ const programs = [
       e.preventDefault();
       if (!form.reportValidity()) return;
       btn.disabled = true;
-      label.textContent = 'Gönderiliyor…';
+      label.textContent = status.dataset.msgSending;
       arrow.classList.add('hidden');
       spinner.classList.remove('hidden');
       status.className = 'hidden';
@@ -147,12 +153,12 @@ const programs = [
         });
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
-        setStatus('Teşekkürler! Mesajınız ulaştı. En kısa sürede geri döneceğim.', true);
+        setStatus(status.dataset.msgOk, true);
       } catch (err) {
-        setStatus('Bir sorun oluştu. Lütfen tekrar deneyin ya da info@goncafide.com adresine yazın.', false);
+        setStatus(status.dataset.msgError, false);
       } finally {
         btn.disabled = false;
-        label.textContent = 'Mesajı Gönder';
+        label.textContent = status.dataset.msgSubmit;
         spinner.classList.add('hidden');
         arrow.classList.remove('hidden');
       }

@@ -1,0 +1,120 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+
+// Factual FAQ — answers reflect Gonca's real credentials and offerings only.
+const faqs = [
+  {
+    q: 'What is Nonviolent Communication (NVC)?',
+    a: 'Nonviolent Communication (NVC) is a communication model and a discipline of awareness developed by the clinical psychologist Prof. Dr. Marshall Rosenberg. The model has four steps — observation, feeling, need, request — and lets people connect with one another on a ground of empathy and honesty.',
+  },
+  {
+    q: 'Who is NVC for?',
+    a: 'Any adult who wants to strengthen their relationships — at home, at work, at school, in their private life — can join an NVC training.',
+  },
+  {
+    q: 'Do I need to know NVC beforehand?',
+    a: 'No. Introductory programmes such as “Anda Kal Canda Kal” are built for people learning NVC from scratch. If you already have experience, you can continue with the intermediate and advanced programmes.',
+  },
+  {
+    q: 'Which level should I start at?',
+    a: 'If you are new, the beginner-level “Anda Kal Canda Kal” introduction is a good place to start. From there you can go deeper with intermediate (Key Differentiations) and advanced programmes (Conflict Transformation, Mentoring). If you are unsure, get in touch and we will decide together.',
+  },
+  {
+    q: 'Are the trainings online or in person?',
+    a: 'I run both online group programmes and in-person workshops. Each programme states its format — online group or in person — on its own page.',
+  },
+  {
+    q: 'Where can NVC training be found in Turkey?',
+    a: 'In Turkey, training is available from CNVC Certified Trainers and trainer candidates affiliated with the Nonviolent Communication Association of Turkey. For more, visit www.siddetsiziletisim.com.',
+  },
+  {
+    q: 'Is Nonviolent Communication only about spoken language?',
+    a: 'No. It covers spoken, written and non-verbal communication alike.',
+  },
+  {
+    q: 'What is Empathic Coaching?',
+    a: 'Empathic Coaching means individual, one-to-one sessions. Through difficult feelings, relational conflict or times of change, it opens a safe space for hearing your own needs more clearly.',
+  },
+  {
+    q: 'What is Gonca Fide\u2019s experience and certification?',
+    a: 'I am a sociology graduate of METU (Middle East Technical University). I have more than 1500 hours of Nonviolent Communication training experience. I have been a CNVC (Center for Nonviolent Communication) Certified Trainer since August 2022, and a member of the Nonviolent Communication Association of Turkey since 2019.',
+  },
+  {
+    q: 'Do you offer training designed for organisations?',
+    a: 'Yes. I run NVC trainings shaped around what teams and organisations need. See the page for organisations for details, or get in touch directly.',
+  },
+  {
+    q: 'How can I find out about registration and fees?',
+    a: 'Write through the contact form or at info@goncafide.com. I will share the current round, the places available and how to join.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map((f) => ({
+    '@type': 'Question',
+    'name': f.q,
+    'acceptedAnswer': { '@type': 'Answer', 'text': f.a },
+  })),
+};
+---
+
+<PageLayout
+  title="Frequently Asked Questions"
+  description="Common questions about Nonviolent Communication training, levels, formats, empathic coaching and registration — Gonca Fide."
+>
+  <JsonLd slot="jsonld" schema={faqSchema} />
+
+  <!-- Header -->
+  <section class="relative overflow-hidden bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <span class="pointer-events-none select-none absolute -top-12 right-2 lg:right-16 font-display italic text-[13rem] lg:text-[20rem] leading-none text-[var(--color-plum-100)]" aria-hidden="true">?</span>
+    <div class="container-site relative">
+      <p class="eyebrow mb-4">Frequently Asked Questions</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
+        Questions on your mind
+      </h1>
+      <p class="text-[var(--color-ink-muted)] text-lg max-w-xl">
+        The things people most often ask about Nonviolent Communication, the programmes and joining them.
+        If your question is not answered here, do write.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ accordion -->
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto divide-y divide-[var(--color-border)]">
+        {faqs.map((f) => (
+          <details class="group py-5">
+            <summary class="flex items-start justify-between gap-4 cursor-pointer list-none">
+              <h2 class="font-display text-xl lg:text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] leading-snug">
+                {f.q}
+              </h2>
+              <span class="mt-1.5 flex-shrink-0 w-6 h-6 rounded-full border border-[var(--color-plum-300)] text-[var(--color-plum-600)] flex items-center justify-center transition-transform group-open:rotate-45" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="faq-a mt-3 text-[var(--color-ink-muted)] leading-relaxed pr-10">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-14 bg-[var(--color-plum-800)]">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl font-light text-white mb-6 -tracking-[0.03em]">
+        Have another question?
+      </h2>
+      <a
+        href="/en/contact"
+        class="inline-flex items-center justify-center py-4 px-8 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm hover:bg-[var(--color-orchid-600)] transition-colors min-h-[52px]"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+</PageLayout>
