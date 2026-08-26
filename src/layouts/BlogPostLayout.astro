@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, useTranslations, section } from '../i18n/ui';
 import PageLayout from './PageLayout.astro';
 import PostMeta from '../components/blog/PostMeta.astro';
 import Prose from '../components/ui/Prose.astro';
@@ -15,6 +16,10 @@ interface Props {
 }
 
 const { title, description, pubDate, updatedDate, author, readingTime, tags, ogImage } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const aboutHref = lang === 'en' ? '/en/about' : '/hakkimda';
 ---
 
 <PageLayout title={title} description={description} ogImage={ogImage} ogType="article">
@@ -68,18 +73,18 @@ const { title, description, pubDate, updatedDate, author, readingTime, tags, ogI
             <div
               class="rounded-2xl bg-[var(--color-plum-800)] p-6 text-white"
             >
-              <p class="eyebrow text-[var(--color-plum-300)] mb-3">Programa Kaydol</p>
+              <p class="eyebrow text-[var(--color-plum-300)] mb-3">{t('post.ctaEyebrow')}</p>
               <h3 class="font-display text-xl font-light text-white mb-3 leading-snug">
-                NVC yolculuğuna başlamaya hazır mısınız?
+                {t('post.ctaHeading')}
               </h3>
               <p class="text-[var(--color-cream)]/70 text-sm leading-relaxed mb-5">
-                Başlangıç programından ileri seviye seanslarına, size uygun bir yol var.
+                {t('post.ctaIntro')}
               </p>
               <a
-                href="/programlar"
+                href={section[lang].programs}
                 class="flex items-center justify-center py-3.5 px-5 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm hover:bg-[var(--color-orchid-400)] transition-colors min-h-[48px]"
               >
-                Programlara Bak
+                {t('post.ctaButton')}
               </a>
             </div>
 
@@ -88,16 +93,16 @@ const { title, description, pubDate, updatedDate, author, readingTime, tags, ogI
               class="rounded-2xl bg-white p-6"
               style="box-shadow: var(--shadow-card);"
             >
-              <p class="eyebrow text-[var(--color-plum-500)] mb-3">Yazar Hakkında</p>
+              <p class="eyebrow text-[var(--color-plum-500)] mb-3">{t('post.authorEyebrow')}</p>
               <p class="font-body font-semibold text-[var(--color-ink)] text-sm">Gonca Fide</p>
               <p class="text-[var(--color-ink-muted)] text-xs leading-relaxed mt-1">
-                CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. 1000+ saat NVC eğitimi almış, 900+ saat eğitim vermiş.
+                {t('post.authorBio')}
               </p>
               <a
-                href="/hakkimda"
+                href={aboutHref}
                 class="mt-4 inline-flex items-center gap-1.5 text-[var(--color-plum-700)] text-sm font-medium hover:text-[var(--color-plum-800)] transition-colors"
               >
-                Daha fazla bilgi
+                {t('post.more')}
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>

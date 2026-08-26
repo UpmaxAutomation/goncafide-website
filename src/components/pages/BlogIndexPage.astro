@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import { entriesFor, slugOf, getLangFromUrl, useTranslations } from '../../i18n/ui';
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../blog/PostCard.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const allPosts = entriesFor(await getCollection('blog', ({ data }) => !data.draft), lang);
+const posts = allPosts.sort((a, b) =>
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+const featured = posts.filter(p => p.data.featured);
+const rest = posts.filter(p => !p.data.featured);
+---
+
+<PageLayout
+  title={t('blog.title')}
+  description={t('blog.metaDescription')}
+>
+  <section class="bg-[var(--color-surface)] pt-12 pb-14 lg:pt-20 lg:pb-20 border-b border-[var(--color-border)]">
+    <div class="container-site">
+      <p class="eyebrow mb-4">{t('blog.title')}</p>
+      <h1 class="font-display text-4xl lg:text-5xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05]">
+        {t('blog.heading')}
+      </h1>
+    </div>
+  </section>
+
+  <section class="section-padding bg-[var(--color-canvas)]">
+    <div class="container-site">
+      {posts.length === 0 ? (
+        <p class="text-[var(--color-ink-muted)] text-center py-16">{t('blog.empty')}</p>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              slug={slugOf(post.id)}
+              author={post.data.author}
+              tags={post.data.tags}
+              featured={post.data.featured}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</PageLayout>

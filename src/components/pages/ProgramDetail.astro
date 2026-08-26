@@ -1,0 +1,127 @@
+---
+import { render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import ProgramHero from '../programs/ProgramHero.astro';
+import Prose from '../ui/Prose.astro';
+import YouTubeEmbed from '../ui/YouTubeEmbed.astro';
+import JsonLd from '../seo/JsonLd.astro';
+import { getLangFromUrl, useTranslations, section, slugOf, levelLabel, formatLabel } from '../../i18n/ui';
+
+interface Props {
+  program: any;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = section[lang].programs;
+const contactHref = lang === 'en' ? '/en/contact' : '/iletisim';
+
+const { program } = Astro.props;
+const slug = slugOf(program.id);
+const { Content } = await render(program);
+
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": program.data.title,
+  "description": program.data.description,
+  "url": `https://www.goncafide.com${base}/${slug}`,
+  "inLanguage": lang,
+  "provider": {
+    "@type": "Person",
+    "@id": "https://www.goncafide.com/#gonca"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": program.data.totalHours ? `PT${program.data.totalHours}H` : undefined,
+    "offers": {
+      "@type": "Offer",
+      "url": `https://www.goncafide.com${contactHref}?program=${slug}`,
+      "availability": program.data.enrollmentOpen
+        ? "https://schema.org/InStock"
+        : "https://schema.org/Discontinued"
+    }
+  }
+};
+---
+
+<PageLayout
+  title={program.data.title}
+  description={`${program.data.description} — ${levelLabel(program.data.level, lang)} ${t('prog.metaSuffix')}, ${formatLabel(program.data.format, lang)}.`}
+>
+  <JsonLd slot="jsonld" schema={courseSchema} />
+
+  <ProgramHero
+    title={program.data.title}
+    subtitle={program.data.subtitle}
+    level={program.data.level}
+    format={program.data.format}
+    totalHours={program.data.totalHours}
+    sessionCount={program.data.sessionCount}
+    sessionDuration={program.data.sessionDuration}
+    enrollmentOpen={program.data.enrollmentOpen}
+    slug={slug}
+    image={program.data.coverImage}
+  />
+
+  <!-- Content + sidebar -->
+  <div class="container-site py-12 lg:py-16">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+      <!-- Main content -->
+      <div class="flex-1 min-w-0">
+        {program.data.youtubeId && (
+          <div class="mb-8 lg:mb-10">
+            <p class="eyebrow mb-3">{t('prog.video')}</p>
+            <YouTubeEmbed
+              id={program.data.youtubeId}
+              start={program.data.youtubeStart}
+              title={`${program.data.title} — ${t('prog.video')}`}
+            />
+          </div>
+        )}
+        <Prose>
+          <Content />
+        </Prose>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="w-full lg:w-72 flex-shrink-0">
+        <div class="sticky top-24 space-y-5">
+          <!-- CTA -->
+          <div class="rounded-2xl bg-[var(--color-plum-800)] p-6 text-white">
+            <p class="eyebrow text-[var(--color-plum-300)] mb-3">{t('prog.enroll')}</p>
+            <h3 class="font-display text-xl font-light mb-3 text-white leading-snug">
+              {program.data.title}
+            </h3>
+            <div class="space-y-2 mb-5 text-sm text-[var(--color-cream)]/70">
+              <p>{t('prog.level')}: <span class="text-white font-medium">{levelLabel(program.data.level, lang)}</span></p>
+              <p>{t('prog.format')}: <span class="text-white font-medium">{formatLabel(program.data.format, lang)}</span></p>
+              {program.data.totalHours && (
+                <p>{t('prog.duration')}: <span class="text-white font-medium">{program.data.totalHours} {t('prog.hours')}</span></p>
+              )}
+            </div>
+            <a
+              href={`${contactHref}?program=${slug}`}
+              class="flex items-center justify-center py-3.5 px-5 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm hover:bg-[var(--color-orchid-400)] transition-colors min-h-[48px]"
+            >
+              {t('prog.enrollCta')}
+            </a>
+          </div>
+
+          <!-- All programs link -->
+          <a
+            href={base}
+            class="flex items-center gap-2 text-[var(--color-ink-muted)] text-sm hover:text-[var(--color-ink)] transition-colors p-4 rounded-xl bg-[var(--color-surface)]"
+            style="box-shadow: var(--shadow-card);"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {t('prog.all')}
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</PageLayout>

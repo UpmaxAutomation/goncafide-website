@@ -1,10 +1,12 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { entriesFor, getLangFromUrl } from '../../i18n/ui';
 
 // REAL testimonials only. The `gorusler` collection holds consented entries;
 // the factual trust block is always shown, and participant quotes appear below
 // it when real entries exist. (No fabricated quotes.)
-const all = await getCollection('gorusler', ({ data }) => !data.draft);
+const lang = getLangFromUrl(Astro.url);
+const all = entriesFor(await getCollection('gorusler', ({ data }) => !data.draft), lang);
 const gorusler = all.sort((a, b) => a.data.order - b.data.order);
 const hasTestimonials = gorusler.length > 0;
 

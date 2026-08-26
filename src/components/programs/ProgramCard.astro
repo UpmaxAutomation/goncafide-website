@@ -1,5 +1,6 @@
 ---
 import Badge from '../ui/Badge.astro';
+import { getLangFromUrl, section } from '../../i18n/ui';
 
 interface Props {
   title: string;
@@ -83,7 +84,7 @@ const {
 
     <!-- CTA -->
     <a
-      href={`/programlar/${slug}`}
+      href={`${section[getLangFromUrl(Astro.url)].programs}/${slug}`}
       class="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-[var(--color-plum-50)] text-[var(--color-plum-800)] font-medium text-sm hover:bg-[var(--color-plum-100)] transition-colors min-h-[48px] group/btn"
     >
       Detayları incele

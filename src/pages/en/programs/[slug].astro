@@ -1,0 +1,18 @@
+---
+// English programme pages; template shared with the Turkish route.
+import { getCollection } from 'astro:content';
+import { entriesFor, slugOf } from '../../../i18n/ui';
+import ProgramDetail from '../../../components/pages/ProgramDetail.astro';
+
+export async function getStaticPaths() {
+  const programs = entriesFor(await getCollection('programlar', ({ data }) => !data.draft), 'en');
+  return programs.map((program) => ({
+    params: { slug: slugOf(program.id) },
+    props: { program },
+  }));
+}
+
+const { program } = Astro.props;
+---
+
+<ProgramDetail program={program} />

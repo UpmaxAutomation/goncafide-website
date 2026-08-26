@@ -1,0 +1,13 @@
+---
+// English route; body shared with /topluluk/[slug].
+import { getCommunities } from '../../../lib/communities';
+import CommunityDetail from '../../../components/pages/CommunityDetail.astro';
+
+export function getStaticPaths() {
+  return getCommunities('en').map((c) => ({ params: { slug: c.slug }, props: { community: c } }));
+}
+
+const { community } = Astro.props;
+---
+
+<CommunityDetail community={community} />

@@ -112,6 +112,8 @@ export const ui = {
     'brand.slogan': 'birbirine bağlar güçlendirir',
 
     'events.title': 'Etkinlikler',
+    'events.metaDescription':
+      'Gonca Fide ile yaklaşan Şiddetsiz İletişim atölyeleri ve seminerleri. Yeni dönem tarihleri ve kayıt bilgileri.',
     'events.heading': 'Yaklaşan atölyeler',
     'events.intro':
       'Yeni dönem grup programları ve tek oturumluk seminerlerin tarihlerini burada paylaşıyorum.',
@@ -124,6 +126,60 @@ export const ui = {
       'Yeni dönem atölyeleri açıldığında ilk siz haberdar olun. Bültene katılın ya da doğrudan yazın — size uygun bir grup oluştuğunda haber vereyim.',
     'events.empty.contact': 'İletişime Geç',
     'events.empty.programs': 'Programları İncele',
+
+    'post.ctaEyebrow': 'Programa Kaydol',
+    'post.ctaHeading': 'NVC yolculuğuna başlamaya hazır mısınız?',
+    'post.ctaIntro': 'Başlangıç programından ileri seviye seanslarına, size uygun bir yol var.',
+    'post.ctaButton': 'Programlara Bak',
+    'post.authorEyebrow': 'Yazar Hakkında',
+    'post.more': 'Daha fazla bilgi',
+    'post.authorBio': 'CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. 1000+ saat NVC eğitimi almış, 900+ saat eğitim vermiş.',
+
+    'blog.title': 'Blog',
+    'blog.metaDescription': 'Şiddetsiz İletişim, empati, ilişkiler ve iç dünya üzerine yazılar. Gonca Fide\u2019nin NVC blog yazıları.',
+    'blog.heading': 'Yazılar',
+    'blog.empty': 'Yakında yazılar gelecek…',
+
+    'community.forWhom': 'Kimler için?',
+    'community.activities': 'Neler yapıyoruz?',
+    'community.apply': 'Başvuru',
+    'community.applyForm': 'Programı bitirenler için başvuru formu',
+    'community.join': 'Topluluğa katılın',
+    'community.related': 'İlgili program:',
+    'community.breadcrumbHome': 'Ana Sayfa',
+    'community.breadcrumb': 'Topluluk',
+
+    'community.title': 'Topluluklar',
+    'community.metaDescription': 'Gonca Fide ile Şiddetsiz İletişim topluluklarını keşfedin: Acemi Zürafa Topluluğu ve Anlaşmazlık Dönüştürme Topluluğu. Birlikte pratik yapın, üyelerle bağlantı kurun.',
+    'community.heading': 'Birlikte güçleniyoruz',
+    'community.intro': 'Anahtar Ayrımlar Programını bitirenlerin oluşturduğu Acemi Zürafa Topluluğu\u2019nda programda öğrenilenler mezunlarla tekrar ediliyor ve NVC bu şekilde içselleştiriliyor. Anlaşmazlık Dönüştürme Topluluğu ise programı bitirenlerin kendi hızında buluşarak edindikleri becerileri taze tuttukları bir alan sunuyor. Bu programları bitirdiğinizde ilgili programa ait topluluğun doğal üyesi olursunuz.',
+
+    'programs.title': 'Sunduklarım',
+    'programs.metaDescription': 'Gonca Fide’nin Şiddetsiz İletişim programları: başlangıçtan ileri seviyeye grup kursları, tematik seminerler ve bireysel seanslar. Online NVC eğitimleri.',
+    'programs.heading1': 'NVC yolculuğunuzu',
+    'programs.heading2': 'seçin',
+    'programs.intro': 'Her seviye ve ihtiyaç için bir alan var: başlangıçtan ileri seviyeye grup programları, tek oturumluk tematik seminerler ve bire bir seanslar.',
+    'programs.pathLabel': 'Önerilen yolculuk:',
+    'programs.path': 'Anda Kal Canda Kal → Anahtar Ayrımlar → Anlaşmazlık Dönüştürme → Belirli Konularda Güçlenme',
+    'programs.levelSuffix': 'Seviye',
+    'programs.seminarsEyebrow': 'Belirli Konularda Güçlenme',
+    'programs.seminarsHeading': 'Tek oturumluk tematik güçlenme atölyeleri',
+    'programs.seminarsIntro': 'Kıyas, küsmek ve mizah gibi belirli bir temayı NVC merceğiyle ele alan, tek seanslık buluşmalar.',
+    'programs.corpHeading': 'Kurumunuz için özel tasarım',
+    'programs.corpIntro': 'Ekipler ve organizasyonlar için ihtiyaca göre tasarlanmış NVC eğitimleri.',
+    'programs.corpCta': 'Kurumsal Eğitimler',
+    'programs.ctaHeading': 'Hangi program size uygun?',
+    'programs.ctaIntro': 'Bir programı seçmekte zorlanıyorsanız, birlikte konuşabiliriz.',
+
+    'prog.video': 'Tanıtım Videosu',
+    'prog.enroll': 'Kayıt',
+    'prog.enrollCta': 'Kayıt İçin İletişime Geç',
+    'prog.level': 'Seviye',
+    'prog.format': 'Format',
+    'prog.duration': 'Süre',
+    'prog.hours': 'saat',
+    'prog.all': 'Tüm programlar',
+    'prog.metaSuffix': 'seviye',
 
     'form.name': 'Adınız',
     'form.email': 'E-posta',
@@ -159,6 +215,8 @@ export const ui = {
     'brand.slogan': 'connects and strengthens',
 
     'events.title': 'Events',
+    'events.metaDescription':
+      'Upcoming Nonviolent Communication workshops and seminars with Gonca Fide. Dates for new rounds, and how to register.',
     'events.heading': 'Upcoming workshops',
     'events.intro':
       'Dates for new group programmes and single-session seminars are posted here.',
@@ -171,6 +229,60 @@ export const ui = {
       'Be the first to hear when a new round opens. Join the newsletter or write to me directly — I will let you know as soon as a suitable group forms.',
     'events.empty.contact': 'Get in touch',
     'events.empty.programs': 'Browse the programmes',
+
+    'post.ctaEyebrow': 'Join a programme',
+    'post.ctaHeading': 'Ready to begin your NVC journey?',
+    'post.ctaIntro': 'From the introductory programme through to advanced sessions, there is a path that fits.',
+    'post.ctaButton': 'See the programmes',
+    'post.authorEyebrow': 'About the author',
+    'post.more': 'Read more',
+    'post.authorBio': 'CNVC Certified Nonviolent Communication Trainer. Over 1000 hours of NVC training received, and more than 900 hours taught.',
+
+    'blog.title': 'Blog',
+    'blog.metaDescription': 'Writing on Nonviolent Communication, empathy, relationships and the inner world. Gonca Fide\u2019s NVC blog.',
+    'blog.heading': 'Writing',
+    'blog.empty': 'Posts are on their way…',
+
+    'community.forWhom': 'Who is it for?',
+    'community.activities': 'What do we do?',
+    'community.apply': 'Apply',
+    'community.applyForm': 'Application form for those who completed the programme',
+    'community.join': 'Join the community',
+    'community.related': 'Related programme:',
+    'community.breadcrumbHome': 'Home',
+    'community.breadcrumb': 'Community',
+
+    'community.title': 'Communities',
+    'community.metaDescription': 'Discover the Nonviolent Communication communities around Gonca Fide: the Acemi Zürafa community and the Conflict Transformation community. Practise together and connect with other members.',
+    'community.heading': 'We grow stronger together',
+    'community.intro': 'In the Acemi Zürafa community, formed by those who have completed the Key Differentiations Programme, what was learned is revisited among graduates — and that is how NVC settles in. The Conflict Transformation community offers a space where those who finished that programme meet at their own pace and keep their skills alive. On completing either programme you become a natural member of its community.',
+
+    'programs.title': 'Offerings',
+    'programs.metaDescription': 'Gonca Fide\u2019s Nonviolent Communication programmes: group courses from beginner to advanced, thematic seminars and one-to-one sessions. Online NVC training.',
+    'programs.heading1': 'Choose your',
+    'programs.heading2': 'NVC journey',
+    'programs.intro': 'There is a space for every level and every need: group programmes from beginner to advanced, single-session thematic seminars, and one-to-one work.',
+    'programs.pathLabel': 'Suggested path:',
+    'programs.path': 'Anda Kal Canda Kal → Key Differentiations → Conflict Transformation → Thematic deepening',
+    'programs.levelSuffix': 'level',
+    'programs.seminarsEyebrow': 'Going deeper on a theme',
+    'programs.seminarsHeading': 'Single-session thematic workshops',
+    'programs.seminarsIntro': 'Single meetings that take up one theme — comparison, withdrawing into silence, humour — through the lens of NVC.',
+    'programs.corpHeading': 'Designed for your organisation',
+    'programs.corpIntro': 'NVC training shaped around what teams and organisations actually need.',
+    'programs.corpCta': 'For organisations',
+    'programs.ctaHeading': 'Which programme is right for you?',
+    'programs.ctaIntro': 'If choosing between them feels hard, we can talk it through together.',
+
+    'prog.video': 'Introduction',
+    'prog.enroll': 'Register',
+    'prog.enrollCta': 'Get in touch to register',
+    'prog.level': 'Level',
+    'prog.format': 'Format',
+    'prog.duration': 'Length',
+    'prog.hours': 'hours',
+    'prog.all': 'All programmes',
+    'prog.metaSuffix': 'level',
 
     'form.name': 'Your name',
     'form.email': 'Email',
@@ -195,6 +307,34 @@ export const ui = {
     'contact.mail': 'Send an email',
   },
 } as const;
+
+/**
+ * Level and format are schema enums stored in Turkish — they are keys, not
+ * prose — so English content files keep the Turkish value and it is translated
+ * here at render time.
+ */
+const LEVEL_EN: Record<string, string> = {
+  'Başlangıç': 'Beginner',
+  'Orta': 'Intermediate',
+  'Orta-İleri': 'Upper-intermediate',
+  'İleri': 'Advanced',
+  'Tüm Seviyeler': 'All levels',
+};
+
+const FORMAT_EN: Record<string, string> = {
+  'Online Grup': 'Online group',
+  'Yüz Yüze': 'In person',
+  'Hibrit': 'Hybrid',
+  'Bireysel (1:1)': 'One to one',
+};
+
+export function levelLabel(value: string, lang: Lang): string {
+  return lang === 'en' ? (LEVEL_EN[value] ?? value) : value;
+}
+
+export function formatLabel(value: string, lang: Lang): string {
+  return lang === 'en' ? (FORMAT_EN[value] ?? value) : value;
+}
 
 /** Read the active language off the URL. Anything outside /en/ is Turkish. */
 export function getLangFromUrl(url: URL): Lang {
@@ -231,4 +371,19 @@ export function getAlternate(pathname: string, to: Lang): string | null {
 /** Home page for a language — the switcher's fallback. */
 export function homeFor(lang: Lang): string {
   return lang === 'en' ? '/en/' : '/';
+}
+
+/**
+ * Content collections hold both languages: English entries live in an `en/`
+ * subfolder, so their id is prefixed. These two helpers are how pages pick the
+ * right set and recover the shared slug.
+ */
+export function entriesFor<T extends { id: string }>(entries: T[], lang: Lang): T[] {
+  const wantEnglish = lang === 'en';
+  return entries.filter((e) => e.id.startsWith('en/') === wantEnglish);
+}
+
+/** Slug without the language folder — identical across languages by design. */
+export function slugOf(id: string): string {
+  return id.replace(/^en\//, '');
 }

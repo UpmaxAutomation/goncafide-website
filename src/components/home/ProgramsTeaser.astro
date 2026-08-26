@@ -1,8 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { entriesFor, slugOf, getLangFromUrl, section } from '../../i18n/ui';
 import Badge from '../ui/Badge.astro';
 
-const allPrograms = await getCollection('programlar', ({ data }) => !data.draft);
+const lang = getLangFromUrl(Astro.url);
+const allPrograms = entriesFor(await getCollection('programlar', ({ data }) => !data.draft), lang);
+const programBase = section[lang].programs;
 const featuredPrograms = allPrograms
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
@@ -39,7 +42,7 @@ const levelVariant = (level: string) => {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
       {featuredPrograms.map((program, i) => (
         <a
-          href={`/programlar/${program.id}`}
+          href={`${programBase}/${slugOf(program.id)}`}
           class="group flex flex-col p-6 lg:p-7 rounded-2xl bg-[var(--color-plum-700)]/40 hover:bg-[var(--color-plum-700)]/70 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1"
           data-reveal data-reveal-delay={String(i + 1)}
         >

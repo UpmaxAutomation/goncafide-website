@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, section } from '../../i18n/ui';
 import { formatDate } from '../../lib/formatDate';
 
 interface Props {
@@ -37,7 +38,7 @@ const { title, description, pubDate, slug, author = 'Gonca Fide', tags = [], fea
 
     <!-- Title -->
     <h3 class="font-display text-2xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-3 leading-snug group-hover:text-[var(--color-plum-800)] transition-colors flex-1">
-      <a href={`/blog/${slug}`} class="hover:underline underline-offset-4 decoration-[var(--color-plum-300)]">
+      <a href={`${section[getLangFromUrl(Astro.url)].blog}/${slug}`} class="hover:underline underline-offset-4 decoration-[var(--color-plum-300)]">
         {title}
       </a>
     </h3>
