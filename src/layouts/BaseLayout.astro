@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import SEOHead from '../components/seo/SEOHead.astro';
 import { ClientRouter } from 'astro:transitions';
+import { getLangFromUrl, getAlternate } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -12,10 +13,17 @@ interface Props {
 }
 
 const { title, description, ogImage, ogType, noindex } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+// Only pages that genuinely exist in both languages get hreflang tags —
+// getAlternate returns null otherwise, rather than pointing at a 404.
+const trHref = getAlternate(Astro.url.pathname, 'tr');
+const enHref = getAlternate(Astro.url.pathname, 'en');
+const abs = (path: string) => new URL(path, Astro.site ?? 'https://www.goncafide.com').href;
 ---
 
 <!doctype html>
-<html lang="tr">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,6 +50,11 @@ const { title, description, ogImage, ogType, noindex } = Astro.props;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Language alternates. x-default points at Turkish, the primary audience. -->
+    {trHref && <link rel="alternate" hreflang="tr" href={abs(trHref)} />}
+    {enHref && <link rel="alternate" hreflang="en" href={abs(enHref)} />}
+    {trHref && <link rel="alternate" hreflang="x-default" href={abs(trHref)} />}
 
     <SEOHead
       title={title}

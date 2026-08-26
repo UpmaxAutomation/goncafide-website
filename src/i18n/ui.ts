@@ -55,6 +55,47 @@ export const nav: Record<Lang, ReadonlyArray<{ href: string; label: string }>> =
   ],
 };
 
+/** Mobile menu lists every destination, including home and contact. */
+export const navFull: Record<Lang, ReadonlyArray<{ href: string; label: string }>> = {
+  tr: [
+    { href: '/', label: 'Ana Sayfa' },
+    ...nav.tr,
+    { href: '/iletisim', label: 'İletişim' },
+  ],
+  en: [
+    { href: '/en/', label: 'Home' },
+    ...nav.en,
+    { href: '/en/contact', label: 'Contact' },
+  ],
+};
+
+/**
+ * Section roots. Detail slugs (a programme, a post) stay identical in both
+ * languages — they are names, not prose — so only the section changes.
+ */
+export const section: Record<Lang, Record<'programs' | 'community' | 'blog' | 'events', string>> = {
+  tr: { programs: '/programlar', community: '/topluluk', blog: '/blog', events: '/etkinlikler' },
+  en: { programs: '/en/programs', community: '/en/community', blog: '/en/blog', events: '/en/events' },
+};
+
+/** Footer quick links. English names are flagged in GLOSSARY.md for review. */
+export const programLinks: Record<Lang, ReadonlyArray<{ slug: string; label: string }>> = {
+  tr: [
+    { slug: 'anda-kal-canda-kal', label: 'Anda Kal Canda Kal' },
+    { slug: 'anahtar-ayrimlar', label: 'Anahtar Ayrımlar' },
+    { slug: 'anlasmazlik-donusturme', label: 'Anlaşmazlık Dönüştürme' },
+    { slug: 'empatik-kocluk', label: 'Empatik Koçluk' },
+    { slug: 'mentorluk-programi', label: 'Mentörlük' },
+  ],
+  en: [
+    { slug: 'anda-kal-canda-kal', label: 'Anda Kal Canda Kal' },
+    { slug: 'anahtar-ayrimlar', label: 'Key Differentiations' },
+    { slug: 'anlasmazlik-donusturme', label: 'Conflict Transformation' },
+    { slug: 'empatik-kocluk', label: 'Empathic Coaching' },
+    { slug: 'mentorluk-programi', label: 'Mentoring' },
+  ],
+};
+
 /**
  * Interface strings. Content lives in the collections; this covers the chrome
  * around it — buttons, labels, empty states, form copy.
@@ -67,6 +108,8 @@ export const ui = {
     'nav.close': 'Menüyü kapat',
     'lang.switch': 'Switch to English',
     'lang.label': 'Dil',
+    'nav.menu': 'Navigasyon menüsü',
+    'brand.slogan': 'birbirine bağlar güçlendirir',
 
     'events.title': 'Etkinlikler',
     'events.heading': 'Yaklaşan atölyeler',
@@ -94,6 +137,15 @@ export const ui = {
 
     'footer.newsletter': 'Yeni programlardan ilk sen haber al.',
     'footer.subscribe': 'Kayıt Ol',
+    'footer.eyebrow': 'Duyurulardan Haberdar Ol',
+    'footer.formAria': 'Bülten kaydı formu',
+    'footer.honeypot': 'Bunu doldurmayın:',
+    'footer.emailLabel': 'E-posta adresiniz',
+    'footer.pages': 'Sayfalar',
+    'footer.programs': 'Programlar',
+    'footer.rights': 'Tüm hakları saklıdır.',
+    'footer.tagline': 'Şiddetsiz İletişim · Empati · Dönüşüm',
+    'contact.mail': 'E-posta gönderin',
   },
   en: {
     'nav.aria': 'Main navigation',
@@ -102,6 +154,9 @@ export const ui = {
     'nav.close': 'Close menu',
     'lang.switch': "Türkçe'ye geç",
     'lang.label': 'Language',
+    'nav.menu': 'Navigation menu',
+    // Brand line. Gonca's call whether English keeps the Turkish original.
+    'brand.slogan': 'connects and strengthens',
 
     'events.title': 'Events',
     'events.heading': 'Upcoming workshops',
@@ -129,6 +184,15 @@ export const ui = {
 
     'footer.newsletter': 'Be first to hear about new programmes.',
     'footer.subscribe': 'Subscribe',
+    'footer.eyebrow': 'Stay in the loop',
+    'footer.formAria': 'Newsletter signup form',
+    'footer.honeypot': 'Please leave this empty:',
+    'footer.emailLabel': 'Your email address',
+    'footer.pages': 'Pages',
+    'footer.programs': 'Programmes',
+    'footer.rights': 'All rights reserved.',
+    'footer.tagline': 'Nonviolent Communication · Empathy · Transformation',
+    'contact.mail': 'Send an email',
   },
 } as const;
 

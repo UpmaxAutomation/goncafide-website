@@ -1,0 +1,29 @@
+---
+/**
+ * Compact language toggle: shows the language you would switch *to*, so the
+ * label is the action rather than the current state.
+ *
+ * When the current page has no counterpart in the other language, this points
+ * at that language's home page instead of a URL that would 404.
+ */
+import { getLangFromUrl, getAlternate, homeFor, languages, type Lang } from '../../i18n/ui';
+
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const other: Lang = lang === 'tr' ? 'en' : 'tr';
+const href = getAlternate(Astro.url.pathname, other) ?? homeFor(other);
+---
+
+<a
+  href={href}
+  hreflang={other}
+  lang={other}
+  aria-label={`${languages[other]}`}
+  class={`inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2.5 rounded-lg text-sm font-body font-semibold tracking-wide text-[var(--color-ink-muted)] hover:text-[var(--color-plum-800)] hover:bg-[var(--color-plum-50)] transition-colors ${cls}`}
+>
+  {other.toUpperCase()}
+</a>

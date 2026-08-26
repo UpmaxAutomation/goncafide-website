@@ -1,22 +1,19 @@
 ---
 import Logo from '../brand/Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getLangFromUrl, useTranslations, nav, homeFor } from '../../i18n/ui';
 
-const navLinks = [
-  { href: '/nvc-nedir', label: 'NVC Nedir?' },
-  { href: '/hakkimda', label: 'Hakkımda' },
-  { href: '/programlar', label: 'Sunduklarım' },
-  { href: '/topluluk', label: 'Topluluk' },
-  { href: '/etkinlikler', label: 'Etkinlikler' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/sss', label: 'SSS' },
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const navLinks = nav[lang];
+const contactHref = lang === 'en' ? '/en/contact' : '/iletisim';
 
 const pathname = Astro.url.pathname;
 ---
 
 <header class="sticky top-0 z-40 w-full bg-[var(--color-canvas)]/95 backdrop-blur-sm border-b border-[var(--color-border)]">
   <div class="container-site">
-    <nav class="flex items-center justify-between h-16 lg:h-[72px]" aria-label="Ana navigasyon">
+    <nav class="flex items-center justify-between h-16 lg:h-[72px]" aria-label={t('nav.aria')}>
       <!-- Logo lockup -->
       <Logo class="flex-shrink-0" />
 
@@ -42,17 +39,18 @@ const pathname = Astro.url.pathname;
       <!-- Desktop CTA -->
       <div class="hidden lg:flex items-center gap-3">
         <a
-          href="/iletisim"
+          href={contactHref}
           class="px-5 py-2.5 rounded-xl bg-[var(--color-orchid-500)] text-white font-body font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] transition-colors min-h-[44px] flex items-center"
         >
-          İletişime Geç
+          {t('nav.cta')}
         </a>
+        <LanguageSwitcher />
       </div>
 
       <!-- Mobile hamburger -->
       <button
         id="mobile-menu-open"
-        aria-label="Menüyü aç"
+        aria-label={t('nav.open')}
         aria-expanded="false"
         aria-controls="mobile-menu"
         class="lg:hidden flex items-center justify-center w-12 h-12 -mr-2 rounded-lg text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-surface)] transition-colors"

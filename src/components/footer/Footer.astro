@@ -1,18 +1,15 @@
 ---
 import Logo from '../brand/Logo.astro';
+import { getLangFromUrl, useTranslations, nav, programLinks, section } from '../../i18n/ui';
 
 const currentYear = new Date().getFullYear();
 
-const footerLinks = [
-  { href: '/nvc-nedir', label: 'NVC Nedir?' },
-  { href: '/hakkimda', label: 'Hakkımda' },
-  { href: '/programlar', label: 'Sunduklarım' },
-  { href: '/topluluk', label: 'Topluluk' },
-  { href: '/etkinlikler', label: 'Etkinlikler' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/sss', label: 'SSS' },
-  { href: '/iletisim', label: 'İletişim' },
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const contactHref = lang === 'en' ? '/en/contact' : '/iletisim';
+const footerLinks = [...nav[lang], { href: contactHref, label: lang === 'en' ? 'Contact' : 'İletişim' }];
+const programs = programLinks[lang];
+const programBase = section[lang].programs;
 ---
 
 <footer class="bg-[var(--color-plum-800)] text-[var(--color-cream)]">
@@ -21,7 +18,7 @@ const footerLinks = [
     <div class="container-site py-10 lg:py-14">
       <div class="max-w-xl mx-auto text-center lg:text-left lg:mx-0 lg:max-w-none lg:flex lg:items-center lg:justify-between lg:gap-12">
         <div class="mb-6 lg:mb-0">
-          <p class="eyebrow text-[var(--color-plum-300)] mb-2">Duyurulardan Haberdar Ol</p>
+          <p class="eyebrow text-[var(--color-plum-300)] mb-2">{t('footer.eyebrow')}</p>
           <h3 class="font-display text-2xl lg:text-3xl font-light text-white">
             Yeni programlardan ilk sen haber al.
           </h3>
@@ -31,20 +28,20 @@ const footerLinks = [
           method="POST"
           action="/api/contact"
           class="flex-shrink-0 w-full lg:w-auto"
-          aria-label="Bülten kaydı formu"
+          aria-label={t('footer.formAria')}
         >
           <input type="hidden" name="formType" value="newsletter" />
           <p class="hidden" aria-hidden="true">
-            <label>Bunu doldurmayın: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            <label>{t('footer.honeypot')} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
           </p>
           <div class="flex flex-col sm:flex-row gap-3">
-            <label for="newsletter-email" class="sr-only">E-posta adresiniz</label>
+            <label for="newsletter-email" class="sr-only">{t('footer.emailLabel')}</label>
             <input
               id="newsletter-email"
               type="email"
               name="email"
               required
-              placeholder="E-posta adresiniz"
+              placeholder={t('footer.emailLabel')}
               autocomplete="email"
               class="flex-1 min-w-0 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-[var(--color-cream)]/70 focus:outline-none focus:ring-2 focus:ring-[var(--color-plum-300)] sm:w-72 text-base"
             />
@@ -94,7 +91,7 @@ const footerLinks = [
 
       <!-- Nav links -->
       <div>
-        <p class="eyebrow text-[var(--color-plum-300)] mb-4">Sayfalar</p>
+        <p class="eyebrow text-[var(--color-plum-300)] mb-4">{t('footer.pages')}</p>
         <ul class="space-y-2.5" role="list">
           {footerLinks.map((link) => (
             <li>
@@ -111,41 +108,23 @@ const footerLinks = [
 
       <!-- Programs quick links -->
       <div>
-        <p class="eyebrow text-[var(--color-plum-300)] mb-4">Programlar</p>
+        <p class="eyebrow text-[var(--color-plum-300)] mb-4">{t('footer.programs')}</p>
         <ul class="space-y-2.5" role="list">
-          <li>
-            <a href="/programlar/anda-kal-canda-kal" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
-              Anda Kal Canda Kal
-            </a>
-          </li>
-          <li>
-            <a href="/programlar/anahtar-ayrimlar" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
-              Anahtar Ayrımlar
-            </a>
-          </li>
-          <li>
-            <a href="/programlar/anlasmazlik-donusturme" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
-              Anlaşmazlık Dönüştürme
-            </a>
-          </li>
-          <li>
-            <a href="/programlar/empatik-kocluk" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
-              Empatik Koçluk
-            </a>
-          </li>
-          <li>
-            <a href="/programlar/mentorluk-programi" class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
-              Mentörlük
-            </a>
-          </li>
+          {programs.map((p) => (
+            <li>
+              <a href={`${programBase}/${p.slug}`} class="text-sm text-[var(--color-cream)]/70 hover:text-white transition-colors min-h-[44px] flex items-center">
+                {p.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
 
     <!-- Bottom bar -->
     <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-cream)]/70">
-      <p>© {currentYear} Gonca Fide. Tüm hakları saklıdır.</p>
-      <p>Şiddetsiz İletişim · Empati · Dönüşüm</p>
+      <p>© {currentYear} Gonca Fide. {t('footer.rights')}</p>
+      <p>{t('footer.tagline')}</p>
     </div>
   </div>
 </footer>
