@@ -1,11 +1,12 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { entriesFor, getLangFromUrl } from '../../i18n/ui';
+import { entriesFor, getLangFromUrl, useTranslations } from '../../i18n/ui';
 
 // REAL testimonials only. The `gorusler` collection holds consented entries;
 // the factual trust block is always shown, and participant quotes appear below
 // it when real entries exist. (No fabricated quotes.)
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const all = entriesFor(await getCollection('gorusler', ({ data }) => !data.draft), lang);
 const gorusler = all.sort((a, b) => a.data.order - b.data.order);
 const hasTestimonials = gorusler.length > 0;
@@ -16,29 +17,29 @@ const rendered = hasTestimonials
 
 // Factual trust signals — every item is verifiable from Gonca's credentials.
 const trust = [
-  { stat: 'CNVC', label: 'Sertifikalı Eğitmen', detail: '2022’den beri (Center for Nonviolent Communication)' },
-  { stat: '1500+', label: 'saat NVC eğitimi', detail: 'Liv Larsson, Katarina Hoffman, Miki Kashtan ve CNVC eğitmenlerinden' },
-  { stat: 'ODTÜ', label: 'Sosyoloji mezunu', detail: 'Orta Doğu Teknik Üniversitesi' },
-  { stat: '2019+', label: 'Dernek üyeliği', detail: 'Şiddetsiz İletişim Türkiye Derneği' },
+  { stat: 'CNVC', label: t('trust.certified'), detail: t('trust.certifiedDetail') },
+  { stat: '1500+', label: t('trust.hours'), detail: t('trust.hoursDetail') },
+  { stat: 'ODTÜ', label: t('trust.degree'), detail: t('trust.degreeDetail') },
+  { stat: '2019+', label: t('trust.member'), detail: t('trust.memberDetail') },
 ];
 ---
 
 <section class="section-padding bg-[var(--color-canvas)]">
   <div class="container-site">
     <div class="max-w-2xl mb-10 lg:mb-14" data-reveal>
-      <p class="eyebrow mb-3">Neden Gonca Fide?</p>
+      <p class="eyebrow mb-3">{t('trust.eyebrow')}</p>
       <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
-        Güvenle öğrenebileceğiniz bir alan
+        {t('trust.heading')}
       </h2>
     </div>
 
     <!-- Trust signals (always shown) -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-6 border-t border-[var(--color-border)] pt-9">
-      {trust.map((t, i) => (
+      {trust.map((item, i) => (
         <div class={i % 4 !== 0 ? 'lg:border-l lg:border-[var(--color-border)] lg:pl-6' : 'lg:pl-0'} data-reveal data-reveal-delay={String(i + 1)}>
-          <p class="font-display text-4xl lg:text-5xl font-light text-[var(--color-plum-600)] leading-none">{t.stat}</p>
-          <p class="font-body font-semibold text-sm text-[var(--color-ink)] mt-3">{t.label}</p>
-          <p class="text-xs text-[var(--color-ink-muted)] mt-1.5 leading-relaxed">{t.detail}</p>
+          <p class="font-display text-4xl lg:text-5xl font-light text-[var(--color-plum-600)] leading-none">{item.stat}</p>
+          <p class="font-body font-semibold text-sm text-[var(--color-ink)] mt-3">{item.label}</p>
+          <p class="text-xs text-[var(--color-ink-muted)] mt-1.5 leading-relaxed">{item.detail}</p>
         </div>
       ))}
     </div>
@@ -46,9 +47,9 @@ const trust = [
     {hasTestimonials && (
       <div class="mt-16 lg:mt-20">
         <div class="max-w-xl mb-8" data-reveal>
-          <p class="eyebrow mb-3">Katılımcı Deneyimleri</p>
+          <p class="eyebrow mb-3">{t('testimonials.eyebrow')}</p>
           <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
-            Dönüşüm hikayeleri
+            {t('testimonials.heading')}
           </h2>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">

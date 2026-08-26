@@ -1,43 +1,22 @@
 ---
-const pillars = [
-  {
-    number: '01',
-    label: 'Gözlem',
-    description: 'Değerlendirme yapmadan gözlemlediğimizi somut biçimde ifade ederiz.',
-    color: 'var(--color-plum-500)',
-  },
-  {
-    number: '02',
-    label: 'Duygu',
-    description: 'Gözlemimizle ilişkili olarak ne hissettiğimizi fark ederiz.',
-    color: 'var(--color-plum-600)',
-  },
-  {
-    number: '03',
-    label: 'İhtiyaç',
-    description: 'Duygularımıza zemin olan ihtiyaçları, değerleri, arzuları ortaya koyarız.',
-    color: 'var(--color-orchid-500)',
-  },
-  {
-    number: '04',
-    label: 'Rica',
-    description: 'Hayatımızı zenginleştirecek eylemleri net biçimde dile getiririz.',
-    color: 'var(--color-plum-700)',
-  },
-];
+import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+import { pillars as pillarsByLang } from '../../i18n/home';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const pillars = pillarsByLang[lang];
 ---
 
 <section class="section-padding bg-[var(--color-surface)]">
   <div class="container-site">
     <!-- Section header -->
     <div class="mb-10 lg:mb-16 max-w-2xl">
-      <p class="eyebrow mb-3" data-reveal>Şiddetsiz İletişim</p>
+      <p class="eyebrow mb-3" data-reveal>{t('pillars.eyebrow')}</p>
       <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4" data-reveal data-reveal-delay="1">
-        Dört adımda daha derin bir bağ
+        {t('pillars.heading')}
       </h2>
       <p class="text-[var(--color-ink-muted)] text-base lg:text-lg leading-relaxed" data-reveal data-reveal-delay="2">
-        Marshall Rosenberg tarafından geliştirilen NVC modeli, empatiyi merkeze alır
-        ve iletişimi dönüştürür.
+        {t('pillars.intro')}
       </p>
     </div>
 

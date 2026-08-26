@@ -1,0 +1,67 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+import HeroSection from '../home/HeroSection.astro';
+import NVCPillars from '../home/NVCPillars.astro';
+import ServicesTeaser from '../home/ServicesTeaser.astro';
+import ProgramsTeaser from '../home/ProgramsTeaser.astro';
+import TestimonialsSection from '../home/TestimonialsSection.astro';
+import HomeCTA from '../home/HomeCTA.astro';
+import JsonLd from '../seo/JsonLd.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const origin = lang === 'en' ? 'https://www.goncafide.com/en' : 'https://www.goncafide.com';
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${origin}/#website`,
+      "name": "Gonca Fide",
+      "url": origin,
+      "inLanguage": lang,
+      "description": t('home.title')
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.goncafide.com/#gonca",
+      "name": "Gonca Fide",
+      "jobTitle": t('hero.eyebrow'),
+      "description": "ODTÜ Sosyoloji mezunu, 1500+ saat Şiddetsiz İletişim eğitimi deneyimi olan CNVC Sertifikalı Eğitmen",
+      "slogan": t('brand.slogan'),
+      "url": origin,
+      "email": "info@goncafide.com",
+      "knowsAbout": ["Şiddetsiz İletişim", "Empati Koçluğu", "Anlaşmazlık Dönüştürme", "Arabuluculuk", "NVC", "Marshall Rosenberg"],
+      "sameAs": ["https://www.instagram.com/goncolog"],
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Şiddetsiz İletişim Türkiye Derneği"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ankara",
+        "addressCountry": "TR"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "ODTÜ (Orta Doğu Teknik Üniversitesi)"
+      }
+    }
+  ]
+};
+---
+
+<PageLayout
+  title={t('home.title')}
+  description={t('home.metaDescription')}
+>
+  <JsonLd slot="jsonld" schema={websiteSchema} />
+  <HeroSection />
+  <NVCPillars />
+  <ServicesTeaser />
+  <ProgramsTeaser />
+  <TestimonialsSection />
+  <HomeCTA />
+</PageLayout>

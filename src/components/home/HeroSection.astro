@@ -1,5 +1,9 @@
 ---
 // Hero — editorial, calm, motion-on-scroll. Slogan treated as a signature.
+import { getLangFromUrl, useTranslations, section } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="relative overflow-hidden bg-[var(--color-canvas)] pt-14 pb-16 lg:pt-24 lg:pb-28">
@@ -12,41 +16,40 @@
       <div class="order-2 lg:order-1">
         <p class="flex items-center gap-3 mb-6" data-reveal>
           <span class="h-px w-8 bg-[var(--color-orchid-500)]" aria-hidden="true"></span>
-          <span class="eyebrow !text-[var(--color-orchid-500)] !mb-0">CNVC Sertifikalı Eğitmen</span>
+          <span class="eyebrow !text-[var(--color-orchid-500)] !mb-0">{t('hero.eyebrow')}</span>
         </p>
 
         <h1 class="font-display font-medium leading-[1.07] -tracking-[0.02em] text-[var(--color-ink)] mb-5"
             style="font-size: clamp(2.4rem, 5vw, 4.25rem);" data-reveal data-reveal-delay="1">
-          <em class="italic font-medium gradient-brand-text">Şiddetsiz</em><br />
-          İletişim Eğitmeni
+          <em class="italic font-medium gradient-brand-text">{t('hero.h1a')}</em><br />
+          {t('hero.h1b')}
         </h1>
 
         <!-- Slogan as signature -->
         <div class="flex items-center gap-4 mb-7" data-reveal data-reveal-delay="2">
           <span class="font-display text-2xl lg:text-[1.75rem] italic font-light text-[var(--color-orchid-500)] leading-none">
-            birbirine bağlar güçlendirir
+            {t('brand.slogan')}
           </span>
           <span class="flex-1 h-px bg-gradient-to-r from-[var(--color-orchid-400)]/50 to-transparent" aria-hidden="true"></span>
         </div>
 
         <p class="text-[var(--color-ink-muted)] text-lg lg:text-xl leading-relaxed mb-9 max-w-lg" data-reveal data-reveal-delay="3">
-          Kendimizle ve başkalarıyla daha derin bir bağ kurmak için NVC araçlarını öğrenin.
-          1500+ saat eğitim deneyimiyle online gruplar ve bireysel seanslar.
+          {t('hero.intro')}
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4" data-reveal data-reveal-delay="4">
           <a
-            href="/programlar"
+            href={section[lang].programs}
             class="group inline-flex items-center justify-center gap-2 py-4 px-7 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] transition-all min-h-[54px] active:scale-[0.98] shadow-[0_8px_24px_-8px_rgba(122,31,139,0.5)]"
           >
-            Programları Keşfet
+            {t('hero.ctaPrograms')}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a
-            href="/nvc-nedir"
+            href={lang === 'en' ? '/en/what-is-nvc' : '/nvc-nedir'}
             class="inline-flex items-center justify-center py-4 px-7 rounded-xl bg-transparent border border-[var(--color-ink)]/15 text-[var(--color-ink)] font-medium text-sm hover:border-[var(--color-plum-400)] hover:bg-[var(--color-plum-50)] transition-all min-h-[54px]"
           >
-            NVC Nedir?
+            {t('hero.ctaNvc')}
           </a>
         </div>
 
@@ -54,17 +57,17 @@
         <div class="mt-11 flex flex-wrap items-center gap-x-7 gap-y-4" data-reveal data-reveal-delay="5">
           <div class="flex flex-col">
             <span class="font-display text-[1.65rem] font-light text-[var(--color-plum-700)] leading-none">1.500+</span>
-            <span class="text-xs text-[var(--color-ink-muted)] mt-1.5">saat NVC eğitimi</span>
+            <span class="text-xs text-[var(--color-ink-muted)] mt-1.5">{t('hero.statHours')}</span>
           </div>
           <div class="w-px h-9 bg-[var(--color-border)] hidden sm:block" aria-hidden="true"></div>
           <div class="flex flex-col">
             <span class="font-display text-[1.65rem] font-light text-[var(--color-plum-700)] leading-none">CNVC</span>
-            <span class="text-xs text-[var(--color-ink-muted)] mt-1.5">Sertifikalı Eğitmen</span>
+            <span class="text-xs text-[var(--color-ink-muted)] mt-1.5">{t('hero.statTrainer')}</span>
           </div>
           <div class="w-px h-9 bg-[var(--color-border)] hidden sm:block" aria-hidden="true"></div>
           <div class="flex flex-col">
             <span class="font-display text-[1.65rem] font-light text-[var(--color-plum-700)] leading-none">2019+</span>
-            <span class="text-xs text-[var(--color-ink-muted)] mt-1.5">Dernek üyesi</span>
+            <span class="text-xs text-[var(--color-ink-muted)] mt-1.5">{t('hero.statMember')}</span>
           </div>
         </div>
       </div>
@@ -80,7 +83,7 @@
           <div class="relative w-72 h-[22rem] sm:w-80 sm:h-96 lg:w-[26rem] lg:h-[31rem] rounded-[2.25rem] overflow-hidden" style="box-shadow: var(--shadow-elevated);">
             <img
               src="/images/gonca-fide.jpg"
-              alt="Gonca Fide — CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni"
+              alt={t('hero.photoAlt')}
               width="416" height="603" loading="eager" fetchpriority="high"
               class="w-full h-full object-cover object-top"
             />
@@ -95,7 +98,7 @@
             </span>
             <div class="leading-tight">
               <p class="text-[11px] font-semibold text-[var(--color-plum-700)] uppercase tracking-widest">CNVC</p>
-              <p class="text-sm font-display font-light text-[var(--color-ink)]">2022’den beri</p>
+              <p class="text-sm font-display font-light text-[var(--color-ink)]">{t('hero.since')}</p>
             </div>
           </div>
         </div>

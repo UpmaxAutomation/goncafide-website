@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import { entriesFor, slugOf, getLangFromUrl, section } from '../../i18n/ui';
+import { entriesFor, slugOf, getLangFromUrl, section, useTranslations, levelLabel, formatLabel } from '../../i18n/ui';
 import Badge from '../ui/Badge.astro';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const allPrograms = entriesFor(await getCollection('programlar', ({ data }) => !data.draft), lang);
 const programBase = section[lang].programs;
 const featuredPrograms = allPrograms
@@ -22,16 +23,16 @@ const levelVariant = (level: string) => {
   <div class="container-site">
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 lg:mb-14" data-reveal>
       <div>
-        <p class="eyebrow text-[var(--color-plum-300)] mb-3">Programlar</p>
+        <p class="eyebrow text-[var(--color-plum-300)] mb-3">{t('teaser.eyebrow')}</p>
         <h2 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-white">
-          Sizi bekleyen<br />dönüşüm yolculukları
+          {t('teaser.heading1')}<br />{t('teaser.heading2')}
         </h2>
       </div>
       <a
-        href="/programlar"
+        href={programBase}
         class="inline-flex items-center gap-2 text-[var(--color-plum-200)] hover:text-white text-sm font-medium transition-colors group flex-shrink-0"
       >
-        Tüm programlar
+        {t('prog.all')}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
           class="transition-transform group-hover:translate-x-1">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,8 +58,8 @@ const levelVariant = (level: string) => {
             </div>
           )}
           <div class="flex items-center gap-2 mb-4 flex-wrap">
-            <Badge variant="dark">{program.data.level}</Badge>
-            <Badge variant="dark">{program.data.format}</Badge>
+            <Badge variant="dark">{levelLabel(program.data.level, lang)}</Badge>
+            <Badge variant="dark">{formatLabel(program.data.format, lang)}</Badge>
             {program.data.totalHours && (
               <span class="text-xs text-[var(--color-plum-300)]">{program.data.totalHours} saat</span>
             )}
