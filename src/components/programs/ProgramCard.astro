@@ -1,6 +1,6 @@
 ---
 import Badge from '../ui/Badge.astro';
-import { getLangFromUrl, section } from '../../i18n/ui';
+import { getLangFromUrl, section, useTranslations, levelLabel, formatLabel } from '../../i18n/ui';
 
 interface Props {
   title: string;
@@ -25,6 +25,9 @@ const {
   enrollmentOpen = true,
   image,
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <article
@@ -45,9 +48,9 @@ const {
     )}
     <!-- Meta badges -->
     <div class="flex items-center gap-2 flex-wrap mb-4">
-      <Badge variant="plum">{level}</Badge>
-      <Badge variant="neutral">{format}</Badge>
-      {!enrollmentOpen && <Badge variant="orchid">Kayıt Kapalı</Badge>}
+      <Badge variant="plum">{levelLabel(level, lang)}</Badge>
+      <Badge variant="neutral">{formatLabel(format, lang)}</Badge>
+      {!enrollmentOpen && <Badge variant="orchid">{t('prog.closed')}</Badge>}
     </div>
 
     <!-- Title -->
@@ -84,10 +87,10 @@ const {
 
     <!-- CTA -->
     <a
-      href={`${section[getLangFromUrl(Astro.url)].programs}/${slug}`}
+      href={`${section[lang].programs}/${slug}`}
       class="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-[var(--color-plum-50)] text-[var(--color-plum-800)] font-medium text-sm hover:bg-[var(--color-plum-100)] transition-colors min-h-[48px] group/btn"
     >
-      Detayları incele
+      {t('prog.detailsFull')}
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"
         class="transition-transform group-hover/btn:translate-x-1">
         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

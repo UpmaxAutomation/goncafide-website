@@ -30,9 +30,9 @@ const aboutHref = lang === 'en' ? '/en/about' : '/hakkimda';
         <!-- Breadcrumb -->
         <nav class="mb-6 text-sm" aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-[var(--color-ink-muted)]">
-            <li><a href="/" class="hover:text-[var(--color-ink)] transition-colors">Ana Sayfa</a></li>
+            <li><a href={lang === 'en' ? '/en/' : '/'} class="hover:text-[var(--color-ink)] transition-colors">{t('nav.home')}</a></li>
             <li aria-hidden="true">›</li>
-            <li><a href="/blog" class="hover:text-[var(--color-ink)] transition-colors">Blog</a></li>
+            <li><a href={section[lang].blog} class="hover:text-[var(--color-ink)] transition-colors">{t('blog.title')}</a></li>
             <li aria-hidden="true">›</li>
             <li class="text-[var(--color-ink)] font-medium truncate max-w-[200px]">{title}</li>
           </ol>

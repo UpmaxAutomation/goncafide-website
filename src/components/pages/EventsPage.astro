@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { entriesFor, getLangFromUrl, useTranslations, section } from '../../i18n/ui';
+import { entriesFor, getLangFromUrl, useTranslations, section, formatLabel } from '../../i18n/ui';
 import PageLayout from '../../layouts/PageLayout.astro';
 import YouTubeEmbed from '../ui/YouTubeEmbed.astro';
 
@@ -118,7 +118,7 @@ const eventsSchema = dated.length > 0
                     ) : (
                       <p class="font-display text-lg text-[var(--color-plum-700)]">{e.data.dateLabel}</p>
                     )}
-                    <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-plum-50)] text-[var(--color-plum-700)] border border-[var(--color-plum-200)]">{e.data.format}</span>
+                    <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--color-plum-50)] text-[var(--color-plum-700)] border border-[var(--color-plum-200)]">{formatLabel(e.data.format, lang)}</span>
                     {e.data.location && (
                       <p class="text-xs text-[var(--color-ink-muted)] mt-1.5">{e.data.location}</p>
                     )}

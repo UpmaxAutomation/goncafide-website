@@ -22,20 +22,38 @@ const seminerler = entriesFor(await getCollection('seminerler', ({ data }) => !d
   .sort((a, b) => a.data.order - b.data.order);
 
 // Section headers per level (group program sections)
-const levelBlurb: Record<string, string> = {
-  'Başlangıç': 'Şiddetsiz İletişim’e ilk adım — temel kavramlar ve dört adım.',
-  'Orta': 'Giriş sonrası beceriyi derinleştiren programlar.',
-  'Orta-İleri': 'NVC’nin kapsam ve derinliğini anlamaya yarayan kavramlarla kişileri ileri seviyeye taşıyan derinleşme programı.',
-  'İleri': 'Anlaşmazlık dönüştürme ve günlük hayata entegre etme.',
-  'Tüm Seviyeler': 'Her seviyeden katılımcıya açık çalışmalar.',
+const LEVEL_BLURB: Record<string, Record<string, string>> = {
+  tr: {
+    'Başlangıç': 'Şiddetsiz İletişim’e ilk adım — temel kavramlar ve dört adım.',
+    'Orta': 'Giriş sonrası beceriyi derinleştiren programlar.',
+    'Orta-İleri': 'NVC’nin kapsam ve derinliğini anlamaya yarayan kavramlarla kişileri ileri seviyeye taşıyan derinleşme programı.',
+    'İleri': 'Anlaşmazlık dönüştürme ve günlük hayata entegre etme.',
+    'Tüm Seviyeler': 'Her seviyeden katılımcıya açık çalışmalar.',
+  },
+  en: {
+    'Başlangıç': 'The first step into Nonviolent Communication — the core concepts and the four steps.',
+    'Orta': 'Programmes that deepen the skills after the introduction.',
+    'Orta-İleri': 'A deepening programme that carries you to an advanced level, through the concepts that reveal the reach and depth of NVC.',
+    'İleri': 'Transforming disagreement, and integrating NVC into daily life.',
+    'Tüm Seviyeler': 'Open to participants at every level.',
+  },
 };
 
-// 3-card level overview at the top (Gonca's 2026-07-13 wording)
-const overviewBlurb: Record<string, string> = {
-  'Başlangıç': 'Şiddetsiz İletişim’e ilk adım — temel kavramlar ve dört adım.',
-  'Orta': 'Giriş sonrası beceriyi derinleştiren programlar. Örn: Anahtar Ayrımlar',
-  'İleri': 'Farkındalık geliştirme ve NVC’yi günlük hayatta uygulama pratikleri edinme. Anlaşmazlık Dönüştürme ve tematik programlar.',
+const OVERVIEW_BLURB: Record<string, Record<string, string>> = {
+  tr: {
+    'Başlangıç': 'Şiddetsiz İletişim’e ilk adım — temel kavramlar ve dört adım.',
+    'Orta': 'Giriş sonrası beceriyi derinleştiren programlar. Örn: Anahtar Ayrımlar',
+    'İleri': 'Farkındalık geliştirme ve NVC’yi günlük hayatta uygulama pratikleri edinme. Anlaşmazlık Dönüştürme ve tematik programlar.',
+  },
+  en: {
+    'Başlangıç': 'The first step into Nonviolent Communication — the core concepts and the four steps.',
+    'Orta': 'Programmes that deepen the skills after the introduction. For example: Key Differentiations.',
+    'İleri': 'Growing awareness and building the practice of applying NVC day to day. Conflict Transformation and the thematic programmes.',
+  },
 };
+
+const levelBlurb = LEVEL_BLURB[lang];
+const overviewBlurb = OVERVIEW_BLURB[lang];
 ---
 
 <PageLayout
@@ -81,7 +99,7 @@ const overviewBlurb: Record<string, string> = {
     <section class="section-padding bg-[var(--color-canvas)] !pb-0 last:!pb-[var(--spacing-section)]">
       <div class="container-site">
         <div class="mb-8">
-          <p class="eyebrow mb-3">{group.level} Seviye</p>
+          <p class="eyebrow mb-3">{levelLabel(group.level, lang)} {t('programs.levelSuffix')}</p>
           <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
             {levelBlurb[group.level]}
           </h2>
@@ -127,8 +145,8 @@ const overviewBlurb: Record<string, string> = {
               </div>
               <h3 class="font-display text-xl font-light -tracking-[0.02em] text-[var(--color-ink)] mb-2.5 leading-snug">{s.data.title}</h3>
               <p class="text-[var(--color-ink-muted)] text-sm leading-relaxed flex-1">{s.data.description}</p>
-              <a href="/iletisim" class="mt-5 inline-flex items-center gap-1.5 text-[var(--color-orchid-500)] hover:text-[var(--color-orchid-600)] text-sm font-medium transition-colors">
-                Bilgi al
+              <a href={lang === 'en' ? '/en/contact' : '/iletisim'} class="mt-5 inline-flex items-center gap-1.5 text-[var(--color-orchid-500)] hover:text-[var(--color-orchid-600)] text-sm font-medium transition-colors">
+                {t('events.info')}
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -143,7 +161,7 @@ const overviewBlurb: Record<string, string> = {
     <section class="section-padding bg-[var(--color-canvas)]">
       <div class="container-site">
         <div class="mb-8">
-          <p class="eyebrow mb-3">Bireysel Seanslar</p>
+          <p class="eyebrow mb-3">{t('programs.individual')}</p>
           <h2 class="font-display text-2xl lg:text-3xl font-light -tracking-[0.03em] text-[var(--color-ink)]">
             Sizinle bire bir
           </h2>

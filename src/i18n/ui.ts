@@ -188,6 +188,7 @@ export const ui = {
     'community.activities': 'Neler yapıyoruz?',
     'community.apply': 'Başvuru',
     'community.applyForm': 'Programı bitirenler için başvuru formu',
+    'community.applyNote': 'Bu topluluk, ilgili programı bitirenlere açıktır. Programı tamamladıysanız aşağıdaki formla başvurun; sizinle iletişime geçelim.',
     'community.join': 'Topluluğa katılın',
     'community.related': 'İlgili program:',
     'community.breadcrumbHome': 'Ana Sayfa',
@@ -206,6 +207,7 @@ export const ui = {
     'programs.pathLabel': 'Önerilen yolculuk:',
     'programs.path': 'Anda Kal Canda Kal → Anahtar Ayrımlar → Anlaşmazlık Dönüştürme → Belirli Konularda Güçlenme',
     'programs.levelSuffix': 'Seviye',
+    'programs.individual': 'Bireysel Seanslar',
     'programs.seminarsEyebrow': 'Belirli Konularda Güçlenme',
     'programs.seminarsHeading': 'Tek oturumluk tematik güçlenme atölyeleri',
     'programs.seminarsIntro': 'Kıyas, küsmek ve mizah gibi belirli bir temayı NVC merceğiyle ele alan, tek seanslık buluşmalar.',
@@ -215,6 +217,18 @@ export const ui = {
     'programs.ctaHeading': 'Hangi program size uygun?',
     'programs.ctaIntro': 'Bir programı seçmekte zorlanıyorsanız, birlikte konuşabiliriz.',
 
+    'prog.totalTime': 'Toplam Süre',
+    'prog.meetings': 'Buluşma',
+    'prog.sessionLength': 'Seans Süresi',
+    'prog.details': 'Detayları gör',
+    'prog.detailsFull': 'Detayları incele',
+    'services.all': 'Tümünü gör',
+    'community.externalNote': 'Bu topluluk ileride şu adres üzerinden de yürütülebilir:',
+    'pillars.more': 'Şiddetsiz İletişim hakkında daha fazla öğren',
+    'community.explore': 'Topluluğu keşfet',
+    'seo.description': 'Gonca Fide — CNVC Sertifikalı Şiddetsiz İletişim (NVC) Eğitmeni. Online NVC kursları, empati koçluğu ve anlaşmazlık dönüştürme seansları.',
+    'footer.bio': 'CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni. NVC kursları, empati koçluğu ve anlaşmazlık dönüştürme.',
+
     'prog.video': 'Tanıtım Videosu',
     'prog.enroll': 'Kayıt',
     'prog.enrollCta': 'Kayıt İçin İletişime Geç',
@@ -223,6 +237,8 @@ export const ui = {
     'prog.duration': 'Süre',
     'prog.hours': 'saat',
     'prog.all': 'Tüm programlar',
+    'prog.closed': 'Kayıt Kapalı',
+    'nav.home': 'Ana Sayfa',
     'prog.metaSuffix': 'seviye',
 
     'cjoin.aria': 'katılım formu',
@@ -361,6 +377,7 @@ export const ui = {
     'community.activities': 'What do we do?',
     'community.apply': 'Apply',
     'community.applyForm': 'Application form for those who completed the programme',
+    'community.applyNote': 'This community is open to those who have completed its programme. If you have, apply with the form below and I will be in touch.',
     'community.join': 'Join the community',
     'community.related': 'Related programme:',
     'community.breadcrumbHome': 'Home',
@@ -379,6 +396,7 @@ export const ui = {
     'programs.pathLabel': 'Suggested path:',
     'programs.path': 'Anda Kal Canda Kal → Key Differentiations → Conflict Transformation → Thematic deepening',
     'programs.levelSuffix': 'level',
+    'programs.individual': 'One-to-one sessions',
     'programs.seminarsEyebrow': 'Going deeper on a theme',
     'programs.seminarsHeading': 'Single-session thematic workshops',
     'programs.seminarsIntro': 'Single meetings that take up one theme — comparison, withdrawing into silence, humour — through the lens of NVC.',
@@ -388,6 +406,18 @@ export const ui = {
     'programs.ctaHeading': 'Which programme is right for you?',
     'programs.ctaIntro': 'If choosing between them feels hard, we can talk it through together.',
 
+    'prog.totalTime': 'Total length',
+    'prog.meetings': 'Meetings',
+    'prog.sessionLength': 'Session length',
+    'prog.details': 'See details',
+    'prog.detailsFull': 'See the details',
+    'services.all': 'See all',
+    'community.externalNote': 'In future this community may also run at:',
+    'pillars.more': 'Learn more about Nonviolent Communication',
+    'community.explore': 'Explore the community',
+    'seo.description': 'Gonca Fide — CNVC Certified Nonviolent Communication (NVC) Trainer. Online NVC courses, empathic coaching and conflict transformation sessions.',
+    'footer.bio': 'CNVC Certified Nonviolent Communication Trainer. NVC courses, empathic coaching and conflict transformation.',
+
     'prog.video': 'Introduction',
     'prog.enroll': 'Register',
     'prog.enrollCta': 'Get in touch to register',
@@ -396,6 +426,8 @@ export const ui = {
     'prog.duration': 'Length',
     'prog.hours': 'hours',
     'prog.all': 'All programmes',
+    'prog.closed': 'Registration closed',
+    'nav.home': 'Home',
     'prog.metaSuffix': 'level',
 
     'cjoin.aria': 'join form',
@@ -501,10 +533,25 @@ function normalise(path: string): string {
  */
 export function getAlternate(pathname: string, to: Lang): string | null {
   const here = normalise(pathname);
+
   for (const [tr, en] of pagePairs) {
     if (normalise(tr) === here) return to === 'en' ? en : tr;
     if (normalise(en) === here) return to === 'en' ? en : tr;
   }
+
+  // Detail pages — a programme, a post, a community. The slug is shared across
+  // languages, so only the section root is swapped. Without this a reader on an
+  // English programme page would be sent to the Turkish home page instead of the
+  // same programme.
+  for (const key of ['programs', 'community', 'blog', 'events'] as const) {
+    const trRoot = normalise(section.tr[key]);
+    const enRoot = normalise(section.en[key]);
+    const root = here.startsWith(`${trRoot}/`) ? trRoot : here.startsWith(`${enRoot}/`) ? enRoot : null;
+    if (!root) continue;
+    const slug = here.slice(root.length);
+    return (to === 'en' ? enRoot : trRoot) + slug;
+  }
+
   return null;
 }
 

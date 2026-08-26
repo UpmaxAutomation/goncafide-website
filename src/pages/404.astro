@@ -16,8 +16,11 @@ import PageLayout from '../layouts/PageLayout.astro';
       <h1 class="font-display text-3xl lg:text-4xl font-light -tracking-[0.03em] text-[var(--color-ink)] mb-4">
         Sayfa Bulunamadı
       </h1>
-      <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-10">
+      <p class="text-[var(--color-ink-muted)] text-lg leading-relaxed mb-2">
         Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir.
+      </p>
+      <p class="text-[var(--color-ink-muted)] text-base leading-relaxed mb-10" lang="en">
+        The page you were looking for may have moved, been removed, or never existed.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -25,13 +28,20 @@ import PageLayout from '../layouts/PageLayout.astro';
           href="/"
           class="inline-flex items-center justify-center py-3.5 px-6 rounded-xl bg-[var(--color-plum-800)] text-white font-semibold text-sm hover:bg-[var(--color-plum-700)] transition-colors min-h-[48px]"
         >
-          Ana Sayfaya Dön
+          Ana Sayfa
+        </a>
+        <a
+          href="/en/"
+          lang="en"
+          class="inline-flex items-center justify-center py-3.5 px-6 rounded-xl bg-[var(--color-plum-800)] text-white font-semibold text-sm hover:bg-[var(--color-plum-700)] transition-colors min-h-[48px]"
+        >
+          Home
         </a>
         <a
           href="/programlar"
           class="inline-flex items-center justify-center py-3.5 px-6 rounded-xl border border-[var(--color-ink)]/20 text-[var(--color-ink)] font-medium text-sm hover:bg-[var(--color-surface)] transition-colors min-h-[48px]"
         >
-          Programları Keşfet
+          Programlar / Programmes
         </a>
       </div>
     </div>

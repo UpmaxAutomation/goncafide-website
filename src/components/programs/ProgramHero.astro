@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, useTranslations, section, levelLabel, formatLabel } from '../../i18n/ui';
 import Badge from '../ui/Badge.astro';
 
 interface Props {
@@ -15,6 +16,10 @@ interface Props {
 }
 
 const { title, subtitle, level, format, totalHours, sessionCount, sessionDuration, enrollmentOpen, slug, image } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const contactHref = lang === 'en' ? '/en/contact' : '/iletisim';
 ---
 
 <section class="bg-[var(--color-surface)] pt-10 pb-12 lg:pt-16 lg:pb-20 border-b border-[var(--color-border)]">
@@ -22,9 +27,9 @@ const { title, subtitle, level, format, totalHours, sessionCount, sessionDuratio
     <!-- Breadcrumb -->
     <nav class="mb-6 text-sm" aria-label="Breadcrumb">
       <ol class="flex items-center gap-2 text-[var(--color-ink-muted)]">
-        <li><a href="/" class="hover:text-[var(--color-ink)] transition-colors">Ana Sayfa</a></li>
+        <li><a href={lang === 'en' ? '/en/' : '/'} class="hover:text-[var(--color-ink)] transition-colors">{t('nav.home')}</a></li>
         <li aria-hidden="true">›</li>
-        <li><a href="/programlar" class="hover:text-[var(--color-ink)] transition-colors">Programlar</a></li>
+        <li><a href={section[lang].programs} class="hover:text-[var(--color-ink)] transition-colors">{t('teaser.eyebrow')}</a></li>
         <li aria-hidden="true">›</li>
         <li class="text-[var(--color-ink)] font-medium">{title}</li>
       </ol>
@@ -43,9 +48,9 @@ const { title, subtitle, level, format, totalHours, sessionCount, sessionDuratio
           />
         )}
         <div class="flex items-center gap-2 flex-wrap mb-4">
-          <Badge variant="iris">{level}</Badge>
-          <Badge variant="neutral">{format}</Badge>
-          {!enrollmentOpen && <Badge variant="orchid">Kayıt Kapalı</Badge>}
+          <Badge variant="iris">{levelLabel(level, lang)}</Badge>
+          <Badge variant="neutral">{formatLabel(format, lang)}</Badge>
+          {!enrollmentOpen && <Badge variant="orchid">{t('prog.closed')}</Badge>}
         </div>
 
         <h1 class="font-display text-4xl lg:text-5xl xl:text-6xl font-light -tracking-[0.04em] text-[var(--color-ink)] leading-[1.05] mb-4">
@@ -69,37 +74,37 @@ const { title, subtitle, level, format, totalHours, sessionCount, sessionDuratio
           <dl class="grid grid-cols-2 gap-4 mb-6">
             {totalHours && (
               <div>
-                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Toplam Süre</dt>
-                <dd class="font-display text-2xl font-light text-[var(--color-ink)]">{totalHours} <span class="text-base">saat</span></dd>
+                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">{t('prog.totalTime')}</dt>
+                <dd class="font-display text-2xl font-light text-[var(--color-ink)]">{totalHours} <span class="text-base">{t('prog.hours')}</span></dd>
               </div>
             )}
             {sessionCount && (
               <div>
-                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Buluşma</dt>
+                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">{t('prog.meetings')}</dt>
                 <dd class="font-display text-2xl font-light text-[var(--color-ink)]">{sessionCount}+</dd>
               </div>
             )}
             {sessionDuration && (
               <div class="col-span-2">
-                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Seans Süresi</dt>
+                <dt class="text-xs text-[var(--color-ink-muted)] mb-1">{t('prog.sessionLength')}</dt>
                 <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{sessionDuration}</dd>
               </div>
             )}
             <div>
-              <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Format</dt>
-              <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{format}</dd>
+              <dt class="text-xs text-[var(--color-ink-muted)] mb-1">{t('prog.format')}</dt>
+              <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{formatLabel(format, lang)}</dd>
             </div>
             <div>
               <dt class="text-xs text-[var(--color-ink-muted)] mb-1">Seviye</dt>
-              <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{level}</dd>
+              <dd class="font-body text-sm font-medium text-[var(--color-ink)]">{levelLabel(level, lang)}</dd>
             </div>
           </dl>
 
           <a
-            href={`/iletisim?program=${slug}`}
+            href={`${contactHref}?program=${slug}`}
             class="flex items-center justify-center w-full py-4 px-5 rounded-xl bg-[var(--color-orchid-500)] text-white font-semibold text-sm tracking-wide hover:bg-[var(--color-orchid-600)] transition-colors min-h-[52px]"
           >
-            Kayıt İçin İletişime Geç
+            {t('prog.enrollCta')}
           </a>
         </div>
       </div>

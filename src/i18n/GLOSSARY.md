@@ -16,6 +16,15 @@ Aşağıdaki üç başlık Gonca'nın tercihine bağlı — işaretlediklerim ö
 | Anahtar Ayrımlar | Key Differentiations | Liv Larsson'ın kitabındaki terim. Program adı olarak İngilizcede de çevrilsin mi, yoksa Türkçe mi kalsın? |
 | Acemi Zürafa | Novice Giraffe | "Baby Giraffe" de yaygın. Topluluk adı olduğu için Gonca'nın tercihi belirleyici. |
 | Yaşamdaşlık Kültürü | Culture of Living Together | Türker Kılıç'ın kavramı; yerleşik bir İngilizce karşılığı varsa o kullanılmalı. |
+| birbirine bağlar güçlendirir | connects and strengthens | Marka sloganı. İngilizce sayfalarda çevrilsin mi, yoksa Türkçe aslı mı kalsın? |
+| Anda Kal Canda Kal | (çevrilmedi) | Şiddetsiz İletişim'e giriş programının adı. Şiirsel bir söz oyunu olduğu için İngilizcede de Türkçe bıraktım; istenirse açıklayıcı bir alt başlık eklenebilir. |
+
+## Sitede nerede kullanılıyor
+
+Bu sözlükteki karşılıklar `/en/` sayfalarının tamamında geçerli. Bir terimi
+değiştirmek isterseniz burada değiştirin, sonra İngilizce içerikte aratıp
+güncelleyin — arayüz yazıları `src/i18n/ui.ts` içinde, içerik ise her
+koleksiyonun `en/` klasöründe.
 
 ## Dört bileşen
 
