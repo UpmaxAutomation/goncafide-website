@@ -79,6 +79,8 @@ const etkinlikler = defineCollection({
       enrollmentOpen: z.boolean().default(true),
       description: z.string().optional(),
       coverImage: z.object({ src: z.string(), alt: z.string() }).optional(),
+      youtubeId: z.string().optional(),
+      youtubeStart: z.number().optional(),
       draft: z.boolean().default(false),
     })
     .refine((d) => d.startDate || d.dateLabel, {
