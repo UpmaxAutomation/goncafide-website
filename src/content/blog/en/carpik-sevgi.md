@@ -92,4 +92,4 @@ The answer will not always be clear. But asking the question is a transformation
 
 ---
 
-*If you would like to learn Nonviolent Communication in depth, have a look at the [Anda Kal Canda Kal introductory programme](/en/programs/anda-kal-canda-kal). For any questions, use the [contact form](/en/contact).*
+*If you would like to learn Nonviolent Communication in depth, have a look at the [Attunement into Now introductory programme](/en/programs/anda-kal-canda-kal). For any questions, use the [contact form](/en/contact).*

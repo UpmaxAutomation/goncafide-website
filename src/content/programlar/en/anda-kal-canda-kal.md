@@ -1,5 +1,5 @@
 ---
-title: "Anda Kal Canda Kal"
+title: "Attunement into Now"
 subtitle: "Introduction to Nonviolent Communication and Core Skills"
 description: "A thorough introduction for anyone learning NVC from the ground up: the four steps, what blocks compassion, empathy and honest expression, ways of saying 'no' and 'yes', and more. 36 hours, online or in person."
 level: "Başlangıç"
@@ -11,13 +11,13 @@ featured: true
 order: 1
 coverImage:
   src: "/images/programlar/anda-kal-canda-kal.jpg"
-  alt: "Anda Kal Canda Kal workshop — heart emblem"
+  alt: "Attunement into Now workshop — heart emblem"
 draft: false
 ---
 
 ## About the programme
 
-*Anda Kal Canda Kal* is an introductory programme for anyone taking their first step into Nonviolent Communication. The Turkish name holds two invitations at the heart of NVC: stay in the present moment (*anda kal*) and stay connected to life (*canda kal*).
+*Attunement into Now* — *Anda Kal Canda Kal* in Turkish — is an introductory programme for anyone taking their first step into Nonviolent Communication. The Turkish name holds two invitations at the heart of NVC: stay in the present moment (*anda kal*) and stay connected to life (*canda kal*).
 
 Across 36 hours you learn the core skills of Nonviolent Communication through both theory and a great deal of practice, in a supportive group. The programme runs online or in person.
 

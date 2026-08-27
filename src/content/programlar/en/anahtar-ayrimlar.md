@@ -23,7 +23,7 @@ The Key Differentiations Programme is a six-month journey for those who want to 
 
 Fifty-four key differentiations — the nuances at the heart of NVC, the concepts most often confused, and the perspectives that shift things — are worked through systematically. Each meeting takes two or three differentiations, weaving concepts together with live practice.
 
-**"Acemi Zürafa"** (the Novice Giraffe), the practice strand of the programme, helps us internalise where these differentiations meet us in daily life, and makes speaking Nonviolent Communication more fluent.
+**The Clumsy Giraffe** (*Acemi Zürafa*), the practice strand of the programme, helps us internalise where these differentiations meet us in daily life, and makes speaking Nonviolent Communication more fluent.
 
 ## Who is it for?
 

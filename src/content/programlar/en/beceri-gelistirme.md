@@ -1,5 +1,5 @@
 ---
-title: "Anda Kal Canda Kal — Skills Practice"
+title: "Attunement into Now — Skills Practice"
 subtitle: "The practice programme after the introduction"
 description: "A skills practice programme for those who have completed an introductory NVC training. Application deepened through real-life situations."
 level: "Orta"
@@ -16,11 +16,11 @@ draft: true
 
 Built to bridge the gap between learning NVC and *living* it, this programme is for participants who have completed an introductory training. It concentrates on the practice of turning conceptual knowledge into something that works in the real situations of daily life.
 
-It follows naturally from the *Anda Kal Canda Kal* introductory programme, though those who took their introduction with another trainer or programme are equally welcome.
+It follows naturally from the *Attunement into Now* introductory programme, though those who took their introduction with another trainer or programme are equally welcome.
 
 ## Who is it for?
 
-- Those who have completed *Anda Kal Canda Kal*
+- Those who have completed *Attunement into Now*
 - Those who have taken another introductory NVC training
 - Those familiar with NVC concepts who find them hard to apply
 

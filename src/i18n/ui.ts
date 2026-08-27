@@ -88,7 +88,7 @@ export const programLinks: Record<Lang, ReadonlyArray<{ slug: string; label: str
     { slug: 'mentorluk-programi', label: 'Mentörlük' },
   ],
   en: [
-    { slug: 'anda-kal-canda-kal', label: 'Anda Kal Canda Kal' },
+    { slug: 'anda-kal-canda-kal', label: 'Attunement into Now' },
     { slug: 'anahtar-ayrimlar', label: 'Key Differentiations' },
     { slug: 'anlasmazlik-donusturme', label: 'Conflict Transformation' },
     { slug: 'empatik-kocluk', label: 'Empathic Coaching' },
@@ -297,8 +297,8 @@ export const ui = {
     'lang.switch': "Türkçe'ye geç",
     'lang.label': 'Language',
     'nav.menu': 'Navigation menu',
-    // Brand line. Gonca's call whether English keeps the Turkish original.
-    'brand.slogan': 'connects and strengthens',
+    // Brand line, Gonca's own English rendering.
+    'brand.slogan': 'Interdependence empowers',
 
     'events.title': 'Events',
     'events.metaDescription':
@@ -394,7 +394,7 @@ export const ui = {
     'programs.heading2': 'NVC journey',
     'programs.intro': 'There is a space for every level and every need: group programmes from beginner to advanced, single-session thematic seminars, and one-to-one work.',
     'programs.pathLabel': 'Suggested path:',
-    'programs.path': 'Anda Kal Canda Kal → Key Differentiations → Conflict Transformation → Thematic deepening',
+    'programs.path': 'Attunement into Now → Key Differentiations → Conflict Transformation → Thematic deepening',
     'programs.levelSuffix': 'level',
     'programs.individual': 'One-to-one sessions',
     'programs.seminarsEyebrow': 'Going deeper on a theme',

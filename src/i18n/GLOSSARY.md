@@ -7,17 +7,27 @@ Terimler, Gonca'nın Anahtar Ayrımlar müfredatından (AA · EA · ZC · GUC se
 Şiddetsiz İletişim terminolojisi Marshall Rosenberg'in İngilizcesinde doğduğu için buradaki
 karşılıkların çoğu **yeni çeviri değil, aslın geri konması**.
 
-## Onay bekleyen kararlar
+## Gonca'nın onayladığı adlar
 
-Aşağıdaki üç başlık Gonca'nın tercihine bağlı — işaretlediklerim öneri:
+Bunlar Gonca tarafından belirlendi ve sitede aynen kullanılıyor:
 
-| Türkçe | Önerim | Neden sorulu |
-|---|---|---|
-| Anahtar Ayrımlar | Key Differentiations | Liv Larsson'ın kitabındaki terim. Program adı olarak İngilizcede de çevrilsin mi, yoksa Türkçe mi kalsın? |
-| Acemi Zürafa | Novice Giraffe | "Baby Giraffe" de yaygın. Topluluk adı olduğu için Gonca'nın tercihi belirleyici. |
-| Yaşamdaşlık Kültürü | Culture of Living Together | Türker Kılıç'ın kavramı; yerleşik bir İngilizce karşılığı varsa o kullanılmalı. |
-| birbirine bağlar güçlendirir | connects and strengthens | Marka sloganı. İngilizce sayfalarda çevrilsin mi, yoksa Türkçe aslı mı kalsın? |
-| Anda Kal Canda Kal | (çevrilmedi) | Şiddetsiz İletişim'e giriş programının adı. Şiirsel bir söz oyunu olduğu için İngilizcede de Türkçe bıraktım; istenirse açıklayıcı bir alt başlık eklenebilir. |
+| Türkçe | İngilizce |
+|---|---|
+| Anahtar Ayrımlar | **Key Differentiations** |
+| Acemi Zürafa | **Clumsy Giraffe** |
+| birbirine bağlar güçlendirir | **Interdependence empowers** |
+| Anda Kal Canda Kal | **Attunement into Now** |
+
+Not — yazım düzeltmesi: Gonca'nın notunda bu üç kelime sırasıyla "Clumsey",
+"Interdependance" ve "Atunement" olarak yazılmıştı. Üçü de İngilizcede yerleşik
+kelimelerin yaygın yazım hatası (doğrusu **clumsy**, **interdependence**,
+**attunement**), bu yüzden doğru hâlleriyle kullandım — İngilizce okuyan bir
+ziyaretçi için sayfada yazım hatası durmasın diye. Kasıtlı bir stil tercihiyse
+hepsi tek satırda geri alınır.
+
+Ayrıca "interdependence", bu sözlükte zaten *karşılıklı bağımlılık* teriminin
+karşılığı olarak geçiyor — yani slogan, Şiddetsiz İletişim'in kendi kelime
+dağarcığıyla uyumlu.
 
 ## Sitede nerede kullanılıyor
 

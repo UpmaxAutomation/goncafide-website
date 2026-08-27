@@ -66,10 +66,10 @@ const tr: Community[] = [
 const en: Community[] = [
   {
     slug: 'acemi-zurafa',
-    name: 'Acemi Zürafa — the Novice Giraffe Community',
+    name: 'Clumsy Giraffe Community',
     tagline: 'A space for those working through Nonviolent Communication and the Key Differentiations together',
     intro:
-      'Acemi Zürafa is a community where we notice together where the Key Differentiations meet us in life, and where we practise regularly in order to speak NVC more fluently. In NVC the giraffe is the symbol of the language of empathy; "acemi" — novice — speaks to being open to learning, trying and growing together.',
+      'The Clumsy Giraffe (Acemi Zürafa) is a community where we notice together where the Key Differentiations meet us in life, and where we practise regularly in order to speak NVC more fluently. In NVC the giraffe is the symbol of the language of empathy; being clumsy speaks to staying open to learning, trying and growing together.',
     forWhom: [
       'Those who have completed the Key Differentiations Programme',
       'Those who want to keep learning through practice',
