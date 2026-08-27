@@ -20,13 +20,17 @@
 const SITE_URL = "https://www.goncafide.com";
 
 /**
- * Where form submissions are emailed. This is the site's public contact address
- * (footer, contact page, structured data), so keep the two in step.
+ * Where form submissions are emailed — the inbox Gonca actually reads.
  *
- * Only the Resend path reads this. Web3Forms binds the destination to the access
- * key itself, so that inbox is chosen on web3forms.com, not here.
+ * Deliberately not the site's public address (info@goncafide.com), which stays
+ * in the footer and on the contact page for people who prefer to write directly.
+ * Submissions from all three forms — contact, community join, newsletter — reach
+ * this address, since they all post to this one endpoint.
+ *
+ * Read by the FormSubmit and Resend paths. Web3Forms binds the destination to
+ * the access key itself, so that inbox would be chosen on web3forms.com.
  */
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "info@goncafide.com";
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "goncaf@gmail.com";
 
 // ---------------------------------------------------------------------------
 // Helpers
