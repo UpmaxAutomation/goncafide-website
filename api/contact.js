@@ -6,7 +6,7 @@
  * never crashes if they are absent.
  *
  * Env vars (set in Vercel → Project → Settings → Environment Variables):
- *   FORMSUBMIT_TARGET    — inbox for the FormSubmit path; defaults to NOTIFY_EMAIL
+ *   FORMSUBMIT_TARGET    — overrides the FormSubmit identifier (rarely needed)
  *   WEB3FORMS_ACCESS_KEY — Web3Forms access key; alternative to FormSubmit
  *   GHL_CONTACT_WEBHOOK  — GoHighLevel webhook URL for lead capture
  *   RESEND_API_KEY       — Resend.com API key for email notifications
@@ -18,6 +18,16 @@
 
 /** Public origin of the site; sent to FormSubmit, which requires it. */
 const SITE_URL = "https://www.goncafide.com";
+
+/**
+ * FormSubmit's identifier for the destination inbox, standing in for the naked
+ * address. FormSubmit issues it for exactly this purpose — it is meant to sit in
+ * public form markup — so the email itself never travels in a request or appears
+ * in this repository.
+ *
+ * Bound to NOTIFY_EMAIL below; changing the recipient means requesting a new one.
+ */
+const FORMSUBMIT_ID = "f87b1c53f1dc72b40bda9c84c8b8d6ea";
 
 /**
  * Where form submissions are emailed — the inbox Gonca actually reads.
@@ -180,7 +190,7 @@ function subjectFor({ formType, name, email, community }) {
  * source for spam harvesters. https://formsubmit.co
  */
 async function sendViaFormSubmit(fields) {
-  const target = process.env.FORMSUBMIT_TARGET || NOTIFY_EMAIL;
+  const target = process.env.FORMSUBMIT_TARGET || FORMSUBMIT_ID;
   if (!target) return false;
 
   const { name, email, phone, program, message, formType, community } = fields;
