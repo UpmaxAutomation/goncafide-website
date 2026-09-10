@@ -1,0 +1,543 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+
+const PDF = '/gonca-fide-kurumsal-katalog.pdf';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Kurumlar için Şiddetsiz İletişim — Eğitim Kataloğu',
+  description:
+    'Gonca Fide’nin kurumlara yönelik Şiddetsiz İletişim eğitim kataloğu: ekip içi iletişim, geri bildirim kültürü, anlaşmazlık dönüştürme ve liderlikte güç ayrımları modülleri.',
+  provider: { '@type': 'Person', '@id': 'https://www.goncafide.com/#gonca' },
+  inLanguage: 'tr',
+  url: 'https://www.goncafide.com/kurumsal/katalog',
+};
+
+/**
+ * Modules are drawn from the four series of Gonca's 66-session Anahtar Ayrımlar
+ * curriculum (AA · EA · ZC · GUC), scaled for corporate delivery. Durations are
+ * suggestions — the corporate page promises a design shaped around each need.
+ */
+const series = [
+  {
+    code: 'AA',
+    name: 'Temel Ayrımlar',
+    note: 'İletişimin yapı taşları',
+    modules: [
+      {
+        title: 'Ekipte Ortak Dil',
+        line: '“Sen hep…” ile başlayan cümle, karşısındakinde savunma refleksi uyandırır.',
+        body: 'Şiddetsiz İletişim’in dört adımı — gözlem, duygu, ihtiyaç, rica — ve bunların gündelik iş konuşmalarına taşınması. Değerlendirmeyle gözlemi, talebi ricadan, ihtiyacı stratejiden ayırt etmek. Ekibin ortak bir dile kavuştuğu, diğer bütün modüllerin üzerine kurulduğu zemin.',
+        meta: ['1 tam gün ya da 2 yarım gün', 'Online / yüz yüze', 'Tüm ekip'],
+      },
+      {
+        title: 'Tetikleyen Olay, Gerçek Sebep',
+        line: 'Bizi öfkelendiren şey, çoğu zaman bizi öfkelendiren şey değildir.',
+        body: 'Uyaran ile neden arasındaki ayrım. Bir davranışın bizde uyandırdığı tepkinin kaynağı çoğunlukla o davranış değil, karşılanmamış bir ihtiyaçtır. Kriz anında suçlu aramak yerine sebebi görebilmek — ve tartışmayı kişiselleştirmeden sürdürebilmek.',
+        meta: ['Yarım gün', 'Yöneticiler · ekipler'],
+      },
+    ],
+  },
+  {
+    code: 'EA',
+    name: 'Empati',
+    note: 'Dinlemenin incelikleri',
+    modules: [
+      {
+        title: 'Çözüm Sunmadan Önce Duymak',
+        line: '“Anlıyorum” demek, anlaşıldığını hissettirmez.',
+        body: 'Empatiyi öneriden, tesellidan ve bilgi vermekten ayırmak. Aktif dinleme sırasında yaptığımız her hamlenin karşı tarafta neye yol açtığını teoride ve canlı pratikte görmek. Yöneticinin “hemen çözelim” refleksinin, çözülmesi gereken şeyi nasıl gizlediğini fark etmek.',
+        meta: ['1 tam gün', 'Yöneticiler · İK · müşteriyle temas eden ekipler'],
+      },
+      {
+        title: 'Tükenmeden Çalışmak',
+        line: 'Öz bakım ile bencillik aynı şey değil; ekipler bu ayrımı bilmediğinde tükeniyor.',
+        body: 'Kendine empati pratiği. Öz bakımla bencilliği, öz şefkatle sorumluluktan kaçışı ayırmak. Duyguya takılıp kalmakla ihtiyaca bağlanmak arasındaki fark. Yoğun tempoda çalışan ekipler için koruyucu bir oturum.',
+        meta: ['Yarım gün', 'Tüm ekip · İK'],
+      },
+    ],
+  },
+  {
+    code: 'ZC',
+    name: 'Zürafa – Çakal Dili',
+    note: 'Dürüstlük, sınır ve onarım',
+    modules: [
+      {
+        title: 'Zedelemeden Söylemek, Savunmaya Geçmeden Duymak',
+        line: 'Geri bildirimin raf ömrü vardır; bekletilen geri bildirim şikâyete dönüşür.',
+        body: 'Geri bildirim kültürünün çekirdeği. Onayla takdiri, geri bildirimle kendini ifadeyi, dürüstlükle zorbalığı ayırmak. Performans görüşmelerini ve gündelik geri bildirimi taraflaşmadan yürütmek — söyleyenin de duyanın da kaçmak zorunda kalmadığı bir zemin kurmak.',
+        meta: ['1 tam gün', 'Yöneticiler · İK · ekip liderleri'],
+      },
+      {
+        title: 'Hayır Demek, Hayır Duymak',
+        line: 'Gönülsüz “evet”, pahalı bir “hayır”dan daha pahalıdır.',
+        body: 'Söylenemeyen “hayır”ın kuruma faturası: gecikme, unutma, sessiz direniş, son anda çöken teslimatlar. Kişiye değil stratejiye “hayır” diyebilmek; ihtiyaçta sebat ederken bağlantıyı koruyabilmek. Kapasite ve öncelik konuşmalarına doğrudan uygulanır.',
+        meta: ['Yarım gün', 'Tüm ekip · proje yöneticileri'],
+      },
+      {
+        title: 'Onarım Konuşmaları',
+        line: 'Özür, olan biteni kapatmak için değil, güveni yeniden kurmak için vardır.',
+        body: 'Kırılan güvenin ardından ne konuşulur? Çakal özrüyle zürafa özrü arasındaki fark, affetmekle tolere etmek, güvenin dört bileşeni. Zayıflıkla kırılganlığı ayırmak — ve kırılganlığın iş yerinde nerede işe yaradığını, nerede yaramadığını görmek.',
+        meta: ['Yarım gün', 'Ekipler · yöneticiler'],
+      },
+    ],
+  },
+  {
+    code: 'GÜÇ',
+    name: 'Güç Ayrımları',
+    note: 'Liderlik, otorite ve sistemler',
+    modules: [
+      {
+        title: 'Üzerine Güç Yerine Birlikte Güç',
+        line: 'İtaat eden ekip, sorun çıktığında haber vermeyen ekiptir.',
+        body: 'Yapısal gücü ilişkisel güçten ayırmak. Tahakküm odaklı sistemlerle ihtiyaç odaklı sistemlerin farkı; itaat–isyan sarmalıyla gönülden teslim edilen otorite arasındaki mesafe. Yöneticinin elindeki gücü nasıl kullandığının ekipte neyi mümkün kıldığı, neyi imkânsızlaştırdığı.',
+        meta: ['1 tam gün', 'Yöneticiler · liderlik ekipleri'],
+      },
+      {
+        title: 'Ceza Değil Sonuç',
+        line: 'Otoriteye saygı ile otoriteden korku, dışarıdan aynı görünür; sonuçları aynı değildir.',
+        body: 'Cezalandırıcı yaklaşımla doğal sonuç arasındaki ayrım; koruyucu kuvvetle cezalandırıcı kuvvet. Disiplin ve performans süreçlerini yeniden düşünmek isteyen kurumlar için — kuralların neden delindiğini anlamak isteyenler için.',
+        meta: ['Yarım gün', 'Yöneticiler · İK'],
+      },
+      {
+        title: 'İçsel Motivasyon',
+        line: 'Teşvik sistemleri bazen tam da öldürmek istemediğiniz şeyi öldürür.',
+        body: 'İçsel ve dışsal motivasyonun ayrımı, öz disiplinle itaat arasındaki fark, başarmakla yaratmak. Daniel Pink’in <em>Drive</em> çerçevesiyle beslenen, ödül ve teşvik tasarımını sorgulayan bir oturum.',
+        meta: ['Yarım gün', 'Yöneticiler · İK · ödül-teşvik tasarlayanlar'],
+      },
+      {
+        title: 'Anlaşmazlığı Dönüştürmek',
+        line: 'Çatışma bir tehdit değil, karşılanmamış ihtiyaçlar hakkında bilgidir.',
+        body: 'Anlaşmazlığın anatomisi, tetiklenme anında kendiyle çalışma, iki taraf arasında köprü kurma ve ihtiyaçlardan çözüme geçiş. Anlaşmakla anlayış göstermeyi, ödün vermekle içsel değişimi ayırmak. Kurum içi arabuluculuk rolü üstlenenler için temel.',
+        meta: ['2 tam gün ya da modüler seri', 'Yüz yüze önerilir', 'Yöneticiler · İK · arabulucular'],
+      },
+    ],
+  },
+  {
+    code: 'TEMA',
+    name: 'Tek Oturumluk Atölyeler',
+    note: 'Kısa, odaklı, tek bir konu',
+    modules: [
+      {
+        title: 'Şaka Gibi… Neye Neden Gülüyoruz?',
+        line: 'Aynı şaka birini rahatlatırken bir başkasını yaralayabilir.',
+        body: 'Mizahın nerede bağ kurduğunu, nerede mesafe ve dışlanma yarattığını gözlem–duygu–ihtiyaç bakışıyla incelemek. Kapsayıcılık çalışmalarına doğrudan bağlanan, ekibin kendi mizahına şefkatle bakabildiği bir oturum.',
+        meta: ['2–3 saat', 'Tüm ekip'],
+      },
+      {
+        title: 'Kıyas: Haset ve Kıskançlık',
+        line: 'Terfi listesi açıklandığında konuşulmayan şey.',
+        body: 'Takdir, görünürlük ve terfi etrafında dönen kıyaslama duygularını yargılamadan ele almak. Bu duyguların işaret ettiği ihtiyaçları duyabilmek ve ekipte konuşulmayanı konuşulabilir kılmak.',
+        meta: ['2–3 saat', 'Tüm ekip · İK'],
+      },
+      {
+        title: 'Küsmek',
+        line: 'Cevapsız kalan e-posta da bir cümledir.',
+        body: 'Sessizliğin dili: pasif direniş, toplantıda söylenmeyenler, geri çekilme. Küsmenin altındaki duyulmamış kırgınlığı görüp bağlantıyı koruyan ifade biçimlerini denemek.',
+        meta: ['2–3 saat', 'Ekipler'],
+      },
+    ],
+  },
+];
+
+const gains = [
+  { t: 'Ekip içi iletişim', d: 'Yargı ve suçlama yerine ihtiyaç odaklı, açık bir dil. Toplantılarda söylenmeyenlerin azalması.' },
+  { t: 'Anlaşmazlık dönüştürme', d: 'Çatışmaları bastırmadan, her iki tarafın ihtiyacını duyarak çözebilme becerisi.' },
+  { t: 'Geri bildirim kültürü', d: 'Zedelemeden söyleyebilme ve savunmaya geçmeden duyabilme pratiği.' },
+  { t: 'Empati ve iş birliği', d: 'Empatik dinlemeyle güvenin ve birlikte üretme zemininin güçlenmesi.' },
+];
+
+const cv = [
+  { y: '2023 →', t: 'Uluslararası Arabuluculuk Eğitim Programı', d: 'Liv Larsson ve Kay Rung’ın programında asistanlık' },
+  { y: '2022 →', t: 'CNVC Sertifikalı Eğitmen', d: 'Center for Nonviolent Communication' },
+  { y: '2019 →', t: 'Şiddetsiz İletişim Türkiye Derneği üyesi', d: '' },
+  { y: '2017–2022', t: 'Sosyal etki uzmanlığı', d: 'Enerji sektörü sosyal etki alanı' },
+  { y: '2013–2016', t: 'BBOM Ankara Kooperatifi', d: 'Genel Koordinatör ve Yönetim Kurulu Başkanı' },
+  { y: '2000–2012', t: 'Proje yönetimi', d: 'Kırsal kalkınma, doğa koruma, yaban hayatı ve erozyon önleme projeleri' },
+  { y: '1999', t: 'ODTÜ Sosyoloji', d: 'Orta Doğu Teknik Üniversitesi' },
+];
+
+const longs = [
+  { t: 'Anda Kal Canda Kal', d: 'Şiddetsiz İletişim’e giriş ve temel beceri programı. Dört adım, şefkati engelleyenler, empati ve dürüstçe ifade, “hayır” ve “evet” demenin yolları.', m: [['Süre', '36 saat'], ['Seviye', 'Başlangıç'], ['Format', 'Hibrit']] },
+  { t: 'Anahtar Ayrımlar', d: '54 anahtar ayrımı sistematik olarak ele alan derinleşme programı. Bu kataloğun dört serisi bu programdan gelir. 8. yılında sürüyor.', m: [['Süre', '82,5 saat'], ['Oturum', '33'], ['Seviye', 'Orta-İleri']] },
+  { t: 'Anlaşmazlık Dönüştürme', d: 'Arabuluculuk, üçüncü taraf empatisi, grup dinamiklerinde çatışma ve sistemik anlaşmazlıklar.', m: [['Süre', '60 saat'], ['Oturum', '12'], ['Seviye', 'İleri']] },
+];
+
+const formats = [
+  ['Tematik atölye', '2–3 saat', 'Tek bir konuya odaklanmak, ekibi tanıştırmak', '10–25 kişi'],
+  ['Yarım gün', '3–4 saat', 'Bir modülü uygulamalı olarak çalışmak', '8–20 kişi'],
+  ['Tam gün', '6–7 saat', 'Kavramı ve bol pratiği bir arada yürütmek', '8–18 kişi'],
+  ['Modüler seri', 'Haftalık / iki haftada bir', 'Öğrenilenin işe taşınması, aralarda pratik', '8–16 kişi'],
+  ['Kapalı grup programı', '36–82,5 saat', 'Kurum içinde kalıcı bir pratik kültürü kurmak', '8–15 kişi'],
+];
+---
+
+<PageLayout
+  title="Kurumsal Eğitim Kataloğu"
+  description="Gonca Fide’nin kurumlara yönelik Şiddetsiz İletişim eğitim kataloğu: ekip içi iletişim, geri bildirim kültürü, anlaşmazlık dönüştürme ve liderlikte güç ayrımları. PDF olarak indirilebilir."
+>
+  <JsonLd slot="jsonld" schema={schema} />
+
+  <!-- Hero -->
+  <section class="kat-hero">
+    <div class="container-site">
+      <p class="eyebrow mb-4">Kurumsal Eğitim Kataloğu</p>
+      <h1>Kurumlar için <em>Şiddetsiz İletişim</em></h1>
+      <p class="kat-lede">
+        Ekiplerin birbirini suçlamadan konuşabildiği, anlaşmazlığın bastırılmak yerine
+        dönüştürüldüğü bir iletişim kültürü için tasarlanmış modüller.
+      </p>
+      <div class="kat-actions no-print">
+        <a class="btn-primary" href={PDF} download>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M2.5 13h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          PDF olarak indir
+        </a>
+        <a class="btn-ghost" href="/iletisim?program=kurumsal">İhtiyaç görüşmesi talep et</a>
+      </div>
+      <div class="kat-meta">
+        <p><b>Gonca Fide</b> · CNVC Sertifikalı Eğitmen</p>
+        <p>1.500+ saat Şiddetsiz İletişim deneyimi</p>
+        <p><b>2026–2027</b> kataloğu</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neden -->
+  <section class="section-padding">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Neden bu eğitim</p>
+      <h2 class="kat-h2">Suçlama ve savunma döngüsünü kırmak</h2>
+      <p class="kat-body">
+        Kurumlarda iletişimin bozulduğu yer çoğunlukla niyet değil, dildir. “Sen hep…” ile
+        başlayan bir cümle karşısındakinde savunma refleksi uyandırır; savunma yeni bir
+        suçlamayı doğurur ve mesele konuşulamadan taraflaşır. Şiddetsiz İletişim, Marshall
+        Rosenberg’in geliştirdiği, gözlem–duygu–ihtiyaç–rica adımlarına dayanan somut bir dil
+        pratiğidir. Kurumsal bağlamda amacı basittir: kimsenin haklı çıkmasına gerek kalmadan,
+        işin gerçekten konuşulabilmesi.
+      </p>
+      <div class="gains">
+        {gains.map((g) => (
+          <article class="gain">
+            <h3>{g.t}</h3>
+            <p>{g.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Eğitmen -->
+  <section class="section-padding kat-tint">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Eğitmen</p>
+      <h2 class="kat-h2">Gonca Fide</h2>
+      <div class="trainer">
+        <img src="/images/gonca-fide.jpg" width="416" height="603" loading="lazy" decoding="async"
+             alt="Gonca Fide — CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni" class="portrait" />
+        <div>
+          <p class="kat-body">
+            Kurumsal dünyayı eğitim salonunun dışından da tanıyan bir eğitmen. Sosyoloji
+            eğitiminin ardından on yılı aşkın süre kalkınma, doğa koruma ve enerji sektörünün
+            sosyal etki alanında proje yönetti; kooperatif kurdu, yönetim kurulu başkanlığı
+            yaptı. Şiddetsiz İletişim’i bu deneyimin içinden, “anlaşma zemini nasıl oluşur?”
+            sorusunun peşinde keşfetti.
+          </p>
+          <ul class="cv">
+            {cv.map((c) => (
+              <li>
+                <time>{c.y}</time>
+                <div><b>{c.t}</b>{c.d && <small>{c.d}</small>}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modüller -->
+  <section class="section-padding">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Katalog</p>
+      <h2 class="kat-h2">Modüller</h2>
+      <p class="kat-body">
+        Modüller, 66 oturumluk Anahtar Ayrımlar müfredatının dört serisinden türetilmiştir.
+        Kurumsal teslimat için ölçeklenmiş hâlleridir; süreler önerilerdir ve ihtiyaç
+        görüşmesinin ardından ekibin takvimine göre yeniden kurgulanır.
+      </p>
+
+      {series.map((s) => (
+        <div class="series">
+          <div class="series-head">
+            <span class="series-code">{s.code}</span>
+            <h3>{s.name}</h3>
+            <small>{s.note}</small>
+          </div>
+          <ul class="modules">
+            {s.modules.map((m) => (
+              <li class="module">
+                <h4>{m.title}</h4>
+                <p class="module-line">{m.line}</p>
+                <p class="module-body" set:html={m.body} />
+                <div class="module-meta">
+                  {m.meta.map((x, i) => (
+                    <span class:list={['chip', i === m.meta.length - 1 && 'chip-who']}>{x}</span>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Uzun programlar -->
+  <section class="section-padding kat-tint">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Derinleşmek isteyen kurumlar için</p>
+      <h2 class="kat-h2">Uzun soluklu programlar</h2>
+      <p class="kat-body">
+        Tek seferlik eğitimlerin ötesine geçmek isteyen kurumlar, halka açık programları
+        kapalı grup olarak da alabilir. Bu programlar kataloğun temelini oluşturan asıl
+        müfredattır.
+      </p>
+      <div class="longs">
+        {longs.map((l) => (
+          <article class="long">
+            <h3>{l.t}</h3>
+            <p>{l.d}</p>
+            <dl>
+              {l.m.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}
+            </dl>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Formatlar -->
+  <section class="section-padding">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Teslimat</p>
+      <h2 class="kat-h2">Formatlar</h2>
+      <p class="kat-body">
+        Her modül aşağıdaki formatlardan birine uyarlanabilir. Seçim, ekibin takvimine ve
+        hedeflenen derinliğe göre ihtiyaç görüşmesinde birlikte yapılır.
+      </p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Format</th><th scope="col">Süre</th><th scope="col">Ne için uygun</th><th scope="col">Grup</th></tr>
+          </thead>
+          <tbody>
+            {formats.map((r) => (<tr>{r.map((c, i) => (i === 0 ? <th scope="row">{c}</th> : <td>{c}</td>))}</tr>))}
+          </tbody>
+        </table>
+      </div>
+      <p class="kat-note">
+        Uygulamalı çalışma gerçek durumlar üzerinden yürüdüğü için küçük gruplar tercih edilir.
+        Daha kalabalık ekipler için içerik konferans formatına uyarlanabilir; bu durumda pratik
+        bölümü kısalır.
+      </p>
+    </div>
+  </section>
+
+  <!-- Süreç -->
+  <section class="section-padding kat-tint">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Nasıl ilerliyoruz</p>
+      <h2 class="kat-h2">Üç adımda kurumsal tasarım</h2>
+      <ol class="steps">
+        <li>
+          <h3>İhtiyaç görüşmesi</h3>
+          <p>Ekibinizin önceliklerini ve hedeflerini birlikte netleştiriyoruz. Hangi konuşmaların yapılamadığını konuşuyoruz.</p>
+        </li>
+        <li>
+          <h3>Özel tasarım</h3>
+          <p>İçeriği, süreyi ve formatı ihtiyaca göre tasarlıyorum. Modüller birleştirilebilir, kısaltılabilir, sıralaması değiştirilebilir.</p>
+        </li>
+        <li>
+          <h3>Uygulamalı eğitim</h3>
+          <p>Yaşatarak ve paylaşarak, ekibin kendi gerçek durumları üzerinden deneyimsel öğrenme.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="kat-cta no-print">
+    <div class="container-site">
+      <h2>Kurumunuza özel bir eğitim konuşalım</h2>
+      <p>İhtiyaçlarınızı paylaşın; size en uygun içeriği birlikte tasarlayalım. İhtiyaç görüşmesi bir yükümlülük doğurmaz.</p>
+      <div class="kat-actions">
+        <a class="btn-primary on-deep" href="/iletisim?program=kurumsal">İletişime Geç</a>
+        <a class="btn-ghost on-deep" href={PDF} download>Katalogu indir (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yalnızca PDF çıktısında görünen künye -->
+  <section class="print-only">
+    <div class="container-site">
+      <p class="kat-note">
+        Gonca Fide · CNVC Sertifikalı Şiddetsiz İletişim Eğitmeni · info@goncafide.com ·
+        goncafide.com · @goncolog · Ankara · Online · Yerinde
+      </p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .kat-hero {
+    background: linear-gradient(158deg, var(--color-plum-800) 0%, var(--color-plum-900) 100%);
+    color: var(--color-cream);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .kat-hero::after {
+    content: '';
+    position: absolute; inset: auto -10% -60% auto;
+    width: min(520px, 70%); aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(177, 76, 192, 0.3), transparent 68%);
+    pointer-events: none;
+  }
+  .kat-hero > * { position: relative; z-index: 1; }
+  .kat-hero :global(.eyebrow) { color: var(--color-plum-300); }
+  .kat-hero h1 {
+    /* Sitenin genel başlık kuralı koyu mürekkep atar; koyu zemin için açığa çevir. */
+    color: var(--color-cream);
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 1.7rem + 2.2vw, 3.6rem);
+    font-weight: 400; line-height: 1.06; letter-spacing: -0.03em;
+    max-width: 16ch; text-wrap: balance;
+  }
+  .kat-hero h1 em { font-style: italic; color: var(--color-plum-300); }
+  .kat-lede {
+    margin-top: 1.1rem; max-width: 52ch;
+    color: rgba(246, 236, 243, 0.78);
+    font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55;
+  }
+  .kat-meta {
+    margin-top: clamp(1.6rem, 3vw, 2.4rem); padding-top: 1.2rem;
+    border-top: 1px solid rgba(246, 236, 243, 0.16);
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.9rem;
+    font-size: 0.85rem; color: rgba(246, 236, 243, 0.72);
+  }
+  .kat-meta b { color: var(--color-cream); font-weight: 600; }
+
+  .kat-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.9rem; }
+  .btn-primary, .btn-ghost {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    min-height: 48px; padding: 0.85rem 1.5rem; border-radius: 0.75rem;
+    font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: background-color 0.2s, border-color 0.2s;
+  }
+  .btn-primary { background: var(--color-orchid-500); color: #fff; }
+  .btn-primary:hover { background: var(--color-orchid-400); }
+  .btn-ghost { border: 1px solid rgba(246, 236, 243, 0.32); color: var(--color-cream); }
+  .btn-ghost:hover { background: rgba(246, 236, 243, 0.08); }
+
+  .kat-tint { background: var(--color-surface); }
+  .kat-h2 {
+    font-family: var(--font-display); font-weight: 300;
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem);
+    letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance;
+    color: var(--color-ink); margin-bottom: 0.9rem;
+  }
+  .kat-body { max-width: 64ch; color: var(--color-ink-muted); line-height: 1.7; }
+  .kat-note { max-width: 64ch; margin-top: 1rem; font-size: 0.85rem; color: var(--color-ink-faint); line-height: 1.6; }
+
+  /* Kazanımlar — başlıklar ve gövdeler kartlar arasında hizalı kalsın */
+  .gains {
+    margin-top: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1px; background: var(--color-border);
+    border: 1px solid var(--color-border); border-radius: 1rem; overflow: hidden;
+  }
+  .gain {
+    background: var(--color-canvas); padding: 1.5rem 1.35rem;
+    display: grid; grid-template-rows: subgrid; grid-row: span 2; gap: 0.5rem;
+  }
+  .gain h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; color: var(--color-ink); }
+  .gain p { font-size: 0.875rem; color: var(--color-ink-muted); line-height: 1.6; }
+
+  .trainer { margin-top: 2rem; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  .portrait { width: 100%; height: auto; border-radius: 1rem; box-shadow: var(--shadow-card); }
+  .cv { list-style: none; padding: 0; margin: 1.4rem 0 0; }
+  .cv li { display: grid; grid-template-columns: minmax(96px, auto) 1fr; gap: 0.35rem 1.25rem; padding: 0.7rem 0; border-top: 1px solid var(--color-border); }
+  .cv li:first-child { border-top: 0; padding-top: 0; }
+  .cv time { font-family: var(--font-display); font-size: 0.85rem; color: var(--color-orchid-500); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .cv b { font-weight: 600; }
+  .cv small { display: block; color: var(--color-ink-muted); font-size: 0.85rem; }
+
+  .series { margin-top: clamp(2rem, 4vw, 3rem); }
+  .series-head { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; padding-bottom: 0.7rem; border-bottom: 2px solid var(--color-plum-200); }
+  .series-code { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-orchid-500); letter-spacing: 0.04em; }
+  .series-head h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.35rem, 1.2rem + 0.6vw, 1.7rem); letter-spacing: -0.02em; color: var(--color-ink); }
+  .series-head small { color: var(--color-ink-faint); font-size: 0.85rem; margin-left: auto; }
+  .modules { list-style: none; padding: 0; margin: 0; }
+  .module { padding: 1.5rem 0; border-bottom: 1px solid var(--color-border); }
+  .module:last-child { border-bottom: 0; }
+  .module h4 { font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; letter-spacing: -0.02em; color: var(--color-ink); }
+  .module-line { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--color-plum-700); margin-top: 0.45rem; max-width: 58ch; }
+  .module-body { margin-top: 0.6rem; max-width: 64ch; color: var(--color-ink-muted); line-height: 1.7; font-size: 0.95rem; }
+  .module-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+  .chip { font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--color-plum-50); color: var(--color-plum-700); border: 1px solid var(--color-plum-200); }
+  .chip-who { background: transparent; color: var(--color-ink-faint); border-color: var(--color-border); }
+
+  .longs { margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 1.1rem; }
+  .long { background: #fff; border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem 1.35rem; display: flex; flex-direction: column; gap: 0.6rem; box-shadow: var(--shadow-card); }
+  .long h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; color: var(--color-ink); }
+  .long p { font-size: 0.875rem; color: var(--color-ink-muted); line-height: 1.6; flex: 1; }
+  .long dl { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; margin: 0; padding-top: 0.75rem; border-top: 1px solid var(--color-plum-100); font-size: 0.85rem; }
+  .long dl > div { display: flex; gap: 0.3rem; }
+  .long dt { color: var(--color-ink-faint); }
+  .long dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .tablewrap { margin-top: 2rem; overflow-x: auto; border: 1px solid var(--color-border); border-radius: 1rem; background: #fff; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.875rem; }
+  th, td { text-align: left; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--color-plum-100); vertical-align: top; }
+  thead th { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-faint); font-weight: 600; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  tbody th[scope='row'] { font-weight: 600; color: var(--color-ink); }
+
+  .steps { list-style: none; padding: 0; margin: 2rem 0 0; counter-reset: s; display: grid; gap: 1px; background: var(--color-border); border: 1px solid var(--color-border); border-radius: 1rem; overflow: hidden; }
+  @media (min-width: 720px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .steps li { counter-increment: s; background: var(--color-canvas); padding: 1.5rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-display); font-size: 1.5rem; color: var(--color-orchid-400); line-height: 1; }
+  .steps h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; color: var(--color-ink); }
+  .steps p { font-size: 0.875rem; color: var(--color-ink-muted); line-height: 1.6; }
+
+  .kat-cta { background: linear-gradient(158deg, var(--color-plum-800) 0%, var(--color-plum-900) 100%); color: var(--color-cream); padding-block: clamp(3rem, 5vw, 4.5rem); }
+  .kat-cta h2 { color: var(--color-cream); font-family: var(--font-display); font-weight: 300; font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem); letter-spacing: -0.03em; max-width: 20ch; text-wrap: balance; }
+  .kat-cta p { margin-top: 0.8rem; max-width: 50ch; color: rgba(246, 236, 243, 0.75); line-height: 1.65; }
+
+  .print-only { display: none; }
+
+  @media (max-width: 640px) {
+    .trainer { grid-template-columns: 1fr; }
+    .portrait { max-width: 190px; }
+    .cv li { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
+</style>
+
+<style is:global>
+  /* PDF çıktısı: site kabuğu ve ekrana özel öğeler çıkar, içerik kalır. */
+  @media print {
+    header, footer, #mobile-menu, .no-print, [data-print-hide] { display: none !important; }
+    .print-only { display: block !important; }
+    body { background: #fff; }
+    .kat-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { padding-block: 1.6rem !important; break-inside: avoid; }
+    /* Modüller bölünmesin; seri bir sayfaya sığmayacak kadar uzun olabilir,
+       onu zorlamak sayfa sonlarında büyük boşluklar bırakıyor. */
+    .module, .long, .gain, .steps li { break-inside: avoid; }
+    .kat-h2, .series-head { break-after: avoid; }
+    a[href^='/']::after, a[href^='http']::after { content: ''; }
+  }
+</style>

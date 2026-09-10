@@ -11,8 +11,9 @@ const hide = path.startsWith('/iletisim');
 ---
 {!hide && (
   <Fragment>
-    <div class="h-[4.25rem] lg:hidden" aria-hidden="true"></div>
+    <div class="h-[4.25rem] lg:hidden" aria-hidden="true" data-print-hide></div>
     <div
+      data-print-hide
       class="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[var(--color-border)] bg-[var(--color-canvas)]/95 backdrop-blur-sm"
       style="padding-bottom: env(safe-area-inset-bottom);"
     >
