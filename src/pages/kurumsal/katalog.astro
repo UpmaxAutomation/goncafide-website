@@ -149,6 +149,43 @@ const gains = [
   { t: 'Empati ve iş birliği', d: 'Empatik dinlemeyle güvenin ve birlikte üretme zemininin güçlenmesi.' },
 ];
 
+/** Kurumların satın aldığı üç ayrı çalışma biçimi. */
+const services = [
+  {
+    id: 'kocluk',
+    n: 'Bire bir',
+    t: 'Empatik Koçluk',
+    d: 'Yöneticiler ve anahtar roller için bireysel seanslar. Zor bir kararın eşiğinde, bir çatışmanın içinde ya da yalnızca düşünmek için ayrılmış bir alan.',
+  },
+  {
+    id: 'danismanlik',
+    n: 'Danışmanlık',
+    t: 'Anlaşmazlık Dönüştürme',
+    d: 'Şirket içinde ya da dışında tıkanmış bir anlaşmazlığa eşlik etmek. Eğitim değil, gerçek bir meselenin üzerinde çalışmak.',
+  },
+  {
+    id: 'egitimler',
+    n: 'Eğitim',
+    t: 'Tematik, kısa, orta ve uzun dönemli',
+    d: 'Tek oturumluk atölyelerden aylara yayılan kapalı grup programlarına kadar, ekibin ayırabildiği zamana göre ölçeklenen modüller.',
+  },
+];
+
+/** Danışmanlığın devreye girdiği tipik durumlar. */
+const consultingCases = [
+  'İki ekip ya da iki departman arasında tıkanmış, toplantılarda dönüp duran bir mesele',
+  'Bir yönetici ile ekibi arasında aşınmış güven',
+  'Ortaklar arasında, kararların alınamadığı bir anlaşmazlık',
+  'Tedarikçi, müşteri ya da iş ortağıyla sürtüşmeye dönüşmüş bir ilişki',
+  'Birleşme, satın alma ya da yeniden yapılanma sonrası kültür çatışması',
+];
+
+const consultingSteps = [
+  { t: 'Ayrı dinleme görüşmeleri', d: 'Taraflarla tek tek konuşuyorum. Herkes, karşı tarafa cevap verme baskısı olmadan meseleyi kendi ağzından anlatıyor.' },
+  { t: 'Ortak oturum', d: 'Tarafları aynı masaya getiriyorum. Amaç kimin haklı olduğunu belirlemek değil; her iki tarafın ihtiyacının duyulabilir hâle gelmesi.' },
+  { t: 'Anlaşma ve takip', d: 'Somut, uygulanabilir adımlar üzerinde anlaşıyoruz. Bir süre sonra, anlaşmanın gerçek hayatta tutup tutmadığına birlikte bakıyoruz.' },
+];
+
 const cv = [
   { y: '2023 →', t: 'Uluslararası Arabuluculuk Eğitim Programı', d: 'Liv Larsson ve Kay Rung’ın programında asistanlık' },
   { y: '2022 →', t: 'CNVC Sertifikalı Eğitmen', d: 'Center for Nonviolent Communication' },
@@ -162,15 +199,14 @@ const cv = [
 const longs = [
   { t: 'Anda Kal Canda Kal', d: 'Şiddetsiz İletişim’e giriş ve temel beceri programı. Dört adım, şefkati engelleyenler, empati ve dürüstçe ifade, “hayır” ve “evet” demenin yolları.', m: [['Süre', '36 saat'], ['Seviye', 'Başlangıç'], ['Format', 'Hibrit']] },
   { t: 'Anahtar Ayrımlar', d: '54 anahtar ayrımı sistematik olarak ele alan derinleşme programı. Bu kataloğun dört serisi bu programdan gelir. 8. yılında sürüyor.', m: [['Süre', '82,5 saat'], ['Oturum', '33'], ['Seviye', 'Orta-İleri']] },
-  { t: 'Anlaşmazlık Dönüştürme', d: 'Arabuluculuk, üçüncü taraf empatisi, grup dinamiklerinde çatışma ve sistemik anlaşmazlıklar.', m: [['Süre', '60 saat'], ['Oturum', '12'], ['Seviye', 'İleri']] },
+  { t: 'Anlaşmazlık Dönüştürme', d: 'Arabuluculuk, üçüncü taraf empatisi, grup dinamiklerinde çatışma ve sistemik anlaşmazlıklar. Danışmanlık hizmetinin eğitim karşılığı.', m: [['Süre', '60 saat'], ['Oturum', '12'], ['Seviye', 'İleri']] },
 ];
 
 const formats = [
-  ['Tematik atölye', '2–3 saat', 'Tek bir konuya odaklanmak, ekibi tanıştırmak', '10–25 kişi'],
-  ['Yarım gün', '3–4 saat', 'Bir modülü uygulamalı olarak çalışmak', '8–20 kişi'],
-  ['Tam gün', '6–7 saat', 'Kavramı ve bol pratiği bir arada yürütmek', '8–18 kişi'],
-  ['Modüler seri', 'Haftalık / iki haftada bir', 'Öğrenilenin işe taşınması, aralarda pratik', '8–16 kişi'],
-  ['Kapalı grup programı', '36–82,5 saat', 'Kurum içinde kalıcı bir pratik kültürü kurmak', '8–15 kişi'],
+  ['Tematik', 'Tek oturum · 2–3 saat', 'Belirli bir konuya odaklanmak, ekibi tanıştırmak', '10–25 kişi'],
+  ['Kısa dönemli', 'Yarım gün – 1 tam gün', 'Tek bir modülü uygulamalı olarak çalışmak', '8–20 kişi'],
+  ['Orta dönemli', 'Modüler seri · haftalara yayılır', 'Birkaç modülü sırayla çalışmak, aralarda işe taşımak', '8–16 kişi'],
+  ['Uzun dönemli', '36–82,5 saat · kapalı grup', 'Kurum içinde kalıcı bir pratik kültürü kurmak', '8–15 kişi'],
 ];
 ---
 
@@ -187,7 +223,8 @@ const formats = [
       <h1>Kurumlar için <em>Şiddetsiz İletişim</em></h1>
       <p class="kat-lede">
         Ekiplerin birbirini suçlamadan konuşabildiği, anlaşmazlığın bastırılmak yerine
-        dönüştürüldüğü bir iletişim kültürü için tasarlanmış modüller.
+        dönüştürüldüğü bir iletişim kültürü için üç ayrı çalışma biçimi:
+        bire bir koçluk, anlaşmazlık danışmanlığı ve eğitimler.
       </p>
       <div class="kat-actions no-print">
         <a class="btn-primary" href={PDF} download>
@@ -203,6 +240,29 @@ const formats = [
         <p>1.500+ saat Şiddetsiz İletişim deneyimi</p>
         <p><b>2026–2027</b> kataloğu</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Hizmetler: kurumun satın alabileceği üç çalışma biçimi -->
+  <section class="section-padding">
+    <div class="container-site">
+      <p class="eyebrow mb-3">Hizmetler</p>
+      <h2 class="kat-h2">Üç ayrı çalışma biçimi</h2>
+      <p class="kat-body">
+        Bir kurum bana üç farklı şekilde çalışabilir. Hangisinin işinize yarayacağı
+        çoğu zaman ilk görüşmede netleşir — bazen de üçü birlikte yürür.
+      </p>
+      <ol class="svc-grid">
+        {services.map((sv, i) => (
+          <li class="svc">
+            <span class="svc-n">{String(i + 1).padStart(2, '0')}</span>
+            <p class="svc-kind">{sv.n}</p>
+            <h3>{sv.t}</h3>
+            <p class="svc-d">{sv.d}</p>
+            <a class="svc-link" href={`#${sv.id}`}>Ayrıntılar</a>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -259,15 +319,125 @@ const formats = [
     </div>
   </section>
 
+  <!-- 01 · Bire bir empatik koçluk -->
+  <section class="section-padding" id="kocluk">
+    <div class="container-site">
+      <p class="eyebrow mb-3">01 · Bire bir</p>
+      <h2 class="kat-h2">Empatik Koçluk</h2>
+      <div class="two-col">
+        <div>
+          <p class="kat-body">
+            Empatik koçluk, Şiddetsiz İletişim'in empati pratiğini bireysel seanslar
+            aracılığıyla sunmaktır. Terapiden, geleneksel koçluktan ve danışmanlıktan
+            farklıdır — yönlendirme yerine tam varlık ve derin dinleme üzerine kuruludur.
+            Amaç size çözüm vermek değil, kendi içsel bilgeliğinize ulaşmanız için
+            yanınızda olmaktır.
+          </p>
+          <p class="kat-body" style="margin-top:1rem">
+            Kurumsal bağlamda çoğunlukla yöneticiler, ekip liderleri ve zor bir dönemden
+            geçen anahtar roller için kullanılıyor. Seanslar için Şiddetsiz İletişim
+            bilgisi gerekmez; konuşma tamamen kişinin kendi dilinde ilerler.
+          </p>
+        </div>
+        <div class="side">
+          <p class="side-t">Ne zaman işe yarar</p>
+          <ul class="ticks">
+            <li>Zor bir duyguyla — öfke, kırgınlık, tükenmişlik — yalnız kalmak istemediğinizde</li>
+            <li>İlişkisel bir çatışmanın içindeyken ne hissettiğinizi netleştirmek için</li>
+            <li>Önemli bir kararın arifesinde, ihtiyaçlarınızı daha net görmek için</li>
+            <li>Yargılanmadan, çözüm almadan, gerçekten duyulmak için</li>
+          </ul>
+          <dl class="facts">
+            <div><dt>Süre</dt><dd>60–90 dk (maks. 2 saat)</dd></div>
+            <div><dt>Format</dt><dd>Online veya yüz yüze</dd></div>
+            <div><dt>Sıklık</dt><dd>İhtiyaca göre</dd></div>
+            <div><dt>İlk seans</dt><dd>Tanışma</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Anlaşmazlık dönüştürme danışmanlığı -->
+  <section class="section-padding kat-tint" id="danismanlik">
+    <div class="container-site">
+      <p class="eyebrow mb-3">02 · Danışmanlık</p>
+      <h2 class="kat-h2">Anlaşmazlık Dönüştürme</h2>
+      <p class="kat-body">
+        Bu bir eğitim değil. Şirket içinde ya da şirket dışında tıkanmış, gerçek bir
+        anlaşmazlığın üzerinde çalışmaktır. Taraflar aylardır aynı meseleyi dönüp duruyorsa,
+        toplantılar sonuçsuz bitiyorsa ya da konu artık konuşulamayacak kadar
+        kişiselleştiyse devreye girer.
+      </p>
+      <p class="kat-body" style="margin-top:1rem">
+        Yaklaşım Şiddetsiz İletişim temelli arabuluculuktur: kimin haklı olduğunu
+        belirlemeye değil, her iki tarafın altta yatan ihtiyacını duyulabilir kılmaya
+        çalışır. Bastırılan anlaşmazlık geri döner; duyulan anlaşmazlık dönüşür.
+      </p>
+
+      <div class="two-col" style="margin-top:2rem">
+        <div>
+          <p class="side-t">Tipik durumlar</p>
+          <ul class="ticks">
+            {consultingCases.map((c) => (<li>{c}</li>))}
+          </ul>
+        </div>
+        <div>
+          <p class="side-t">Nasıl yürür</p>
+          <ol class="csteps">
+            {consultingSteps.map((st) => (
+              <li><b>{st.t}</b><span>{st.d}</span></li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <p class="kat-note">
+        Süreç, anlaşmazlığın kapsamına göre değişir; tek bir ortak oturumla çözülen
+        meseleler de vardır, haftalara yayılanlar da. Görüşmelerde paylaşılanlar
+        gizlidir ve tarafların onayı olmadan aktarılmaz. Bu çalışma hukuki arabuluculuk
+        yerine geçmez; amacı ilişkiyi ve çalışma zeminini onarmaktır.
+      </p>
+    </div>
+  </section>
+
+  <!-- 03 · Eğitimler -->
+  <section class="section-padding" id="egitimler">
+    <div class="container-site">
+      <p class="eyebrow mb-3">03 · Eğitim</p>
+      <h2 class="kat-h2">Tematik, kısa, orta ve uzun dönemli eğitimler</h2>
+      <p class="kat-body">
+        Aynı içerik, ekibin ayırabildiği zamana göre farklı derinliklerde çalışılabilir.
+        Aşağıdaki dört kademe, aradaki farkı gösteriyor.
+      </p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Kademe</th><th scope="col">Süre</th><th scope="col">Ne için uygun</th><th scope="col">Grup</th></tr>
+          </thead>
+          <tbody>
+            {formats.map((r) => (<tr>{r.map((c, i) => (i === 0 ? <th scope="row">{c}</th> : <td>{c}</td>))}</tr>))}
+          </tbody>
+        </table>
+      </div>
+      <p class="kat-note">
+        Uygulamalı çalışma gerçek durumlar üzerinden yürüdüğü için küçük gruplar tercih
+        edilir. Daha kalabalık ekipler için içerik konferans formatına uyarlanabilir;
+        bu durumda pratik bölümü kısalır.
+      </p>
+    </div>
+  </section>
+
   <!-- Modüller -->
   <section class="section-padding">
     <div class="container-site">
-      <p class="eyebrow mb-3">Katalog</p>
+      <p class="eyebrow mb-3">Eğitim kataloğu</p>
       <h2 class="kat-h2">Modüller</h2>
       <p class="kat-body">
-        Modüller, 66 oturumluk Anahtar Ayrımlar müfredatının dört serisinden türetilmiştir.
-        Kurumsal teslimat için ölçeklenmiş hâlleridir; süreler önerilerdir ve ihtiyaç
-        görüşmesinin ardından ekibin takvimine göre yeniden kurgulanır.
+        Modüller, 66 oturumluk Anahtar Ayrımlar müfredatının dört serisinden türetilmiştir;
+        yanlarındaki seri işareti hangi kümeden geldiklerini gösterir. Tek bir modül kısa
+        dönemli bir çalışmadır; birkaçı sırayla alındığında orta dönemli bir seriye dönüşür.
+        Süreler önerilerdir, ihtiyaç görüşmesinin ardından yeniden kurgulanır.
       </p>
 
       {series.map((s) => (
@@ -299,8 +469,8 @@ const formats = [
   <!-- Uzun programlar -->
   <section class="section-padding kat-tint">
     <div class="container-site">
-      <p class="eyebrow mb-3">Derinleşmek isteyen kurumlar için</p>
-      <h2 class="kat-h2">Uzun soluklu programlar</h2>
+      <p class="eyebrow mb-3">Uzun dönemli</p>
+      <h2 class="kat-h2">Kapalı grup programları</h2>
       <p class="kat-body">
         Tek seferlik eğitimlerin ötesine geçmek isteyen kurumlar, halka açık programları
         kapalı grup olarak da alabilir. Bu programlar kataloğun temelini oluşturan asıl
@@ -317,33 +487,6 @@ const formats = [
           </article>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- Formatlar -->
-  <section class="section-padding">
-    <div class="container-site">
-      <p class="eyebrow mb-3">Teslimat</p>
-      <h2 class="kat-h2">Formatlar</h2>
-      <p class="kat-body">
-        Her modül aşağıdaki formatlardan birine uyarlanabilir. Seçim, ekibin takvimine ve
-        hedeflenen derinliğe göre ihtiyaç görüşmesinde birlikte yapılır.
-      </p>
-      <div class="tablewrap">
-        <table>
-          <thead>
-            <tr><th scope="col">Format</th><th scope="col">Süre</th><th scope="col">Ne için uygun</th><th scope="col">Grup</th></tr>
-          </thead>
-          <tbody>
-            {formats.map((r) => (<tr>{r.map((c, i) => (i === 0 ? <th scope="row">{c}</th> : <td>{c}</td>))}</tr>))}
-          </tbody>
-        </table>
-      </div>
-      <p class="kat-note">
-        Uygulamalı çalışma gerçek durumlar üzerinden yürüdüğü için küçük gruplar tercih edilir.
-        Daha kalabalık ekipler için içerik konferans formatına uyarlanabilir; bu durumda pratik
-        bölümü kısalır.
-      </p>
     </div>
   </section>
 
@@ -517,6 +660,74 @@ const formats = [
   .kat-cta h2 { color: var(--color-cream); font-family: var(--font-display); font-weight: 300; font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem); letter-spacing: -0.03em; max-width: 20ch; text-wrap: balance; }
   .kat-cta p { margin-top: 0.8rem; max-width: 50ch; color: rgba(246, 236, 243, 0.75); line-height: 1.65; }
 
+  /* Üç hizmet — gerçek bir sayım olduğu için numaralı */
+  .svc-grid {
+    list-style: none; padding: 0; counter-reset: none;
+    margin: 2rem 0 0; display: grid; gap: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  }
+  .svc {
+    background: #fff; border: 1px solid var(--color-border); border-radius: 1rem;
+    padding: 1.6rem 1.4rem; display: grid; grid-template-rows: subgrid; grid-row: span 5;
+    gap: 0.4rem; box-shadow: var(--shadow-card);
+  }
+  .svc-n {
+    font-family: var(--font-display); font-size: 1.4rem; line-height: 1;
+    color: var(--color-orchid-400);
+  }
+  .svc-kind {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+  .svc h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; color: var(--color-ink); letter-spacing: -0.02em; }
+  .svc-d { font-size: 0.9rem; color: var(--color-ink-muted); line-height: 1.6; }
+  .svc-link {
+    align-self: end; font-size: 0.85rem; font-weight: 600; color: var(--color-orchid-500);
+    text-decoration: none; border-bottom: 1px solid currentColor; justify-self: start;
+  }
+  .svc-link:hover { color: var(--color-orchid-600); }
+
+  .two-col { margin-top: 1.6rem; display: grid; gap: clamp(1.5rem, 4vw, 3rem); grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .two-col { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } }
+
+  .side-t {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-ink-faint); margin-bottom: 0.9rem;
+  }
+  .side { background: var(--color-surface); border-radius: 1rem; padding: 1.5rem 1.4rem; }
+  .kat-tint .side { background: #fff; }
+
+  .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .ticks li {
+    position: relative; padding-left: 1.5rem;
+    font-size: 0.9rem; color: var(--color-ink-muted); line-height: 1.6;
+  }
+  .ticks li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 0.5rem; height: 0.5rem; border-radius: 999px;
+    background: var(--color-orchid-400);
+  }
+
+  .facts { margin: 1.4rem 0 0; padding-top: 1.1rem; border-top: 1px solid var(--color-border); display: grid; gap: 0.45rem; font-size: 0.875rem; }
+  .facts > div { display: flex; gap: 0.5rem; justify-content: space-between; }
+  .facts dt { color: var(--color-ink-faint); }
+  .facts dd { margin: 0; font-weight: 600; color: var(--color-ink); text-align: right; }
+
+  .csteps { list-style: none; padding: 0; margin: 0; counter-reset: c; display: grid; gap: 1rem; }
+  .csteps li {
+    counter-increment: c; display: grid; gap: 0.25rem;
+    padding-left: 2.4rem; position: relative;
+  }
+  .csteps li::before {
+    content: counter(c); position: absolute; left: 0; top: -0.1rem;
+    width: 1.75rem; height: 1.75rem; border-radius: 999px;
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-size: 0.9rem;
+    background: var(--color-plum-100); color: var(--color-plum-700);
+  }
+  .csteps b { font-weight: 600; color: var(--color-ink); }
+  .csteps span { font-size: 0.9rem; color: var(--color-ink-muted); line-height: 1.6; }
+
   .print-only { display: none; }
 
   @media (max-width: 640px) {
@@ -533,10 +744,13 @@ const formats = [
     .print-only { display: block !important; }
     body { background: #fff; }
     .kat-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    section { padding-block: 1.6rem !important; break-inside: avoid; }
+    /* Bölümler bir sayfaya sığmayacak kadar büyük; bütünlüklerini zorlamak
+       sayfa sonlarında yarım sayfalık boşluklar bırakıyor. Yalnızca küçük,
+       tekrar eden öğeler bölünmesin. */
+    section { padding-block: 1.6rem !important; }
     /* Modüller bölünmesin; seri bir sayfaya sığmayacak kadar uzun olabilir,
        onu zorlamak sayfa sonlarında büyük boşluklar bırakıyor. */
-    .module, .long, .gain, .steps li { break-inside: avoid; }
+    .module, .long, .gain, .svc, .steps li, .csteps li, .ticks li, .cv li { break-inside: avoid; }
     .kat-h2, .series-head { break-after: avoid; }
     a[href^='/']::after, a[href^='http']::after { content: ''; }
   }
